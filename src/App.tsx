@@ -1,57 +1,89 @@
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  createMuiTheme,
+  createStyles,
+  IconButton,
+  makeStyles,
+  Paper,
+  Theme,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
+import { Brightness6 } from '@material-ui/icons';
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import Home from './pages/Home';
+import useTheme from './shared/hooks/useTheme';
+
+const baseTheme = createMuiTheme();
+const defaultTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    tonalOffset: 0.5,
+  },
+  typography: {
+    h1: {
+      fontSize: baseTheme.typography.pxToRem(36),
+    },
+    h2: {
+      fontSize: baseTheme.typography.pxToRem(32),
+    },
+  },
+});
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    tonalOffset: 0.5,
+  },
+});
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  })
+);
 
 function App() {
+  const classes = useStyles();
+  const { theme, toggle } = useTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <ThemeProvider theme={theme === 'dark' ? darkTheme : defaultTheme}>
+      <Box minHeight="100vh" component={Paper}>
+        <AppBar position="static">
+          <Toolbar>
+            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <Menu />
+            </IconButton> */}
+            <Typography variant="h6" className={classes.title}>
+              Noiser
+            </Typography>
+
+            {/* <IconButton edge="end" onClick={() => toggle()}>
+              <Brightness6 />
+            </IconButton> */}
+          </Toolbar>
+        </AppBar>
+
+        <Container maxWidth="md">
+          <Box pt={5}>
+            <Home />
+          </Box>
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 }
 
