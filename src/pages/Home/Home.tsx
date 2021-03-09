@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <Box pt={5}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography variant="h1">Noiser</Typography>
+        <Typography variant="h1">Noizer</Typography>
         <Button
           onClick={() => {
             dispatch(shuffle());
