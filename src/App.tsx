@@ -1,11 +1,9 @@
 import {
   AppBar,
   Box,
-  Button,
   Container,
   createMuiTheme,
   createStyles,
-  IconButton,
   makeStyles,
   Paper,
   Theme,
@@ -13,7 +11,6 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { Brightness6 } from '@material-ui/icons';
 import React from 'react';
 import './App.css';
 import Home from './pages/Home';
@@ -57,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function App() {
   const classes = useStyles();
-  const { theme, toggle } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : defaultTheme}>

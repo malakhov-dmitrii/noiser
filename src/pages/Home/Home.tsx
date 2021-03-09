@@ -1,7 +1,6 @@
 import { Box, Button, Divider, Grid, Typography } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useDispatch } from 'react-redux';
 import { shuffle, toggle } from '../../store/features/player';
 import EffectItem from './components/EffectItem';
 
@@ -19,7 +18,6 @@ const effects = [
 ];
 
 const Home = () => {
-  const { activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
   const dispatch = useDispatch();
 
   const handlePlay = (e: KeyboardEvent) => {
@@ -33,6 +31,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('keypress', handlePlay);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

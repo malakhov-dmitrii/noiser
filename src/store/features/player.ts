@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { random } from 'lodash';
-import { AppThunk, RootState } from '../';
 
 export interface Sound {
   title: string;

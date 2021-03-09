@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Slider, Typography } from '@material-ui/core';
 import React, { FC, useEffect, useState } from 'react';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { setVolume, Sound, toggleSound } from '../../../../store/features/player';
@@ -31,7 +32,7 @@ const EffectItem: FC<Props> = ({ item }) => {
   const activeItem = activeSounds.find(i => item.title === i.title)!;
   const playing = !!activeItem && isPlaying;
 
-  const [sound, setSound] = useState<Howl>(
+  const [sound] = useState<Howl>(
     new Howl({
       src: [item.file],
       volume: activeItem?.volume || 0.5,
@@ -47,11 +48,6 @@ const EffectItem: FC<Props> = ({ item }) => {
     if (playing) sound.play();
     if (!playing) sound.stop();
   }, [playing]);
-
-  // useEffect(() => {
-  //   dispatch(setVolume(activeItem?.title, ))
-  //   sound.volume(volume);
-  // }, [volume]);
 
   return (
     <Box
