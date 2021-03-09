@@ -1,24 +1,34 @@
 import { Box, Button, Divider, Grid, Typography } from '@material-ui/core';
+import { Shuffle } from '@material-ui/icons';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { shuffle, toggle } from '../../store/features/player';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { playPlaylistFromGroup, shuffle, toggle } from '../../store/features/player';
 import EffectItem from './components/EffectItem';
 
-const effects = [
-  { title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
-  { title: 'waves', file: '/audio/waves.mp3', disabled: false },
-  { title: 'storm', file: '/audio/storm.mp3', disabled: false },
-  { title: 'birds', file: '/audio/birds.mp3', disabled: false },
-  { title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
-  { title: 'office', file: '/audio/office.mp3', disabled: false },
-  { title: 'fire', file: '/audio/fire.mp3', disabled: false },
-  { title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
-  { title: 'cafe', file: '', disabled: true },
-  { title: 'drops', file: '', disabled: true },
-];
+import { makeStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) => ({
+  playlistItem: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: '1px solid #c8c8c8',
+    borderRadius: 10,
+    width: 150,
+    height: 50,
+    transition: 'all 0.15s',
+    cursor: 'pointer',
+    '&:hover': {
+      background: '#9c9c9c21',
+    },
+  },
+}));
 
 const Home = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
+  const { sounds, presets } = useSelector((state: RootState) => state.player);
 
   const handlePlay = (e: KeyboardEvent) => {
     if (e.code === 'Space') {
@@ -35,21 +45,41 @@ const Home = () => {
   }, []);
 
   return (
-    <Box>
-      <Box>
-        <Typography variant="h1">Home</Typography>
+    <Box pt={5}>
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Typography variant="h1">Noiser</Typography>
         <Button
           onClick={() => {
             dispatch(shuffle());
           }}
+          startIcon={<Shuffle />}
         >
           Shuffle
         </Button>
       </Box>
       <Divider />
+
+      <Box my={3}>
+        <Grid container spacing={2}>
+          {presets.map(preset => (
+            <Grid item key={preset.title}>
+              <Box
+                onClick={() => {
+                  dispatch(playPlaylistFromGroup(preset.title));
+                }}
+                className={classes.playlistItem}
+              >
+                <Typography variant="caption">{preset.title}</Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+      <Divider></Divider>
+
       <Box mt={2}>
         <Grid container spacing={3}>
-          {effects.map(i => (
+          {sounds.map(i => (
             <Grid item xs={6} md={3} key={i.title}>
               <EffectItem item={i} />
             </Grid>

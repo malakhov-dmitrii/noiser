@@ -1,20 +1,12 @@
-import {
-  AppBar,
-  Box,
-  Container,
-  createMuiTheme,
-  createStyles,
-  makeStyles,
-  Paper,
-  Theme,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import { Box, Container, createMuiTheme, IconButton, Paper, ThemeProvider } from '@material-ui/core';
+import { VolumeOff, VolumeUp } from '@material-ui/icons';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Home from './pages/Home';
 import useTheme from './shared/hooks/useTheme';
+import { RootState } from './store';
+import { toggle } from './store/features/player';
 
 const baseTheme = createMuiTheme();
 const defaultTheme = createMuiTheme({
@@ -24,10 +16,14 @@ const defaultTheme = createMuiTheme({
   },
   typography: {
     h1: {
-      fontSize: baseTheme.typography.pxToRem(36),
+      fontSize: baseTheme.typography.pxToRem(42),
     },
     h2: {
-      fontSize: baseTheme.typography.pxToRem(32),
+      fontSize: baseTheme.typography.pxToRem(36),
+    },
+    h3: {
+      fontSize: baseTheme.typography.pxToRem(28),
+      fontWeight: 100,
     },
   },
 });
@@ -38,42 +34,17 @@ const darkTheme = createMuiTheme({
   },
 });
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })
-);
-
 function App() {
-  const classes = useStyles();
   const { theme } = useTheme();
+  const { isPlaying } = useSelector((state: RootState) => state.player);
+  const dispatch = useDispatch();
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : defaultTheme}>
       <Box minHeight="100vh" component={Paper}>
-        <AppBar position="static">
-          <Toolbar>
-            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <Menu />
-            </IconButton> */}
-            <Typography variant="h6" className={classes.title}>
-              Noiser
-            </Typography>
-
-            {/* <IconButton edge="end" onClick={() => toggle()}>
-              <Brightness6 />
-            </IconButton> */}
-          </Toolbar>
-        </AppBar>
-
+        <Box display="flex" justifyContent="flex-end">
+          <IconButton onClick={() => dispatch(toggle())}>{isPlaying ? <VolumeUp /> : <VolumeOff />}</IconButton>
+        </Box>
         <Container maxWidth="md">
           <Box pt={5}>
             <Home />

@@ -7,29 +7,56 @@ export interface Sound {
   disabled?: boolean;
 }
 
+interface ActiveSound {
+  title: string, volume: number
+}
+
+interface PresetsGroup {
+  title: string;
+  items: ActiveSound[][];
+}
+
 interface PlayerState {
   isPlaying: boolean;
-  activeSounds: { title: string, volume: number }[];
-  playlists: any[],
+  activeSounds: ActiveSound[];
+  presets: PresetsGroup[]
   sounds: Sound[]
 }
+
+const sounds = [
+  { title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
+  { title: 'waves', file: '/audio/waves.mp3', disabled: false },
+  { title: 'storm', file: '/audio/storm.mp3', disabled: false },
+  { title: 'birds', file: '/audio/birds.mp3', disabled: false },
+  { title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
+  { title: 'fire', file: '/audio/fire.mp3', disabled: false },
+  { title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
+  { title: 'office', file: '/audio/office.mp3', disabled: false },
+  { title: 'cafe', file: '', disabled: true },
+  { title: 'drops', file: '', disabled: true },
+]
+
+const presets = [{
+  title: 'Productivity',
+  items: [
+    [
+      { title: 'rain', volume: 0.3 },
+      { title: 'walk', volume: 0.6 },
+      { title: 'storm', volume: 0.15 },
+    ],
+    [
+      { title: 'waves', volume: 0.3 },
+      { title: 'birds', volume: 0.15 },
+      { title: 'fire', volume: 0.7 },
+    ],
+  ]
+}]
 
 const initialState: PlayerState = {
   isPlaying: true,
   activeSounds: [],
-  sounds: [
-    { title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
-    { title: 'waves', file: '/audio/waves.mp3', disabled: false },
-    { title: 'storm', file: '/audio/storm.mp3', disabled: false },
-    { title: 'birds', file: '/audio/birds.mp3', disabled: false },
-    { title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
-    { title: 'office', file: '/audio/office.mp3', disabled: false },
-    { title: 'fire', file: '/audio/fire.mp3', disabled: false },
-    { title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
-    { title: 'cafe', file: '', disabled: true },
-    { title: 'drops', file: '', disabled: true },
-  ],
-  playlists: []
+  sounds,
+  presets
 };
 
 const randomSlice = <T>(arr: T[], n: number): T[] => arr.sort(() => Math.random() - Math.random()).slice(0, n)
@@ -46,6 +73,11 @@ export const playerSlice = createSlice({
       if (exist) state.activeSounds = state.activeSounds.filter(i => i.title !== action.payload);
       else state.activeSounds = [...state.activeSounds, { title: action.payload, volume: 0.5 }]
     },
+    playPlaylistFromGroup: (state, action: PayloadAction<string>) => {
+      const sets = [...state.presets.find(i => i.title === action.payload)!.items];
+      const ready = sets[random(0, sets.length - 1)];
+      state.activeSounds = ready;
+    },
     setVolume: (state, action: PayloadAction<{ title: string, amount: number }>) => {
       const item = state.activeSounds.find(i => i.title === action.payload.title)!
       item.volume = action.payload.amount
@@ -56,7 +88,7 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { toggle, toggleSound, shuffle, setVolume } = playerSlice.actions;
+export const { toggle, toggleSound, playPlaylistFromGroup, shuffle, setVolume } = playerSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This

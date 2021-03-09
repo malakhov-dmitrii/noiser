@@ -66,7 +66,7 @@ const EffectItem: FC<Props> = ({ item }) => {
         }
       }}
     >
-      <Typography className={cn({ [classes.disabled]: item.disabled })} variant="h2">
+      <Typography className={cn({ [classes.disabled]: item.disabled })} variant="h3">
         {item.title}
       </Typography>
 
