@@ -1,5 +1,5 @@
 import { Box, Container, createMuiTheme, IconButton, Paper, ThemeProvider, Typography } from '@material-ui/core';
-import { VolumeOff, VolumeUp } from '@material-ui/icons';
+import { Person, PersonOutlined, VolumeOff, VolumeUp } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
@@ -9,12 +9,15 @@ import { RootState } from './store';
 import { toggle } from './store/features/player';
 import { version } from '../package.json';
 import firebase from 'firebase/app';
-import 'firebase/auth';
-import { FirebaseAuthProvider } from '@react-firebase/auth';
 import { firebaseConfig } from './shared/config';
 
+import 'firebase/database';
 import 'firebase/performance';
 import 'firebase/analytics';
+import { googleSignIn } from './store/features/auth';
+
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import { BrowserRouter } from 'react-router-dom';
 
 const baseTheme = createMuiTheme();
 const defaultTheme = createMuiTheme({
@@ -47,18 +50,27 @@ firebase.initializeApp(firebaseConfig);
 
 // Initialize Performance Monitoring and get a reference to the service
 const perf = firebase.performance();
-console.log(perf);
+const anal = firebase.analytics();
+
+const useStyles = makeStyles((theme: Theme) => ({
+  avatar: {
+    borderRadius: 50,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   const { theme } = useTheme();
   const { isPlaying } = useSelector((state: RootState) => state.player);
+  const { isLoggedIn, user, error } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   return (
-    <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
+    <BrowserRouter>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : defaultTheme}>
         <Box
           minHeight="100vh"
+          height="auto"
           component={Paper}
           display="flex"
           justifyContent="space-between"
@@ -67,6 +79,18 @@ function App() {
         >
           <Box display="flex" justifyContent="flex-end">
             <IconButton onClick={() => dispatch(toggle())}>{isPlaying ? <VolumeUp /> : <VolumeOff />}</IconButton>
+            <IconButton
+              disabled={isLoggedIn}
+              onClick={() => {
+                dispatch(googleSignIn());
+              }}
+            >
+              {isLoggedIn && user ? (
+                <img alt="avatar" className={classes.avatar} src={user.photoURL || ''} width="30" height="30" />
+              ) : (
+                <Person />
+              )}
+            </IconButton>
           </Box>
           <Container maxWidth="md">
             <Box pt={3}>
@@ -83,7 +107,7 @@ function App() {
           </Box>
         </Box>
       </ThemeProvider>
-    </FirebaseAuthProvider>
+    </BrowserRouter>
   );
 }
 

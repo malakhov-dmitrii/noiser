@@ -1,12 +1,19 @@
-import { Box, Button, Divider, Grid, Typography } from '@material-ui/core';
-import { Shuffle } from '@material-ui/icons';
-import React, { useEffect } from 'react';
+import { Box, Button, Divider, Grid, Tooltip, Typography } from '@material-ui/core';
+import { Share, Shuffle, Stop } from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { playPlaylistFromGroup, shuffle, toggle } from '../../store/features/player';
+import { ActiveSound, playPlaylistFromGroup, playReferredPlaylist, shuffle, toggle, stop } from '../../store/features/player';
 import EffectItem from './components/EffectItem';
+import { uniqueNamesGenerator, adjectives, colors, names } from 'unique-names-generator';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
+
+import firebase from 'firebase/app';
+
+import 'firebase/database';
+import { isEqual } from 'lodash';
 
 const useStyles = makeStyles((theme: Theme) => ({
   playlistItem: {
@@ -26,15 +33,54 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const Home = () => {
+  const db = firebase.database();
+
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { sounds, presets } = useSelector((state: RootState) => state.player);
+  const [loadedPreset, setLoadedPreset] = useState<ActiveSound[] | null>(null);
+  const { sounds, presets, activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.auth);
+  const history = useHistory();
 
   const handlePlay = (e: KeyboardEvent) => {
     if (e.code === 'Space') {
       dispatch(toggle());
     }
   };
+
+  const createPreset = () => {
+    if (isEqual(loadedPreset, activeSounds)) {
+      const pathname = history.location.pathname.slice(1);
+      navigator.clipboard.writeText(`${window.location.origin}/${pathname}`);
+    } else {
+      const title = uniqueNamesGenerator({ dictionaries: [adjectives, colors, names], length: 3 });
+      db.ref(`${title}`).set({
+        userId: user?.email,
+        sounds: activeSounds,
+      });
+
+      const path = `${window.location.origin}/${title}`;
+
+      navigator.clipboard.writeText(path);
+      history.push(`/${title}`);
+    }
+  };
+
+  useEffect(() => {
+    const pathname = history.location.pathname.slice(1);
+
+    if (pathname) {
+      db.ref(pathname)
+        .get()
+        .then(r => {
+          if (r.exists()) {
+            const referredPreset = r.val()?.sounds;
+            dispatch(playReferredPlaylist(referredPreset));
+            setLoadedPreset(referredPreset);
+          }
+        });
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener('keypress', handlePlay);
@@ -48,14 +94,44 @@ const Home = () => {
     <Box pt={3}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="h1">Noizer</Typography>
-        <Button
-          onClick={() => {
-            dispatch(shuffle());
-          }}
-          startIcon={<Shuffle />}
-        >
-          Shuffle
-        </Button>
+        <Box>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Tooltip title="Create unique name for the preset and copy link to clipboard">
+                <Button
+                  disabled={!isPlaying || !activeSounds.length}
+                  onClick={() => {
+                    createPreset();
+                  }}
+                  startIcon={<Share />}
+                >
+                  Share
+                </Button>
+              </Tooltip>
+            </Grid>
+            <Grid item>
+              <Button
+                onClick={() => {
+                  dispatch(shuffle());
+                }}
+                startIcon={<Shuffle />}
+              >
+                Shuffle
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                onClick={() => {
+                  dispatch(stop());
+                  history.push('/');
+                }}
+                startIcon={<Stop />}
+              >
+                Reset
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
       </Box>
       <Divider />
 
