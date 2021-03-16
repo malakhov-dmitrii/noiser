@@ -45,7 +45,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Box pt={5}>
+    <Box pt={3}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="h1">Noizer</Typography>
         <Button
