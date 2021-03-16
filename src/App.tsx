@@ -1,5 +1,5 @@
 import { Box, Container, createMuiTheme, IconButton, Paper, ThemeProvider, Typography } from '@material-ui/core';
-import { Person, PersonOutlined, VolumeOff, VolumeUp } from '@material-ui/icons';
+import { Person, VolumeOff, VolumeUp } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
@@ -49,8 +49,8 @@ const darkTheme = createMuiTheme({
 firebase.initializeApp(firebaseConfig);
 
 // Initialize Performance Monitoring and get a reference to the service
-const perf = firebase.performance();
-const anal = firebase.analytics();
+firebase.performance();
+firebase.analytics();
 
 const useStyles = makeStyles((theme: Theme) => ({
   avatar: {
@@ -62,7 +62,7 @@ function App() {
   const classes = useStyles();
   const { theme } = useTheme();
   const { isPlaying } = useSelector((state: RootState) => state.player);
-  const { isLoggedIn, user, error } = useSelector((state: RootState) => state.auth);
+  const { isLoggedIn, user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   return (
