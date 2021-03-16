@@ -12,7 +12,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { FirebaseAuthProvider } from '@react-firebase/auth';
 import { firebaseConfig } from './shared/config';
-// ReactGA.initialize('G-4EYB120GY2');
+
+import 'firebase/performance';
+import 'firebase/analytics';
 
 const baseTheme = createMuiTheme();
 const defaultTheme = createMuiTheme({
@@ -40,10 +42,12 @@ const darkTheme = createMuiTheme({
   },
 });
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-firebase.analytics();
-firebase.performance();
+// Initialize Performance Monitoring and get a reference to the service
+const perf = firebase.performance();
+console.log(perf);
 
 function App() {
   const { theme } = useTheme();
