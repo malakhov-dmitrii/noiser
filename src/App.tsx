@@ -2,7 +2,7 @@ import { Box, Container, createMuiTheme, IconButton, Paper, ThemeProvider, Typog
 import { VolumeOff, VolumeUp } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
+import './App.scss';
 import Home from './pages/Home';
 import useTheme from './shared/hooks/useTheme';
 import { RootState } from './store';
@@ -57,7 +57,14 @@ function App() {
   return (
     <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : defaultTheme}>
-        <Box minHeight="100vh" component={Paper} display="flex" justifyContent="space-between" flexDirection="column">
+        <Box
+          minHeight="100vh"
+          component={Paper}
+          display="flex"
+          justifyContent="space-between"
+          flexDirection="column"
+          className="animatedBackground"
+        >
           <Box display="flex" justifyContent="flex-end">
             <IconButton onClick={() => dispatch(toggle())}>{isPlaying ? <VolumeUp /> : <VolumeOff />}</IconButton>
           </Box>

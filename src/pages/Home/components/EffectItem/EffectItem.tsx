@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   item: {
     cursor: 'pointer',
-    border: '1px solid #929292',
+    // border: '1px solid #929292',
     borderRadius: 15,
+    boxShadow: '-8px 9px 20px 0px #7979794f',
   },
 }));
 
