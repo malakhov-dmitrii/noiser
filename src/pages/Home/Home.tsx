@@ -39,7 +39,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const [loadedPreset, setLoadedPreset] = useState<ActiveSound[] | null>(null);
   const { sounds, presets, activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
-  const { user, isLoggedIn } = useSelector((state: RootState) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
   const history = useHistory();
 
   const handlePlay = (e: KeyboardEvent) => {
