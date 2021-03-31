@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: 15,
     boxShadow: '-8px 9px 20px 0px #7979794f',
   },
+  title: {
+    fontSize: theme.typography.pxToRem(18),
+    textAlign: 'center',
+  },
 }));
 
 const EffectItem: FC<Props> = ({ item }) => {
@@ -58,16 +62,18 @@ const EffectItem: FC<Props> = ({ item }) => {
       justifyContent="center"
       alignItems="center"
       p={3}
-      height={200}
+      height={150}
       // width={200}
       className={classes.item}
       onClick={e => {
         if (!item.disabled) {
+          // @ts-ignore
+          ym(73469224, 'reachGoal', 'pick-sound');
           dispatch(toggleSound(item.title));
         }
       }}
     >
-      <Typography className={cn({ [classes.disabled]: item.disabled })} variant="h3">
+      <Typography className={cn({ [classes.disabled]: item.disabled }, classes.title)} variant="h3">
         {item.title}
       </Typography>
 

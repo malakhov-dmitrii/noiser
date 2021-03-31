@@ -143,6 +143,8 @@ const Home = () => {
               <Box
                 onClick={() => {
                   dispatch(playPlaylistFromGroup(preset.title));
+                  // @ts-ignore
+                  ym(73469224, 'reachGoal', 'start-playlist');
                 }}
                 className={classes.playlistItem}
               >

@@ -1,5 +1,5 @@
-import { Box, Container, createMuiTheme, IconButton, Paper, ThemeProvider, Typography } from '@material-ui/core';
-import { Person, VolumeOff, VolumeUp } from '@material-ui/icons';
+import { Box, Button, Container, createMuiTheme, IconButton, Paper, ThemeProvider, Typography } from '@material-ui/core';
+import { Email, Person, VolumeOff, VolumeUp } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
@@ -92,18 +92,17 @@ function App() {
               )}
             </IconButton>
           </Box>
-          <Container maxWidth="md">
+          <Container maxWidth="sm">
             <Box pt={3}>
               <Home />
             </Box>
           </Container>
-          <Box display="flex" justifyContent="center" pb={2}>
-            <Typography>Version {version} |</Typography>
-            <Typography>
-              <a rel="noopener" target="__blank" href="mailto:mitia2022@gmail.com">
-                Email author
-              </a>
-            </Typography>
+          <Box display="flex" justifyContent="center" alignItems="center" pb={2}>
+            <Typography variant="caption">Version {version}</Typography>
+            <Box width={20}></Box>
+            <Button variant="text" startIcon={<Email />} href="mailto:mitia2022@gmail.com" target="_blank" rel="noopener">
+              Email author
+            </Button>
           </Box>
         </Box>
       </ThemeProvider>
