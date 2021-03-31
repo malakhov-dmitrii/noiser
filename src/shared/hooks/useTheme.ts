@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-type ThemeType = 'light' | 'dark';
+export type ThemeType = 'light' | 'dark' | 'system' | 'gradient';
 
 const useTheme = () => {
-  const [theme, setTheme] = useState<ThemeType>(localStorage.getItem('theme') as ThemeType || 'light');
+  const [theme, setTheme] = useState<ThemeType>((localStorage.getItem('theme') as ThemeType) || 'light');
 
-  const toggle = () => {
-    const v = theme === 'light' ? 'dark' : 'light';
-    setTheme(v);
-    localStorage.setItem('theme', v);
-  }
-  return { toggle, theme }
+  const toggle = (type: ThemeType) => {
+    setTheme(type);
+    localStorage.setItem('theme', type);
+  };
+  return { toggle, theme };
 };
 
 export default useTheme;

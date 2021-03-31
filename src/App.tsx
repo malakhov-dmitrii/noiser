@@ -1,5 +1,17 @@
-import { Box, Button, Container, createMuiTheme, IconButton, Paper, ThemeProvider, Typography, useMediaQuery } from '@material-ui/core';
-import { Email, Person, VolumeOff, VolumeUp } from '@material-ui/icons';
+import {
+  Box,
+  Button,
+  Container,
+  createMuiTheme,
+  IconButton,
+  Menu,
+  MenuItem,
+  Paper,
+  ThemeProvider,
+  Typography,
+  useMediaQuery,
+} from '@material-ui/core';
+import { ColorLensOutlined, Email, Person, VolumeOff, VolumeUp } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
@@ -17,6 +29,8 @@ import { googleSignIn } from './store/features/auth';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeType } from './shared/hooks/useTheme';
+import useTheme from './shared/hooks/useTheme';
 
 const baseTheme = createMuiTheme();
 // Initialize Firebase
@@ -34,18 +48,26 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function App() {
   const classes = useStyles();
-  // const { theme } = useTheme();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const { theme: prefferedTheme, toggle: changeTheme } = useTheme();
   const { isPlaying } = useSelector((state: RootState) => state.player);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
+  console.log(prefferedTheme);
+
   const theme = React.useMemo(
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
+          type: (prefferedTheme === 'system' && prefersDarkMode) || prefferedTheme === 'dark' ? 'dark' : 'light',
         },
         typography: {
           h1: {
@@ -60,15 +82,44 @@ function App() {
           },
         },
       }),
-    [prefersDarkMode]
+    [prefersDarkMode, prefferedTheme]
   );
+
+  const handleThemeClose = (type?: ThemeType) => {
+    setAnchorEl(null);
+
+    if (type) {
+      changeTheme(type);
+    }
+  };
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Box minHeight="100vh" height="auto" component={Paper} display="flex" justifyContent="space-between" flexDirection="column">
+        <Box
+          minHeight="100vh"
+          height="auto"
+          component={Paper}
+          display="flex"
+          justifyContent="space-between"
+          flexDirection="column"
+          className={prefferedTheme === 'gradient' ? 'animatedBackground' : ''}
+        >
           <Box display="flex" justifyContent="flex-end">
+            <Box>
+              <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                <ColorLensOutlined />
+              </IconButton>
+              <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => handleThemeClose()}>
+                <MenuItem onClick={() => handleThemeClose('light')}>Light</MenuItem>
+                <MenuItem onClick={() => handleThemeClose('dark')}>Dark</MenuItem>
+                <MenuItem onClick={() => handleThemeClose('gradient')}>Gradient</MenuItem>
+                <MenuItem onClick={() => handleThemeClose('system')}>System-based</MenuItem>
+              </Menu>
+            </Box>
+
             <IconButton onClick={() => dispatch(toggle())}>{isPlaying ? <VolumeUp /> : <VolumeOff />}</IconButton>
+
             <IconButton
               disabled={isLoggedIn}
               onClick={() => {
