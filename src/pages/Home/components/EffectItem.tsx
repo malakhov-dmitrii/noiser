@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Slider, Typography } from '@material-ui/core';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Howl } from 'howler';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { setVolume, Sound, toggleSound } from '../../../../store/features/player';
-import { RootState } from '../../../../store';
+import { setVolume, Sound, toggleSound } from '../../../store/features/player';
+import { RootState } from '../../../store';
+import ReactPlayer from 'react-player';
 
 interface Props {
   item: Sound;
@@ -35,24 +35,6 @@ const EffectItem: FC<Props> = ({ item }) => {
   const { activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
 
   const activeItem = activeSounds.find(i => item.title === i.title)!;
-  const playing = !!activeItem && isPlaying;
-
-  const [sound] = useState<Howl>(
-    new Howl({
-      src: [item.file],
-      volume: activeItem?.volume || 0.5,
-      loop: true,
-    })
-  );
-
-  useEffect(() => {
-    return () => sound.unload();
-  }, []);
-
-  useEffect(() => {
-    if (playing) sound.play();
-    if (!playing) sound.stop();
-  }, [playing]);
 
   return (
     <Box
@@ -77,14 +59,28 @@ const EffectItem: FC<Props> = ({ item }) => {
         {item.title}
       </Typography>
 
-      <Box
-        width="100%"
-        height={50}
-        onClick={e => {
-          e.stopPropagation();
+      <ReactPlayer
+        width={0}
+        playing={!!activeItem}
+        muted={!isPlaying}
+        volume={activeItem?.volume}
+        loop
+        url={item.file}
+        config={{
+          file: {
+            forceAudio: true,
+          },
         }}
-      >
-        {playing && (
+      />
+
+      {!!activeItem && (
+        <Box
+          width="100%"
+          height={50}
+          onClick={e => {
+            e.stopPropagation();
+          }}
+        >
           <Slider
             value={activeItem.volume}
             min={0}
@@ -94,11 +90,10 @@ const EffectItem: FC<Props> = ({ item }) => {
               e.preventDefault();
               e.stopPropagation();
               dispatch(setVolume({ title: activeItem.title, amount: newValue as number }));
-              sound.volume(newValue as number);
             }}
           />
-        )}
-      </Box>
+        </Box>
+      )}
     </Box>
   );
 };

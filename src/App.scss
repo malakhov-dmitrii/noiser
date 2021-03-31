@@ -1,21 +1,5 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-
 /* Main styles */
-.animatedBackground {
+body {
   position: absolute;
   width: 100%;
   height: 100%;
