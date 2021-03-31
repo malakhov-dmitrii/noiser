@@ -3,7 +3,7 @@ import { useState } from 'react';
 export type ThemeType = 'light' | 'dark' | 'system' | 'gradient';
 
 const useTheme = () => {
-  const [theme, setTheme] = useState<ThemeType>((localStorage.getItem('theme') as ThemeType) || 'light');
+  const [theme, setTheme] = useState<ThemeType>((localStorage.getItem('theme') as ThemeType) || 'gradient');
 
   const toggle = (type: ThemeType) => {
     setTheme(type);
