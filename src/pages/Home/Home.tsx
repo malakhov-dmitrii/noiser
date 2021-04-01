@@ -14,6 +14,7 @@ import firebase from 'firebase/app';
 
 import 'firebase/database';
 import { isEqual } from 'lodash';
+declare const plausible: (name: string) => void;
 
 const useStyles = makeStyles((theme: Theme) => ({
   playlistItem: {
@@ -102,6 +103,7 @@ const Home = () => {
                 <Button
                   disabled={!isPlaying || !activeSounds.length}
                   onClick={() => {
+                    plausible('share');
                     createPreset();
                   }}
                   startIcon={<Share />}

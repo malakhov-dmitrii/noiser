@@ -32,6 +32,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeType } from './shared/hooks/useTheme';
 import useTheme from './shared/hooks/useTheme';
 
+declare const plausible: (name: string) => void;
+
 const baseTheme = createMuiTheme();
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -61,8 +63,6 @@ function App() {
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-  console.log(prefferedTheme);
-
   const theme = React.useMemo(
     () =>
       createMuiTheme({
@@ -89,6 +89,8 @@ function App() {
     setAnchorEl(null);
 
     if (type) {
+      plausible('change theme');
+
       changeTheme(type);
     }
   };
@@ -118,11 +120,18 @@ function App() {
               </Menu>
             </Box>
 
-            <IconButton onClick={() => dispatch(toggle())}>{isPlaying ? <VolumeUp /> : <VolumeOff />}</IconButton>
+            <IconButton
+              onClick={() => {
+                dispatch(toggle());
+              }}
+            >
+              {isPlaying ? <VolumeUp /> : <VolumeOff />}
+            </IconButton>
 
             <IconButton
               disabled={isLoggedIn}
               onClick={() => {
+                plausible('Signup');
                 dispatch(googleSignIn());
               }}
             >

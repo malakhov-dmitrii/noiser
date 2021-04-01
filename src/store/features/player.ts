@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { random } from 'lodash';
-
+declare const plausible: (name: string) => void;
 export interface Sound {
   title: string;
   file: string;
@@ -70,30 +70,39 @@ export const playerSlice = createSlice({
   initialState,
   reducers: {
     toggle: state => {
+      plausible('mute/unmute');
       state.isPlaying = !state.isPlaying;
     },
     stop: state => {
+      plausible('stop');
       state.activeSounds = [];
       // state.isPlaying = false;
     },
     toggleSound: (state, action: PayloadAction<string>) => {
+      plausible('toggle sound');
+
       const exist = state.activeSounds.find(i => i.title === action.payload);
       if (exist) state.activeSounds = state.activeSounds.filter(i => i.title !== action.payload);
       else state.activeSounds = [...state.activeSounds, { title: action.payload, volume: 0.5 }];
     },
     playReferredPlaylist: (state, action: PayloadAction<ActiveSound[]>) => {
+      plausible('play shared playlist');
       state.activeSounds = action.payload;
     },
     playPlaylistFromGroup: (state, action: PayloadAction<string>) => {
+      plausible('play defined playlist');
       const sets = [...state.presets.find(i => i.title === action.payload)!.items];
       const ready = sets[random(0, sets.length - 1)];
       state.activeSounds = ready;
     },
     setVolume: (state, action: PayloadAction<{ title: string; amount: number }>) => {
+      plausible('set volume');
       const item = state.activeSounds.find(i => i.title === action.payload.title)!;
       item.volume = action.payload.amount;
     },
     shuffle: state => {
+      plausible('shuffle');
+
       state.activeSounds = randomSlice(
         state.sounds.filter(i => !i.disabled).map(i => i.title),
         random(2, 4)
