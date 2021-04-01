@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { random } from 'lodash';
+import { debounce } from '@material-ui/core';
 declare const plausible: (name: string) => void;
 export interface Sound {
   title: string;
@@ -63,6 +64,8 @@ const initialState: PlayerState = {
   presets,
 };
 
+const debounceSound = debounce(() => plausible('set volume'), 1000);
+
 const randomSlice = <T>(arr: T[], n: number): T[] => arr.sort(() => Math.random() - Math.random()).slice(0, n);
 
 export const playerSlice = createSlice({
@@ -96,7 +99,7 @@ export const playerSlice = createSlice({
       state.activeSounds = ready;
     },
     setVolume: (state, action: PayloadAction<{ title: string; amount: number }>) => {
-      plausible('set volume');
+      debounceSound();
       const item = state.activeSounds.find(i => i.title === action.payload.title)!;
       item.volume = action.payload.amount;
     },
