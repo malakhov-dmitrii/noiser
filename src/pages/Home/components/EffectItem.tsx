@@ -29,12 +29,39 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+// function fadeOut(duration = 500, setVolume: (amount: number) => void) {
+//   const end = new Date().getTime() + duration;
+
+//   const doFadeOut = () => {
+//     const current = new Date().getTime();
+//     const remaining = end - current;
+
+//     if (remaining < 60) {
+//       // End animation here as there's less than 60 milliseconds left
+//       return;
+//     }
+
+//     // Change player volume
+//     setVolume(easingFunctions.easeOutQuad(remaining / duration));
+
+//     requestAnimationFrame(doFadeOut);
+//   };
+
+//   doFadeOut();
+// }
+
 const EffectItem: FC<Props> = ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
 
   const activeItem = activeSounds.find(i => item.title === i.title)!;
+
+  // useEffect(() => {
+  //   if (oscillation && isPlaying && activeItem) {
+  //     fadeOut(50000, amount => dispatch(setVolume({ title: activeItem.title, amount })));
+  //   }
+  // }, [oscillation]);
 
   return (
     <Box

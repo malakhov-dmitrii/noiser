@@ -1,9 +1,23 @@
-import { Box, Button, Divider, Grid, Tooltip, Typography } from '@material-ui/core';
-import { Share, Shuffle, Stop } from '@material-ui/icons';
+import { Box, Divider, Grid, Tooltip, Typography, IconButton } from '@material-ui/core';
+import {
+  Share,
+  Shuffle,
+  Stop,
+
+  // SlowMotionVideo
+} from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { ActiveSound, playPlaylistFromGroup, playReferredPlaylist, shuffle, toggle, stop } from '../../store/features/player';
+import {
+  ActiveSound,
+  playPlaylistFromGroup,
+  playReferredPlaylist,
+  shuffle,
+  toggle,
+  stop,
+  // toggleOscillation,
+} from '../../store/features/player';
 import EffectItem from './components/EffectItem';
 import { uniqueNamesGenerator, adjectives, colors, names } from 'unique-names-generator';
 
@@ -98,40 +112,57 @@ const Home = () => {
         <Typography variant="h1">Noizer</Typography>
         <Box>
           <Grid container spacing={2}>
+            {/* <Grid item>
+              <Tooltip title="Oscillation - sounds will change volumes over time">
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    plausible('oscillation');
+                    dispatch(toggleOscillation());
+                  }}
+                >
+                  <SlowMotionVideo />
+                </IconButton>
+              </Tooltip>
+            </Grid> */}
             <Grid item>
               <Tooltip title="Create unique name for the preset and copy link to clipboard">
-                <Button
+                <IconButton
+                  size="small"
                   disabled={!isPlaying || !activeSounds.length}
                   onClick={() => {
                     plausible('share');
                     createPreset();
                   }}
-                  startIcon={<Share />}
                 >
-                  Share
-                </Button>
+                  <Share />
+                </IconButton>
               </Tooltip>
             </Grid>
             <Grid item>
-              <Button
-                onClick={() => {
-                  dispatch(shuffle());
-                }}
-                startIcon={<Shuffle />}
-              >
-                Shuffle
-              </Button>
+              <Tooltip title="Shuffle">
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    dispatch(shuffle());
+                  }}
+                >
+                  <Shuffle />
+                </IconButton>
+              </Tooltip>
             </Grid>
             <Grid item>
-              <Button
-                onClick={() => {
-                  dispatch(stop());
-                  history.push('/');
-                }}
-                startIcon={<Stop />}
-              >
-                Reset
-              </Button>
+              <Tooltip title="Stop/reset">
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    dispatch(stop());
+                    history.push('/');
+                  }}
+                >
+                  <Stop />
+                </IconButton>
+              </Tooltip>
             </Grid>
           </Grid>
         </Box>

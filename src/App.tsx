@@ -10,8 +10,9 @@ import {
   ThemeProvider,
   Typography,
   useMediaQuery,
+  Tooltip,
 } from '@material-ui/core';
-import { ColorLensOutlined, Email, Person, VolumeOff, VolumeUp } from '@material-ui/icons';
+import { ColorLensOutlined, Email, Person, VolumeOff, VolumeUp, FormatListNumbered } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
@@ -109,6 +110,12 @@ function App() {
         >
           <Box display="flex" justifyContent="flex-end">
             <Box>
+              <Tooltip title="Vote for new features">
+                <IconButton href="https://productific.com/@Noizer" rel="noopener noreferrer" target="_blank">
+                  <FormatListNumbered />
+                </IconButton>
+              </Tooltip>
+
               <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <ColorLensOutlined />
               </IconButton>
@@ -127,7 +134,6 @@ function App() {
             >
               {isPlaying ? <VolumeUp /> : <VolumeOff />}
             </IconButton>
-
             <IconButton
               disabled={isLoggedIn}
               onClick={() => {
@@ -163,7 +169,7 @@ function App() {
                 <img
                   src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290204&theme=light"
                   alt="Noizer - Ambient sounds. Like Noisli, but free | Product Hunt"
-                  style={{ width: '250px', height: '54px;' }}
+                  style={{ width: '250px', height: '54px' }}
                   width="250"
                   height="54"
                 />

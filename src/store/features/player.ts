@@ -20,6 +20,7 @@ interface PresetsGroup {
 
 interface PlayerState {
   isPlaying: boolean;
+  oscillation: boolean;
   activeSounds: ActiveSound[];
   presets: PresetsGroup[];
   sounds: Sound[];
@@ -59,6 +60,7 @@ const presets = [
 
 const initialState: PlayerState = {
   isPlaying: true,
+  oscillation: false,
   activeSounds: [],
   sounds,
   presets,
@@ -72,6 +74,11 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
+    toggleOscillation: state => {
+      if (state.oscillation) plausible('enable oscillation');
+      else plausible('disable oscillation');
+      state.oscillation = !state.oscillation;
+    },
     toggle: state => {
       plausible('mute/unmute');
       state.isPlaying = !state.isPlaying;
@@ -114,7 +121,16 @@ export const playerSlice = createSlice({
   },
 });
 
-export const { toggle, toggleSound, playPlaylistFromGroup, shuffle, setVolume, playReferredPlaylist, stop } = playerSlice.actions;
+export const {
+  toggle,
+  toggleSound,
+  toggleOscillation,
+  playPlaylistFromGroup,
+  shuffle,
+  setVolume,
+  playReferredPlaylist,
+  stop,
+} = playerSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
