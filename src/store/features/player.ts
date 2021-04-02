@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { random } from 'lodash';
 import { debounce } from '@material-ui/core';
+import { AppThunk } from '..';
 declare const plausible: (name: string) => void;
 export interface Sound {
   title: string;
@@ -20,7 +21,7 @@ interface PresetsGroup {
 
 interface PlayerState {
   isPlaying: boolean;
-  oscillation: boolean;
+  sweeping: boolean;
   activeSounds: ActiveSound[];
   presets: PresetsGroup[];
   sounds: Sound[];
@@ -56,11 +57,40 @@ const presets = [
       ],
     ],
   },
+  {
+    title: 'Focus',
+    items: [
+      [
+        { title: 'soft wind', volume: 0.4 },
+        { title: 'airplane', volume: 0.6 },
+        { title: 'windy forest', volume: 0.15 },
+      ],
+      [
+        { title: 'soft wind', volume: 0.4 },
+        { title: 'rain', volume: 0.6 },
+        { title: 'cafe', volume: 0.3 },
+      ],
+    ],
+  },
+  {
+    title: 'Relax',
+    items: [
+      [
+        { title: 'waves', volume: 0.3 },
+        { title: 'fire', volume: 0.6 },
+        { title: 'windy forest', volume: 0.2 },
+      ],
+      [
+        { title: 'birds', volume: 0.2 },
+        { title: 'windy forest', volume: 0.6 },
+      ],
+    ],
+  },
 ];
 
 const initialState: PlayerState = {
   isPlaying: true,
-  oscillation: false,
+  sweeping: false,
   activeSounds: [],
   sounds,
   presets,
@@ -74,10 +104,10 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    toggleOscillation: state => {
-      if (state.oscillation) plausible('enable oscillation');
+    setOscillation: (state, action: PayloadAction<boolean>) => {
+      if (state.sweeping) plausible('enable oscillation');
       else plausible('disable oscillation');
-      state.oscillation = !state.oscillation;
+      state.sweeping = !state.sweeping;
     },
     toggle: state => {
       plausible('mute/unmute');
@@ -108,7 +138,9 @@ export const playerSlice = createSlice({
     setVolume: (state, action: PayloadAction<{ title: string; amount: number }>) => {
       debounceSound();
       const item = state.activeSounds.find(i => i.title === action.payload.title)!;
-      item.volume = action.payload.amount;
+      if (item) {
+        item.volume = action.payload.amount;
+      }
     },
     shuffle: state => {
       plausible('shuffle');
@@ -121,10 +153,55 @@ export const playerSlice = createSlice({
   },
 });
 
+const wait = (delay: number) => {
+  return new Promise(r => setTimeout(r, delay));
+};
+
+const adjustVolume = async (
+  originalVolume: number,
+  newVolume: number,
+  setVolume: (amount: number) => void,
+  {
+    duration = 5000,
+    easing = swing,
+    interval = 17,
+  }: {
+    duration?: number;
+    easing?: typeof swing;
+    interval?: number;
+  } = {}
+): Promise<void> => {
+  const delta = newVolume - originalVolume;
+
+  if (!delta || !duration || !easing || !interval) {
+    setVolume(newVolume);
+    return Promise.resolve();
+  }
+
+  const ticks = Math.floor(duration / interval);
+  let tick = 1;
+
+  return new Promise(resolve => {
+    const timer = setInterval(() => {
+      setVolume(originalVolume + easing(tick / ticks) * delta);
+
+      if (++tick === ticks + 1) {
+        clearInterval(timer);
+        // console.log('resolved 1');
+        resolve();
+      }
+    }, interval);
+  });
+};
+
+export function swing(p: number) {
+  return 0.5 - Math.cos(p * Math.PI) / 2;
+}
+
 export const {
   toggle,
   toggleSound,
-  toggleOscillation,
+  setOscillation,
   playPlaylistFromGroup,
   shuffle,
   setVolume,
@@ -132,19 +209,44 @@ export const {
   stop,
 } = playerSlice.actions;
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-// export const incrementAsync = (amount: number): AppThunk => dispatch => {
-//   setTimeout(() => {
-//     dispatch(incrementByAmount(amount));
-//   }, 1000);
-// };
+export const oscillate = (): AppThunk => async (dispatch, getState) => {
+  const go = (
+    getState: () => {
+      player: PlayerState;
+      auth: any;
+    }
+  ) =>
+    new Promise((res, rej) => {
+      // console.log(getState().player);
+      const { activeSounds } = getState().player;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-// export const selectCount = (state: RootState) => state.counter.value;
+      Promise.all(
+        activeSounds.map(sound => {
+          // console.log(`sound ${sound.title}: ${sound.volume} started sweep`);
+
+          const updateVolume = (amount: number) => dispatch(setVolume({ title: sound.title, amount }));
+          return adjustVolume(sound.volume, random(0.1, 1), updateVolume);
+        })
+      )
+        .then(() => console.log('all sounds adjusted'))
+        .then(() => wait(1000))
+
+        .then(() => {
+          console.log(getState().player.sweeping);
+          if (getState().player.sweeping) {
+            go(getState);
+          }
+        });
+    });
+
+  if (!getState().player.sweeping) {
+    dispatch(setOscillation(true));
+    plausible('enable sweep');
+    go(getState);
+  } else {
+    plausible('disable sweep');
+    dispatch(setOscillation(false));
+  }
+};
 
 export default playerSlice.reducer;

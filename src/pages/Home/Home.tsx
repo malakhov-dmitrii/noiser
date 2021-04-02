@@ -1,23 +1,9 @@
 import { Box, Divider, Grid, Tooltip, Typography, IconButton } from '@material-ui/core';
-import {
-  Share,
-  Shuffle,
-  Stop,
-
-  // SlowMotionVideo
-} from '@material-ui/icons';
+import { Share, Shuffle, Stop, SlowMotionVideo } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import {
-  ActiveSound,
-  playPlaylistFromGroup,
-  playReferredPlaylist,
-  shuffle,
-  toggle,
-  stop,
-  // toggleOscillation,
-} from '../../store/features/player';
+import { ActiveSound, playPlaylistFromGroup, playReferredPlaylist, shuffle, toggle, stop, oscillate } from '../../store/features/player';
 import EffectItem from './components/EffectItem';
 import { uniqueNamesGenerator, adjectives, colors, names } from 'unique-names-generator';
 
@@ -53,7 +39,7 @@ const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [loadedPreset, setLoadedPreset] = useState<ActiveSound[] | null>(null);
-  const { sounds, presets, activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
+  const { sounds, presets, activeSounds, isPlaying, sweeping } = useSelector((state: RootState) => state.player);
   const { user } = useSelector((state: RootState) => state.auth);
   const history = useHistory();
 
@@ -112,19 +98,21 @@ const Home = () => {
         <Typography variant="h1">Noizer</Typography>
         <Box>
           <Grid container spacing={2}>
-            {/* <Grid item>
-              <Tooltip title="Oscillation - sounds will change volumes over time">
+            <Grid item>
+              <Tooltip title="Sweep - sounds will change volumes over time">
                 <IconButton
                   size="small"
+                  disabled={!activeSounds.length}
+                  color={sweeping ? 'secondary' : 'default'}
                   onClick={() => {
                     plausible('oscillation');
-                    dispatch(toggleOscillation());
+                    dispatch(oscillate());
                   }}
                 >
                   <SlowMotionVideo />
                 </IconButton>
               </Tooltip>
-            </Grid> */}
+            </Grid>
             <Grid item>
               <Tooltip title="Create unique name for the preset and copy link to clipboard">
                 <IconButton
