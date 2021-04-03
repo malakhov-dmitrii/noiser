@@ -44,7 +44,7 @@ const EffectItem: FC<Props> = ({ item }) => {
       justifyContent="center"
       alignItems="center"
       p={3}
-      height={150}
+      height={100}
       // width={200}
       className={classes.item}
       onClick={e => {

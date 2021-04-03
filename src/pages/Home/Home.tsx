@@ -177,7 +177,7 @@ const Home = () => {
       </Box>
       <Divider></Divider>
 
-      <Box mt={2}>
+      <Box mt={2} mb={2}>
         <Grid container spacing={3}>
           {sounds.map(i => (
             <Grid item xs={6} md={3} key={i.title}>

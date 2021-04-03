@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { random } from 'lodash';
+import { random, sortBy } from 'lodash';
 import { debounce } from '@material-ui/core';
 import { AppThunk } from '..';
 declare const plausible: (name: string) => void;
@@ -27,19 +27,31 @@ interface PlayerState {
   sounds: Sound[];
 }
 
-const sounds = [
-  { title: 'windy forest', file: '/audio/windy_forest.mp3', disabled: false },
-  { title: 'cafe', file: '/audio/cafe.mp3', disabled: false },
-  { title: 'airplane', file: '/audio/airplane.mp3', disabled: false },
-  { title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
-  { title: 'waves', file: '/audio/waves.mp3', disabled: false },
-  { title: 'storm', file: '/audio/storm.mp3', disabled: false },
-  { title: 'birds', file: '/audio/birds.mp3', disabled: false },
-  { title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
-  { title: 'fire', file: '/audio/fire.mp3', disabled: false },
-  { title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
-  { title: 'office', file: '/audio/office.mp3', disabled: false },
-];
+const sounds = sortBy(
+  [
+    { title: 'windy forest', file: '/audio/windy_forest.mp3', disabled: false },
+    { title: 'cafe', file: '/audio/cafe.mp3', disabled: false },
+    { title: 'fan', file: '/audio/fan.mp3', disabled: false },
+    { title: 'garden', file: '/audio/garden.mp3', disabled: false },
+    { title: 'omnious', file: '/audio/omnious.mp3', disabled: false },
+    { title: 'purr', file: '/audio/purr.mp3', disabled: false },
+    { title: 'summer night', file: '/audio/summer-night.mp3', disabled: false },
+    { title: 'white noise', file: '/audio/white noise.mp3', disabled: false },
+    { title: 'railway', file: '/audio/railway.mp3', disabled: false },
+    { title: 'city', file: '/audio/city.mp3', disabled: false },
+    { title: 'space', file: '/audio/space.mp3', disabled: false },
+    { title: 'airplane', file: '/audio/airplane.mp3', disabled: false },
+    { title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
+    { title: 'waves', file: '/audio/waves.mp3', disabled: false },
+    { title: 'storm', file: '/audio/storm.mp3', disabled: false },
+    { title: 'birds', file: '/audio/birds.mp3', disabled: false },
+    { title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
+    { title: 'fire', file: '/audio/fire.mp3', disabled: false },
+    { title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
+    { title: 'office', file: '/audio/office.mp3', disabled: false },
+  ],
+  'title'
+);
 
 const presets = [
   {

@@ -149,7 +149,7 @@ function App() {
             </IconButton>
           </Box>
           <Container maxWidth="sm">
-            <Box pt={3}>
+            <Box pt={1}>
               <Home />
             </Box>
           </Container>
