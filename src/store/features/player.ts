@@ -105,8 +105,6 @@ export const playerSlice = createSlice({
   initialState,
   reducers: {
     setOscillation: (state, action: PayloadAction<boolean>) => {
-      if (state.sweeping) plausible('enable oscillation');
-      else plausible('disable oscillation');
       state.sweeping = !state.sweeping;
     },
     toggle: state => {
