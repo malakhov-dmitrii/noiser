@@ -48,8 +48,8 @@
     "workbox-webpack-plugin": "^6.1.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "CI=true react-scripts build && workbox generateSW workbox-config.js",
+    "start": "react-scripts start",
+    "build": "CI=true react-scripts build && npx workbox generateSW workbox-config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
