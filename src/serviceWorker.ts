@@ -34,16 +34,13 @@ export function register(config?: Config) {
       return;
     }
 
-    console.log('loading');
-
     window.addEventListener('load', () => {
-      console.log('loaded');
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      // const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
-        console.log('kek 1', navigator.serviceWorker, swUrl);
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
