@@ -56,6 +56,7 @@ export const notificationsSlice = createSlice({
     },
     updateVersion: state => {
       state.savedVersion = version;
+      localStorage.setItem('app_version', version);
     },
   },
 });
@@ -78,7 +79,8 @@ export const compareChanges = (): AppThunk => (dispatch, getState) => {
   const savedVersion = getState().notifications.savedVersion;
   if (!savedVersion) {
     dispatch(updateVersion());
-  } else {
+  } else if (savedVersion !== version) {
+    dispatch(updateVersion());
     dispatch(setShowChangelog(true));
   }
 };
