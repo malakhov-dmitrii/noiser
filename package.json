@@ -40,6 +40,7 @@
     "unique-names-generator": "^4.4.0",
     "web-vitals": "^1.1.1",
     "workbox": "^0.0.0",
+    "workbox-cli": "^6.1.2",
     "workbox-core": "^6.1.2",
     "workbox-expiration": "^6.1.2",
     "workbox-precaching": "^6.1.2",
@@ -49,7 +50,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=true react-scripts build && npx workbox generateSW workbox-config.js",
+    "build": "CI=true react-scripts build && workbox generateSW workbox-config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
