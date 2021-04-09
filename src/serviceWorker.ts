@@ -2,7 +2,6 @@
 // register() is not called by default.
 
 import { store } from './store';
-import { cache } from './store/features/player';
 import { emit } from './store/features/notifications';
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -93,9 +92,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
-              store.dispatch(cache());
               store.dispatch(emit('App is ready for offline now', 'success'));
-
               // Execute callback
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
