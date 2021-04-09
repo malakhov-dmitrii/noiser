@@ -1,6 +1,9 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
+import { store } from './store';
+import { emit } from './store/features/notifications';
+
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
@@ -89,7 +92,7 @@ function registerValidSW(swUrl: string, config?: Config) {
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
-
+              store.dispatch(emit('App is ready for offline now', 'success'));
               // Execute callback
               if (config && config.onSuccess) {
                 config.onSuccess(registration);

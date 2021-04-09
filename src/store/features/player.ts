@@ -25,6 +25,7 @@ interface PlayerState {
   activeSounds: ActiveSound[];
   presets: PresetsGroup[];
   sounds: Sound[];
+  cached: boolean;
 }
 
 const sounds = sortBy(
@@ -101,6 +102,7 @@ const presets = [
 ];
 
 const initialState: PlayerState = {
+  cached: false,
   isPlaying: true,
   sweeping: false,
   activeSounds: [],
@@ -116,6 +118,9 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
+    cache: state => {
+      state.cached = true;
+    },
     setOscillation: (state, action: PayloadAction<boolean>) => {
       state.sweeping = !state.sweeping;
     },
@@ -217,6 +222,7 @@ export const {
   setVolume,
   playReferredPlaylist,
   stop,
+  cache,
 } = playerSlice.actions;
 
 export const oscillate = (): AppThunk => async (dispatch, getState) => {
