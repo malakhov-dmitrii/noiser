@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import playerReducer from './features/player';
+import notificationsReducer from './features/notifications';
 import authReducer from './features/auth';
 
 export const store = configureStore({
   reducer: {
     player: playerReducer,
     auth: authReducer,
+    notifications: notificationsReducer,
   },
 });
 
