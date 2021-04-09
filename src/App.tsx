@@ -32,6 +32,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeType } from './shared/hooks/useTheme';
 import useTheme from './shared/hooks/useTheme';
+import Notifications from './shared/components/Notifications';
 
 declare const plausible: (name: string) => void;
 
@@ -177,6 +178,7 @@ function App() {
             </Box>
           </Box>
         </Box>
+        <Notifications />
       </ThemeProvider>
     </BrowserRouter>
   );

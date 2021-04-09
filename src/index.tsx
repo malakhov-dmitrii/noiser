@@ -6,14 +6,12 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
-import Notifications from './shared/components/Notifications';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <CssBaseline />
       <App />
-      <Notifications />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

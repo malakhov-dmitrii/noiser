@@ -1,6 +1,6 @@
 import { Color } from '@material-ui/lab';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
+import { version } from '../../../package.json';
 import { AppThunk, RootState } from '../index';
 
 interface Notification {
@@ -15,12 +15,18 @@ export interface NotificationItem extends Notification {
 
 interface NotificationsState {
   items: NotificationItem[];
+  savedVersion: string | null;
+  showChangelog: boolean;
+  dontNotifyChangelog: boolean | null;
 }
 
 const defaultDelay = 3000;
 
 const initialState: NotificationsState = {
   items: [],
+  savedVersion: localStorage.getItem('app_version'),
+  showChangelog: false,
+  dontNotifyChangelog: !!localStorage.getItem('dontNotifyChangelog'),
 };
 
 export const notificationsSlice = createSlice({
@@ -38,10 +44,23 @@ export const notificationsSlice = createSlice({
       newState.shift();
       state.items = newState;
     },
+    setShowChangelog: (state, action: PayloadAction<boolean>) => {
+      if (!state.dontNotifyChangelog) {
+        state.showChangelog = action.payload;
+      }
+    },
+    setDontNotifyChangelog: state => {
+      state.showChangelog = false;
+      state.dontNotifyChangelog = true;
+      localStorage.setItem('dontNotifyChangelog', 'true');
+    },
+    updateVersion: state => {
+      state.savedVersion = version;
+    },
   },
 });
 
-export const { fireEvent, dismiss, pop } = notificationsSlice.actions;
+export const { fireEvent, dismiss, pop, setShowChangelog, setDontNotifyChangelog, updateVersion } = notificationsSlice.actions;
 
 export const emit = (message: string, color: Color, preventAutoDismiss = false): AppThunk => (dispatch, getState) => {
   const state = getState();
@@ -55,6 +74,15 @@ export const emit = (message: string, color: Color, preventAutoDismiss = false):
   }
 };
 
-export const selectNotifications = (state: RootState): NotificationItem[] => state.notifications.items;
+export const compareChanges = (): AppThunk => (dispatch, getState) => {
+  const savedVersion = getState().notifications.savedVersion;
+  if (!savedVersion) {
+    dispatch(updateVersion());
+  } else {
+    dispatch(setShowChangelog(true));
+  }
+};
+
+export const selectNotifications = (state: RootState): NotificationsState => state.notifications;
 
 export default notificationsSlice.reducer;
