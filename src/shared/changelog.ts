@@ -1,6 +1,7 @@
 const changelog = {
   'If you want to hear sounds which are not listed here, feel free to contact me': [],
   '0.2.2': [
+    'Some sounds were not properly looped, so you could encounter some issues with them. Its fixed.',
     'Offline mode added - now you can listen to the Noizer sounds even if you`re offline',
     'Dont forget to add Noizer to your bookmarks (and you can add it to the home screen to get instant access!)',
   ],
