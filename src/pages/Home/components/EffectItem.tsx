@@ -45,7 +45,6 @@ const EffectItem: FC<Props> = ({ item }) => {
       alignItems="center"
       p={3}
       height={100}
-      // width={200}
       className={classes.item}
       onClick={e => {
         if (!item.disabled) {
