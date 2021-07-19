@@ -30,10 +30,12 @@ import 'firebase/analytics';
 import { googleSignIn } from './store/features/auth';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { ThemeType } from './shared/hooks/useTheme';
 import useTheme from './shared/hooks/useTheme';
 import Notifications from './shared/components/Notifications';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 declare const plausible: (name: string) => void;
 
@@ -98,106 +100,132 @@ function App() {
     }
   };
 
+  const main = (
+    <Box
+      minHeight="100vh"
+      height="auto"
+      component={Paper}
+      display="flex"
+      justifyContent="space-between"
+      flexDirection="column"
+      className={prefferedTheme === 'gradient' ? 'animatedBackground' : ''}
+    >
+      <Box display="flex" justifyContent="flex-end" alignItems="center">
+        <Box width={100} height={25} mr={2}>
+          <Slider
+            value={masterVolume}
+            min={0}
+            step={0.01}
+            max={1}
+            onChange={(e, newValue) => {
+              e.preventDefault();
+              e.stopPropagation();
+              dispatch(setMasterVolume(newValue as number));
+            }}
+          />
+        </Box>
+        <Box>
+          <Tooltip title="Donate to the project on Patreon">
+            <IconButton href="https://www.patreon.com/noizer" rel="noopener noreferrer" target="_blank">
+              <AttachMoneyOutlined />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Vote for new features">
+            <IconButton href="https://productific.com/@Noizer" rel="noopener noreferrer" target="_blank">
+              <FormatListNumbered />
+            </IconButton>
+          </Tooltip>
+
+          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <ColorLensOutlined />
+          </IconButton>
+          <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => handleThemeClose()}>
+            <MenuItem onClick={() => handleThemeClose('light')}>Light</MenuItem>
+            <MenuItem onClick={() => handleThemeClose('dark')}>Dark</MenuItem>
+            <MenuItem onClick={() => handleThemeClose('gradient')}>Gradient</MenuItem>
+            <MenuItem onClick={() => handleThemeClose('system')}>System-based</MenuItem>
+          </Menu>
+        </Box>
+
+        <IconButton
+          onClick={() => {
+            dispatch(toggle());
+          }}
+        >
+          {isPlaying ? <VolumeUp /> : <VolumeOff />}
+        </IconButton>
+        <IconButton
+          disabled={isLoggedIn}
+          onClick={() => {
+            plausible('Signup');
+            dispatch(googleSignIn());
+          }}
+        >
+          {isLoggedIn && user ? (
+            <img alt="avatar" className={classes.avatar} src={user.photoURL || ''} width="30" height="30" />
+          ) : (
+            <Person />
+          )}
+        </IconButton>
+      </Box>
+      <Container maxWidth="sm">
+        <Box pt={1}>
+          <Home />
+        </Box>
+      </Container>
+
+      <Box>
+        <Box display="flex" justifyContent="center" alignItems="center" pb={2} flexWrap="wrap">
+          <Typography variant="caption">Version {version}</Typography>
+          <Box width={20}></Box>
+          <Button variant="text" startIcon={<Email />} href="mailto:mitia2022@gmail.com" target="_blank" rel="noopener">
+            Email author
+          </Button>
+
+          <Box px={3}>
+            <a
+              rel="noopener noreferrer"
+              href="https://www.producthunt.com/posts/noizer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-noizer"
+              target="_blank"
+            >
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290204&theme=light"
+                alt="Noizer - Ambient sounds. Like Noisli, but free | Product Hunt"
+                style={{ width: '250px', height: '54px' }}
+                width="250"
+                height="54"
+              />
+            </a>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box mr={2}>
+            <Link to="/privacy">Privacy policy</Link>
+          </Box>
+          <Box>
+            <Link to="/terms">Terms of service</Link>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Box
-          minHeight="100vh"
-          height="auto"
-          component={Paper}
-          display="flex"
-          justifyContent="space-between"
-          flexDirection="column"
-          className={prefferedTheme === 'gradient' ? 'animatedBackground' : ''}
-        >
-          <Box display="flex" justifyContent="flex-end" alignItems="center">
-            <Box width={100} height={25} mr={2}>
-              <Slider
-                value={masterVolume}
-                min={0}
-                step={0.01}
-                max={1}
-                onChange={(e, newValue) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  dispatch(setMasterVolume(newValue as number));
-                }}
-              />
-            </Box>
-            <Box>
-              <Tooltip title="Donate to the project on Patreon">
-                <IconButton href="https://www.patreon.com/noizer" rel="noopener noreferrer" target="_blank">
-                  <AttachMoneyOutlined />
-                </IconButton>
-              </Tooltip>
-
-              <Tooltip title="Vote for new features">
-                <IconButton href="https://productific.com/@Noizer" rel="noopener noreferrer" target="_blank">
-                  <FormatListNumbered />
-                </IconButton>
-              </Tooltip>
-
-              <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                <ColorLensOutlined />
-              </IconButton>
-              <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={() => handleThemeClose()}>
-                <MenuItem onClick={() => handleThemeClose('light')}>Light</MenuItem>
-                <MenuItem onClick={() => handleThemeClose('dark')}>Dark</MenuItem>
-                <MenuItem onClick={() => handleThemeClose('gradient')}>Gradient</MenuItem>
-                <MenuItem onClick={() => handleThemeClose('system')}>System-based</MenuItem>
-              </Menu>
-            </Box>
-
-            <IconButton
-              onClick={() => {
-                dispatch(toggle());
-              }}
-            >
-              {isPlaying ? <VolumeUp /> : <VolumeOff />}
-            </IconButton>
-            <IconButton
-              disabled={isLoggedIn}
-              onClick={() => {
-                plausible('Signup');
-                dispatch(googleSignIn());
-              }}
-            >
-              {isLoggedIn && user ? (
-                <img alt="avatar" className={classes.avatar} src={user.photoURL || ''} width="30" height="30" />
-              ) : (
-                <Person />
-              )}
-            </IconButton>
-          </Box>
-          <Container maxWidth="sm">
-            <Box pt={1}>
-              <Home />
-            </Box>
-          </Container>
-          <Box display="flex" justifyContent="center" alignItems="center" pb={2} flexWrap="wrap">
-            <Typography variant="caption">Version {version}</Typography>
-            <Box width={20}></Box>
-            <Button variant="text" startIcon={<Email />} href="mailto:mitia2022@gmail.com" target="_blank" rel="noopener">
-              Email author
-            </Button>
-
-            <Box px={3}>
-              <a
-                rel="noopener noreferrer"
-                href="https://www.producthunt.com/posts/noizer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-noizer"
-                target="_blank"
-              >
-                <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=290204&theme=light"
-                  alt="Noizer - Ambient sounds. Like Noisli, but free | Product Hunt"
-                  style={{ width: '250px', height: '54px' }}
-                  width="250"
-                  height="54"
-                />
-              </a>
-            </Box>
-          </Box>
-        </Box>
+        <Route path="/" exact>
+          {main}
+        </Route>
+        <Route path="/privacy">
+          <Privacy />
+        </Route>
+        <Route path="/terms">
+          <Terms />
+        </Route>
+        <Route path="/:preset" exact>
+          {main}
+        </Route>
         <Notifications />
       </ThemeProvider>
     </BrowserRouter>

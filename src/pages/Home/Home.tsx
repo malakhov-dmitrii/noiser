@@ -8,7 +8,7 @@ import EffectItem from './components/EffectItem';
 import { uniqueNamesGenerator, adjectives, colors, names } from 'unique-names-generator';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import firebase from 'firebase/app';
 
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Home = () => {
   const db = firebase.database();
+  const { preset } = useParams<{ preset: string }>();
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -68,10 +69,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const pathname = history.location.pathname.slice(1);
-
-    if (pathname) {
-      db.ref(pathname)
+    if (preset) {
+      db.ref(preset)
         .get()
         .then(r => {
           if (r.exists()) {
