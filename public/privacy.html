@@ -1,0 +1,1158 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Privacy Policy</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        text-indent: -1.7em;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type='checkbox'] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+      }
+      .code {
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, YuMincho, 'Yu Mincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Songti TC', 'Songti SC',
+          'SimSun', 'Nanum Myeongjo', NanumMyeongjo, Batang, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif,
+          'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR';
+      }
+
+      .pdf .code {
+        font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji',
+          'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR';
+      }
+
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, YuMincho, 'Yu Mincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Songti TC',
+          'Songti SC', 'SimSun', 'Nanum Myeongjo', NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC',
+          'Noto Sans CJK KR';
+      }
+
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC',
+          'Noto Sans Mono CJK KR';
+      }
+
+      .highlight-default {
+      }
+      .highlight-gray {
+        color: rgb(155, 154, 151);
+      }
+      .highlight-brown {
+        color: rgb(100, 71, 58);
+      }
+      .highlight-orange {
+        color: rgb(217, 115, 13);
+      }
+      .highlight-yellow {
+        color: rgb(223, 171, 1);
+      }
+      .highlight-teal {
+        color: rgb(15, 123, 108);
+      }
+      .highlight-blue {
+        color: rgb(11, 110, 153);
+      }
+      .highlight-purple {
+        color: rgb(105, 64, 165);
+      }
+      .highlight-pink {
+        color: rgb(173, 26, 114);
+      }
+      .highlight-red {
+        color: rgb(224, 62, 62);
+      }
+      .highlight-gray_background {
+        background: rgb(235, 236, 237);
+      }
+      .highlight-brown_background {
+        background: rgb(233, 229, 227);
+      }
+      .highlight-orange_background {
+        background: rgb(250, 235, 221);
+      }
+      .highlight-yellow_background {
+        background: rgb(251, 243, 219);
+      }
+      .highlight-teal_background {
+        background: rgb(221, 237, 234);
+      }
+      .highlight-blue_background {
+        background: rgb(221, 235, 241);
+      }
+      .highlight-purple_background {
+        background: rgb(234, 228, 242);
+      }
+      .highlight-pink_background {
+        background: rgb(244, 223, 235);
+      }
+      .highlight-red_background {
+        background: rgb(251, 228, 228);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(55, 53, 47, 0.6);
+        fill: rgba(55, 53, 47, 0.6);
+      }
+      .block-color-brown {
+        color: rgb(100, 71, 58);
+        fill: rgb(100, 71, 58);
+      }
+      .block-color-orange {
+        color: rgb(217, 115, 13);
+        fill: rgb(217, 115, 13);
+      }
+      .block-color-yellow {
+        color: rgb(223, 171, 1);
+        fill: rgb(223, 171, 1);
+      }
+      .block-color-teal {
+        color: rgb(15, 123, 108);
+        fill: rgb(15, 123, 108);
+      }
+      .block-color-blue {
+        color: rgb(11, 110, 153);
+        fill: rgb(11, 110, 153);
+      }
+      .block-color-purple {
+        color: rgb(105, 64, 165);
+        fill: rgb(105, 64, 165);
+      }
+      .block-color-pink {
+        color: rgb(173, 26, 114);
+        fill: rgb(173, 26, 114);
+      }
+      .block-color-red {
+        color: rgb(224, 62, 62);
+        fill: rgb(224, 62, 62);
+      }
+      .block-color-gray_background {
+        background: rgb(235, 236, 237);
+      }
+      .block-color-brown_background {
+        background: rgb(233, 229, 227);
+      }
+      .block-color-orange_background {
+        background: rgb(250, 235, 221);
+      }
+      .block-color-yellow_background {
+        background: rgb(251, 243, 219);
+      }
+      .block-color-teal_background {
+        background: rgb(221, 237, 234);
+      }
+      .block-color-blue_background {
+        background: rgb(221, 235, 241);
+      }
+      .block-color-purple_background {
+        background: rgb(234, 228, 242);
+      }
+      .block-color-pink_background {
+        background: rgb(244, 223, 235);
+      }
+      .block-color-red_background {
+        background: rgb(251, 228, 228);
+      }
+      .select-value-color-default {
+        background-color: rgba(206, 205, 202, 0.5);
+      }
+      .select-value-color-gray {
+        background-color: rgba(155, 154, 151, 0.4);
+      }
+      .select-value-color-brown {
+        background-color: rgba(140, 46, 0, 0.2);
+      }
+      .select-value-color-orange {
+        background-color: rgba(245, 93, 0, 0.2);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(233, 168, 0, 0.2);
+      }
+      .select-value-color-green {
+        background-color: rgba(0, 135, 107, 0.2);
+      }
+      .select-value-color-blue {
+        background-color: rgba(0, 120, 223, 0.2);
+      }
+      .select-value-color-purple {
+        background-color: rgba(103, 36, 222, 0.2);
+      }
+      .select-value-color-pink {
+        background-color: rgba(221, 0, 129, 0.2);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 0, 26, 0.2);
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E');
+      }
+
+      .checkbox-off {
+        background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E');
+      }
+    </style>
+  </head>
+  <body>
+    <article id="6309ae4a-8dfa-4eff-8d2e-57042c64e0b2" class="page sans">
+      <header>
+        <div class="page-header-icon undefined"><span class="icon">🔐</span></div>
+        <h1 class="page-title">Privacy Policy</h1>
+      </header>
+      <div class="page-body">
+        <h1 id="90bbf0ae-f3a6-4f81-91c4-68de65b1ce0b" class="">Privacy Policy</h1>
+        <p id="8832d10e-62a1-43da-86e2-6a635e29b3a8" class="">Updated at 2021-06-16</p>
+        <p id="67c0f52b-7071-47f6-900f-3b9add324c68" class="">Noizer.</p>
+        <p id="4c90ae60-a4ea-4a70-a044-ca4f639c477b" class="">
+          (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how
+          your personal information is collected, used, and disclosed by
+        </p>
+        <p id="860b461a-dce9-4112-b83a-c3879c25e16a" class="">Noizer.</p>
+        <p id="b6f2f068-db6c-40d9-82b7-057428474ea4" class="">This Privacy Policy applies to our website,</p>
+        <p id="1b25d22f-63b4-49a8-9464-a779bb37e650" class="">
+          <a href="https://noizer.one/">https://noizer.one</a>, and its associated subdomains (collectively, our &quot;Service&quot;).
+        </p>
+        <p id="60a97633-a467-48e1-bc72-f77bae4a2d51" class="">
+          By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and
+          disclosure of your personal information as described in this Privacy Policy and our Terms of Service.
+        </p>
+        <h1 id="5e623c76-665b-45f6-9055-0b46ec8367a8" class="">Definitions and key terms</h1>
+        <p id="de9fa08a-4efa-4fe3-a91a-038cc36be000" class="">For this Privacy Policy:</p>
+        <ul id="40ea1ec0-b19e-46b2-a033-f86c2f2ef412" class="bulleted-list">
+          <li>
+            <strong>Cookie:</strong> small amount of data generated by a website and saved by your web browser. It is used to identify your
+            browser, provide analytics, remember information about you such as your language preference or login information.
+          </li>
+        </ul>
+        <ul id="9e682aff-5c36-4e74-b1f7-669c7bcc4eae" class="bulleted-list">
+          <li>
+            <strong>Company:</strong> when this policy mentions “Company,” “we,” “us,” or “our,” it refers to Noizer that is responsible for
+            your information under this Privacy Policy.
+          </li>
+        </ul>
+        <ul id="6cd3a7a1-52f9-4a9b-8769-4f9da17e35ab" class="bulleted-list">
+          <li><strong>Country:</strong> where Noizer or the owners/founders of Noizer are based, in this case is Russia.</li>
+        </ul>
+        <ul id="8a9a0191-5d8d-475d-9638-893e37b46490" class="bulleted-list">
+          <li>
+            <strong>Customer:</strong> refers to the company, organization or person that signs up to use the Noizer Service to manage the
+            relationships with your consumers or service users.
+          </li>
+        </ul>
+        <ul id="20258276-1011-4bcd-9aea-95ffb60e3c1c" class="bulleted-list">
+          <li>
+            <strong>Device:</strong> any internet connected device such as a phone, tablet, computer or any other device that can be used to
+            visit Noizer and use the services.
+          </li>
+        </ul>
+        <ul id="513c92d7-594c-4f64-a61c-2b2c6b6b1e4c" class="bulleted-list">
+          <li>
+            <strong>IP address:</strong> Every device connected to the Internet is assigned a number known as an Internet protocol (IP)
+            address. These numbers are usually assigned in geographic blocks. An IP address can often be used to identify the location from
+            which a device is connecting to the Internet.
+          </li>
+        </ul>
+        <ul id="fb150989-2c78-413a-8122-bc5141464b7d" class="bulleted-list">
+          <li>
+            <strong>Personnel:</strong> refers to those individuals who are employed by Noizer or are under contract to perform a service on
+            behalf of one of the parties.
+          </li>
+        </ul>
+        <ul id="03a1ad0f-004c-46f1-b493-aaa0f4bbad8c" class="bulleted-list">
+          <li>
+            <strong>Personal Data:</strong> any information that directly, indirectly, or in connection with other information — including a
+            personal identification number — allows for the identification or identifiability of a natural person.
+          </li>
+        </ul>
+        <ul id="39f0ecff-4567-4cb6-bfd6-65925945f54c" class="bulleted-list">
+          <li>
+            <strong>Service:</strong> refers to the service provided by Noizer as described in the relative terms (if available) and on this
+            platform.
+          </li>
+        </ul>
+        <ul id="705967d9-3314-4cd2-9893-69a479a65cea" class="bulleted-list">
+          <li>
+            <strong>Third-party service:</strong> refers to advertisers, contest sponsors, promotional and marketing partners, and others
+            who provide our content or whose products or services we think may interest you.
+          </li>
+        </ul>
+        <ul id="63c5ee90-0a61-4c86-8ae6-e6e8a998b0af" class="bulleted-list">
+          <li>
+            <strong>Website:</strong> Noizer’s site, which can be accessed via this URL:
+            <a href="https://noizer.one/">https://noizer.one</a>.
+          </li>
+        </ul>
+        <ul id="ace3a00e-5ad0-4bda-98bc-972c3ceaa414" class="bulleted-list">
+          <li><strong>You:</strong> a person or entity that is registered with Noizer to use the Services.</li>
+        </ul>
+        <h1 id="fd20cfe6-d966-4b8a-a468-438c79b3f204" class="">What Information Do We Collect?</h1>
+        <p id="c58560dd-29a6-4a0e-be88-cad14a51fbb4" class="">
+          We collect information from you when you visit our service, register, place an order, subscribe to our newsletter, respond to a
+          survey or fill out a form.
+        </p>
+        <ul id="935eb260-873a-4ccb-8b9b-a508c406f7cc" class="bulleted-list">
+          <li>Email Addresses</li>
+        </ul>
+        <h1 id="7e1a5eee-ad61-4b39-bb80-fb445c8286c8" class="">How Do We Use The Information We Collect?</h1>
+        <p id="58d1f608-738d-43f7-8486-ac2c1df06984" class="">
+          Any of the information we collect from you may be used in one of the following ways:
+        </p>
+        <ul id="da595fc8-039d-4388-864f-f0f6d67713d2" class="bulleted-list">
+          <li>To personalize your experience (your information helps us to better respond to your individual needs)</li>
+        </ul>
+        <ul id="6dd4db6c-c9dc-49b8-a003-b4ff725b0fe7" class="bulleted-list">
+          <li>
+            To improve our service (we continually strive to improve our service offerings based on the information and feedback we receive
+            from you)
+          </li>
+        </ul>
+        <ul id="3862bbb5-978d-48fa-a633-c515243febcb" class="bulleted-list">
+          <li>
+            To improve customer service (your information helps us to more effectively respond to your customer service requests and support
+            needs)
+          </li>
+        </ul>
+        <ul id="808c2705-c031-46cb-97a5-b85d4692d50b" class="bulleted-list">
+          <li>To process transactions</li>
+        </ul>
+        <ul id="ef3c3c1a-932d-4dc2-978f-4bde8c800b32" class="bulleted-list">
+          <li>To administer a contest, promotion, survey or other site feature</li>
+        </ul>
+        <ul id="c8278fcb-0231-4c4c-bf61-9a5e42dde648" class="bulleted-list">
+          <li>To send periodic emails</li>
+        </ul>
+        <h1 id="4d658528-5ecb-47c9-9e47-282993b329f1" class="">When do we use customer information from third parties?</h1>
+        <p id="66deddb7-1fd3-47a5-a038-2c4b85ffc5c3" class="">
+          We receive some information from the third parties when you contact us. For example, when you submit your email address to us to
+          show interest in becoming our customer, we receive information from a third party that provides automated fraud detection services
+          to us. We also occasionally collect information that is made publicly available on social media websites. You can control how much
+          of your information social media websites make public by visiting these websites and changing your privacy settings.
+        </p>
+        <h1 id="5f43086a-51b6-4bce-91d6-fcfe6a96f8bb" class="">Do we share the information we collect with third parties?</h1>
+        <p id="28626ce2-2fe5-4b25-914e-126f74339055" class="">
+          We may share the information that we collect, both personal and non-personal, with third parties such as advertisers, contest
+          sponsors, promotional and marketing partners, and others who provide our content or whose products or services we think may
+          interest you. We may also share it with our current and future affiliated companies and business partners, and if we are involved
+          in a merger, asset sale or other business reorganization, we may also share or transfer your personal and non-personal information
+          to our successors-in-interest.
+        </p>
+        <p id="61c399c7-5946-48bc-b524-ca545c800656" class="">
+          We may engage trusted third party service providers to perform functions and provide services to us, such as hosting and
+          maintaining our servers and our service, database storage and management, e-mail management, storage marketing, credit card
+          processing, customer service and fulfilling orders for products and services you may purchase through our platform. We will likely
+          share your personal information, and possibly some non-personal information, with these third parties to enable them to perform
+          these services for us and for you.
+        </p>
+        <p id="7219486f-d07a-42d8-8dd0-c88cc2f3c665" class="">
+          We may share portions of our log file data, including IP addresses, for analytics purposes with third parties such as web
+          analytics partners, application developers, and ad networks. If your IP address is shared, it may be used to estimate general
+          location and other technographics such as connection speed, whether you have visited the service in a shared location, and type of
+          device used to visit the service. They may aggregate information about our advertising and what you see on the service and then
+          provide auditing, research and reporting for us and our advertisers.
+        </p>
+        <p id="40c27272-a214-456d-9f1d-9f8f96af642c" class="">
+          We may also disclose personal and non-personal information about you to government or law enforcement officials or private parties
+          as we, in our sole discretion, believe necessary or appropriate in order to respond to claims, legal process (including
+          subpoenas), to protect our rights and interests or those of a third party, the safety of the public or any person, to prevent or
+          stop any illegal, unethical, or legally actionable activity, or to otherwise comply with applicable court orders, laws, rules and
+          regulations.
+        </p>
+        <h1 id="40e3d09c-3da7-4986-87cb-76f8eb1756a3" class="">Where and when is information collected from customers and end users?</h1>
+        <p id="9ac32e69-92fb-4fe2-88ad-b0794e1e3e08" class="">
+          We will collect personal information that you submit to us. We may also receive personal information about you from third parties
+          as described above.
+        </p>
+        <h1 id="0f518d7d-e8a4-4ea6-b1ea-66c9e1cad0f7" class="">How Do We Use Your Email Address?</h1>
+        <p id="0922e5a6-c6ef-4c4f-a1bf-816d037cfbe4" class="">
+          By submitting your email address on this website, you agree to receive emails from us. You can cancel your participation in any of
+          these email lists at any time by clicking on the opt-out link or other unsubscribe option that is included in the respective
+          email. We only send emails to people who have authorized us to contact them, either directly, or through a third party. We do not
+          send unsolicited commercial emails, because we hate spam as much as you do. By submitting your email address, you also agree to
+          allow us to use your email address for customer audience targeting on sites like Facebook, where we display custom advertising to
+          specific people who have opted-in to receive communications from us. Email addresses submitted only through the order processing
+          page will be used for the sole purpose of sending you information and updates pertaining to your order. If, however, you have
+          provided the same email to us through another method, we may use it for any of the purposes stated in this Policy. Note: If at any
+          time you would like to unsubscribe from receiving future emails, we include detailed unsubscribe instructions at the bottom of
+          each email.
+        </p>
+        <h1 id="e8886647-c19a-41e1-9af1-5ff7ba8bcbe4" class="">Could my information be transferred to other countries?</h1>
+        <p id="9615c182-1f27-4af7-84d1-736054b8fffd" class="">
+          We are incorporated in Russia. Information collected via our website, through direct interactions with you, or from use of our
+          help services may be transferred from time to time to our offices or personnel, or to third parties, located throughout the world,
+          and may be viewed and hosted anywhere in the world, including countries that may not have laws of general applicability regulating
+          the use and transfer of such data. To the fullest extent allowed by applicable law, by using any of the above, you voluntarily
+          consent to the trans- border transfer and hosting of such information.
+        </p>
+        <h1 id="572990ed-b813-4394-86a6-f6585d23e3ca" class="">Is the information collected through our service secure?</h1>
+        <p id="ae1230c7-6549-487a-a3d1-ec95ae8e8343" class="">
+          We take precautions to protect the security of your information. We have physical, electronic, and managerial procedures to help
+          safeguard, prevent unauthorized access, maintain data security, and correctly use your information. However, neither people nor
+          security systems are foolproof, including encryption systems. In addition, people can commit intentional crimes, make mistakes or
+          fail to follow policies. Therefore, while we use reasonable efforts to protect your personal information, we cannot guarantee its
+          absolute security. If applicable law imposes any non-disclaimable duty to protect your personal information, you agree that
+          intentional misconduct will be the standards used to measure our compliance with that duty.
+        </p>
+        <h1 id="349dbd93-f783-472d-8638-ed4abc92806b" class="">Can I update or correct my information?</h1>
+        <p id="30066774-59cd-48a6-a8ed-2a33eb296e6c" class="">
+          The rights you have to request updates or corrections to the information we collect depend on your relationship with us. Personnel
+          may update or correct their information as detailed in our internal company employment policies. Customers have the right to
+          request the restriction of certain uses and disclosures of personally identifiable information as follows. You can contact us in
+          order to (1) update or correct your personally identifiable information, (2) change your preferences with respect to
+          communications and other information you receive from us, or (3) delete the personally identifiable information maintained about
+          you on our systems (subject to the following paragraph), by cancelling your account. Such updates, corrections, changes and
+          deletions will have no effect on other information that we maintain, or information that we have provided to third parties in
+          accordance with this Privacy Policy prior to such update, correction, change or deletion. To protect your privacy and security, we
+          may take reasonable steps (such as requesting a unique password) to verify your identity before granting you profile access or
+          making corrections. You are responsible for maintaining the secrecy of your unique password and account information at all times.
+          You should be aware that it is not technologically possible to remove each and every record of the information you have provided
+          to us from our system. The need to back up our systems to protect information from inadvertent loss means that a copy of your
+          information may exist in a non-erasable form that will be difficult or impossible for us to locate. Promptly after receiving your
+          request, all personal information stored in databases we actively use, and other readily searchable media will be updated,
+          corrected, changed or deleted, as appropriate, as soon as and to the extent reasonably and technically practicable. If you are an
+          end user and wish to update, delete, or receive any information we have about you, you may do so by contacting the organization of
+          which you are a customer.
+        </p>
+        <h1 id="e38b74c5-a304-4db1-88bf-25036b43c8f0" class="">Sale of Business</h1>
+        <p id="b4414113-764c-43ab-9f7f-fbf4bcb8d375" class="">
+          We reserve the right to transfer information to a third party in the event of a sale, merger or other transfer of all or
+          substantially all of the assets of us or any of its Corporate Affiliates (as defined herein), or that portion of us or any of its
+          Corporate Affiliates to which the Service relates, or in the event that we discontinue our business or file a petition or have
+          filed against us a petition in bankruptcy, reorganization or similar proceeding, provided that the third party agrees to adhere to
+          the terms of this Privacy Policy.
+        </p>
+        <h1 id="77d78a1f-bfea-4154-9406-aa13724106be" class="">Affiliates</h1>
+        <p id="740774a8-4ad7-4d6a-8f2b-7df6f777a706" class="">
+          We may disclose information (including personal information) about you to our Corporate Affiliates. For purposes of this Privacy
+          Policy, &quot;Corporate Affiliate&quot; means any person or entity which directly or indirectly controls, is controlled by or is
+          under common control with us, whether by ownership or otherwise. Any information relating to you that we provide to our Corporate
+          Affiliates will be treated by those Corporate Affiliates in accordance with the terms of this Privacy Policy.
+        </p>
+        <h1 id="1b0cc7b7-f56f-4874-b992-6c230a02d3a7" class="">How Long Do We Keep Your Information?</h1>
+        <p id="58279706-abfe-4f02-b1e0-5022eebc2c08" class="">
+          We keep your information only so long as we need it to provide service to you and fulfill the purposes described in this policy.
+          This is also the case for anyone that we share your information with and who carries out services on our behalf. When we no longer
+          need to use your information and there is no need for us to keep it to comply with our legal or regulatory obligations, we&#x27;ll
+          either remove it from our systems or depersonalize it so that we can&#x27;t identify you.
+        </p>
+        <h1 id="6cea9b81-c43c-4ff7-82b3-a7dd1cf15ae9" class="">How Do We Protect Your Information?</h1>
+        <p id="27c3e329-31b0-4877-a27a-2cd477e0116f" class="">
+          We implement a variety of security measures to maintain the safety of your personal information when you place an order or enter,
+          submit, or access your personal information. We offer the use of a secure server. All supplied sensitive/credit information is
+          transmitted via Secure Socket Layer (SSL) technology and then encrypted into our Payment gateway providers database only to be
+          accessible by those authorized with special access rights to such systems, and are required to keep the information confidential.
+          After a transaction, your private information (credit cards, social security numbers, financials, etc.) is never kept on file. We
+          cannot, however, ensure or warrant the absolute security of any information you transmit to us or guarantee that your information
+          on the Service may not be accessed, disclosed, altered, or destroyed by a breach of any of our physical, technical, or managerial
+          safeguards.
+        </p>
+        <h1 id="6933369b-499f-4fe7-a0bf-0153c1feb564" class="">Governing Law</h1>
+        <p id="a08e0735-974c-480f-978a-e67b142362a9" class="">
+          The laws of Russia, excluding its conflicts of law rules, shall govern this Agreement and your use of our service. Your use of our
+          service may also be subject to other local, state, national, or international laws.
+        </p>
+        <h1 id="b5c760bf-6b0b-4dd1-85ba-c9aa94f8a6fa" class="">Your Consent</h1>
+        <p id="e295ceed-5f20-4538-90e7-485fc7402c6c" class="">
+          By using our service, registering an account, or making a purchase, you consent to this Privacy Policy.
+        </p>
+        <h1 id="2f13d266-61eb-48a0-a043-9efc842ddb04" class="">Links to Other Websites</h1>
+        <p id="00f8e736-0563-4bc1-b62e-62a5fa1486ad" class="">
+          This Privacy Policy applies only to the Services. The Services may contain links to other websites not operated or controlled by .
+          We are not responsible for the content, accuracy or opinions expressed in such websites, and such websites are not investigated,
+          monitored or checked for accuracy or completeness by us. Please remember that when you use a link to go from the Services to
+          another website, our Privacy Policy is no longer in effect. Your browsing and interaction on any other website, including those
+          that have a link on our platform, is subject to that website’s own rules and policies. Such third parties may use their own
+          cookies or other methods to collect information about you.
+        </p>
+        <h1 id="2461dd28-0517-4f1e-8e0d-888fc75cdcf8" class="">Cookies</h1>
+        <p id="47308d0b-09db-40f0-8f7e-269fb9749db7" class="">
+          We use &quot;Cookies&quot; to identify the areas of our website that you have visited. A Cookie is a small piece of data stored on
+          your computer or mobile device by your web browser. We use Cookies to personalize the Content that you see on our website. Most
+          web browsers can be set to disable the use of Cookies. However, if you disable Cookies, you may not be able to access
+          functionality on our website correctly or at all. We never place Personally Identifiable Information in Cookies.
+        </p>
+        <h1 id="3d20e3a4-1507-4247-a7e9-a7daa312ccb5" class="">Advertising</h1>
+        <p id="75af0775-4006-473b-8e75-1cdef38a34ec" class="">
+          Advertising keeps us and many of the websites and services you use free of charge. We work hard to make sure that ads are safe,
+          unobtrusive, and as relevant as possible.
+        </p>
+        <h1 id="4ff05f39-c241-435b-a243-ed16cbbd2c4c" class="">Cookies for Advertising</h1>
+        <p id="c4832403-f65e-4617-aec4-53af18a53006" class="">
+          Cookies help to make advertising more effective. Without cookies, it&#x27;s really hard for an advertiser to reach its audience,
+          or to know how many ads were shown and how many clicks they received.
+        </p>
+        <h1 id="e76be81f-992c-47ba-a925-d29a6e0112f8" class="">Remarketing Services</h1>
+        <p id="5e70364b-9827-4664-9899-fc6a12677643" class="">
+          We use remarketing services. What Is Remarketing? In digital marketing, remarketing (or retargeting) is the practice of serving
+          ads across the internet to people who have already visited your website. It allows your company to seem like they&#x27;re
+          “following” people around the internet by serving ads on the websites and platforms they use most.
+        </p>
+        <h1 id="68d18f2a-efc1-4684-b4b2-8a25907783df" class="">Payment Details</h1>
+        <p id="19289350-d35f-4cfc-8c23-e662a5632731" class="">
+          In respect to any credit card or other payment processing details you have provided us, we commit that this confidential
+          information will be stored in the most secure manner possible.
+        </p>
+        <h1 id="58a470a5-e449-44b4-a6cd-c6d979384a5b" class="">Kids&#x27; Privacy</h1>
+        <p id="da6b7eab-439d-4693-871b-aea090d00a6f" class="">
+          We collect information from kids under the age of 13 just to better our services. If You are a parent or guardian and You are
+          aware that Your child has provided Us with Personal Data without your permission, please contact Us. If We become aware that We
+          have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove
+          that information from our servers.
+        </p>
+        <h1 id="6f58cb8d-d6dc-4917-bba5-76a9dd5b02ef" class="">Changes To Our Privacy Policy</h1>
+        <p id="a6516d42-6060-4ce3-ad21-46ccb353cd27" class="">
+          If we decide to change our privacy policy, we will post those changes on this page, and/or update the Privacy Policy modification
+          date below.
+        </p>
+        <h1 id="6c06851b-63f6-4883-9d61-4392dba1aafc" class="">Third-Party Services</h1>
+        <p id="c02fb0d4-8023-479f-abc4-2d2c26d013f0" class="">
+          We may display, include or make available third-party content (including data, information, applications and other products
+          services) or provide links to third-party websites or services (&quot;Third- Party Services&quot;).
+        </p>
+        <p id="fb04bb8b-4342-4d03-be7e-08f95b296a96" class="">
+          You acknowledge and agree that we shall not be responsible for any Third-Party Services, including their accuracy, completeness,
+          timeliness, validity, copyright compliance, legality, decency, quality or any other aspect thereof. We do not assume and shall not
+          have any liability or responsibility to you or any other person or entity for any Third-Party Services.
+        </p>
+        <p id="c483d11c-c3e9-4bab-bcd1-79b0c7714d04" class="">
+          Third-Party Services and links thereto are provided solely as a convenience to you and you access and use them entirely at your
+          own risk and subject to such third parties&#x27; terms and conditions.
+        </p>
+        <h1 id="f4cf5ba8-71ca-403a-a200-906c60d1b017" class="">Facebook Pixel</h1>
+        <p id="151ed312-4671-4569-8641-d262ce212279" class="">
+          Facebook pixel is an analytics tool that allows you to measure the effectiveness of your advertising by understanding the actions
+          people take on your website. You can use the pixel to: Make sure your ads are shown to the right people. Facebook pixel may
+          collect information from your device when you use the service. Facebook pixel collects information that is held in accordance with
+          its Privacy Policy.
+        </p>
+        <h1 id="bed90d33-23e6-4789-9c7f-61a936dff8de" class="">Tracking Technologies</h1>
+        <ul id="4bb86fe0-ddae-444d-b9cb-6452b39dfc19" class="bulleted-list">
+          <li>Cookies</li>
+        </ul>
+        <p id="2945e922-331f-4661-bfc9-dfed5f5c3510" class="">
+          We use Cookies to enhance the performance and functionality of our service but are non-essential to their use. However, without
+          these cookies, certain functionality like videos may become unavailable or you would be required to enter your login details every
+          time you visit our service as we would not be able to remember that you had logged in previously.
+        </p>
+        <ul id="1f72458a-4540-4309-a1dc-6e00735d6da2" class="bulleted-list">
+          <li>Sessions</li>
+        </ul>
+        <p id="7f4782b8-b3b1-427c-8bc7-07f5af860f1f" class="">
+          We use &quot;Sessions&quot; to identify the areas of our website that you have visited. A Session is a small piece of data stored
+          on your computer or mobile device by your web browser.
+        </p>
+        <h1 id="9072e49f-4081-47c7-9555-5acce240108a" class="">Information about General Data Protection Regulation (GDPR)</h1>
+        <p id="5360bea1-8bc3-4462-9648-2c0b80ca4bc7" class="">
+          We may be collecting and using information from you if you are from the European Economic Area (EEA), and in this section of our
+          Privacy Policy we are going to explain exactly how and why is this data collected, and how we maintain this data under protection
+          from being replicated or used in the wrong way.
+        </p>
+        <h1 id="63cd8679-6264-4e20-9135-254c191ca1d0" class="">What is GDPR?</h1>
+        <p id="a295289a-aa78-4985-ad41-1850893b0f5f" class="">
+          GDPR is an EU-wide privacy and data protection law that regulates how EU residents&#x27; data is protected by companies and
+          enhances the control the EU residents have, over their personal data.
+        </p>
+        <h1 id="f74f212c-4f5b-497d-b4e9-c8e1df7378b3" class="">What is personal data?</h1>
+        <p id="a33aebc4-ff52-4977-8f27-251fb59aae7f" class="">
+          Any data that relates to an identifiable or identified individual. GDPR covers a broad spectrum of information that could be used
+          on its own, or in combination with other pieces of information, to identify a person. Personal data extends beyond a person’s name
+          or email address. Some examples include financial information, political opinions, genetic data, biometric data, IP addresses,
+          physical address, sexual orientation, and ethnicity. The Data Protection Principles include requirements such as:
+        </p>
+        <ul id="b2f243c3-5db7-41bd-ab78-881f5311b29b" class="bulleted-list">
+          <li>
+            Personal data collected must be processed in a fair, legal, and transparent way and should only be used in a way that a person
+            would reasonably expect.
+          </li>
+        </ul>
+        <ul id="c89bb66b-b79e-4a01-9603-caf4231e0619" class="bulleted-list">
+          <li>
+            Personal data should only be collected to fulfil a specific purpose and it should only be used for that purpose. Organizations
+            must specify why they need the personal data when they collect it.
+          </li>
+        </ul>
+        <ul id="6ab2cf7f-e146-45d2-84da-3945048c2fa5" class="bulleted-list">
+          <li>Personal data should be held no longer than necessary to fulfil its purpose.</li>
+        </ul>
+        <ul id="e33c919c-05f1-4a08-b1da-5a00c176902f" class="bulleted-list">
+          <li>
+            People covered by the GDPR have the right to access their own personal data. They can also request a copy of their data, and
+            that their data be updated, deleted, restricted, or moved to another organization.
+          </li>
+        </ul>
+        <h1 id="9035cd96-551c-4809-8686-f11727296f21" class="">Why is GDPR important?</h1>
+        <p id="87ec129d-d64b-4a83-b23b-cfee466453af" class="">
+          GDPR adds some new requirements regarding how companies should protect individuals&#x27; personal data that they collect and
+          process. It also raises the stakes for compliance by increasing enforcement and imposing greater fines for breach. Beyond these
+          facts it&#x27;s simply the right thing to do. At Help Scout we strongly believe that your data privacy is very important and we
+          already have solid security and privacy practices in place that go beyond the requirements of this new regulation.
+        </p>
+        <h1 id="bb8c15a6-b453-41dd-ad2d-5aa5a229aba1" class="">
+          Individual Data Subject&#x27;s Rights - Data Access, Portability and Deletion
+        </h1>
+        <p id="a9711293-7628-480d-a035-cbd7b748ba71" class="">
+          We are committed to helping our customers meet the data subject rights requirements of GDPR. We process or store all personal data
+          in fully vetted, DPA compliant vendors. We do store all conversation and personal data for up to 6 years unless your account is
+          deleted. In which case, we dispose of all data in accordance with our Terms of Service and Privacy Policy, but we will not hold it
+          longer than 60 days.
+        </p>
+        <p id="4f9c9bf4-0ce9-4b5d-b90e-f0b875b94bd4" class="">
+          We are aware that if you are working with EU customers, you need to be able to provide them with the ability to access, update,
+          retrieve and remove personal data. We got you! We&#x27;ve been set up as self service from the start and have always given you
+          access to your data and your customers data. Our customer support team is here for you to answer any questions you might have
+          about working with the API.
+        </p>
+        <h1 id="8b4de715-dc74-437b-b4cf-3c003ada1f31" class="">California Residents</h1>
+        <p id="fdea3806-cfad-4b96-a1cc-e6ee6c144a7f" class="">
+          The California Consumer Privacy Act (CCPA) requires us to disclose categories of Personal Information we collect and how we use
+          it, the categories of sources from whom we collect Personal Information, and the third parties with whom we share it, which we
+          have explained above.
+        </p>
+        <p id="cac6cb41-6cc1-417e-b940-c7ae16ef5182" class="">
+          We are also required to communicate information about rights California residents have under California law. You may exercise the
+          following rights:
+        </p>
+        <ul id="5dfa536f-d4ba-4990-8bca-c70906d53ae3" class="bulleted-list">
+          <li>
+            Right to Know and Access. You may submit a verifiable request for information regarding the: (1) categories of Personal
+            Information we collect, use, or share; (2) purposes for which categories of Personal Information are collected or used by us;
+            (3) categories of sources from which we collect Personal Information; and (4) specific pieces of Personal Information we have
+            collected about you.
+          </li>
+        </ul>
+        <ul id="2b3115e5-4c70-4096-9859-07d735142d90" class="bulleted-list">
+          <li>Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.</li>
+        </ul>
+        <ul id="0b6ae9ae-9b71-4e1d-b947-6b94456f0fe5" class="bulleted-list">
+          <li>
+            Right to Delete. You may submit a verifiable request to close your account and we will delete Personal Information about you
+            that we have collected.
+          </li>
+        </ul>
+        <ul id="40ea4d6d-f506-4649-93c8-033dad229dcf" class="bulleted-list">
+          <li>Request that a business that sells a consumer&#x27;s personal data, not sell the consumer&#x27;s personal data.</li>
+        </ul>
+        <p id="7fe9e5a9-7721-4077-8d68-d5f8b23ebbdb" class="">
+          If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
+        </p>
+        <p id="5affd82b-4069-44ae-97c0-95a3a47e6ab1" class="">We do not sell the Personal Information of our users.</p>
+        <p id="1666c9df-e29f-4d1b-8fd6-2f0598d483d1" class="">For more information about these rights, please contact us.</p>
+        <h1 id="053620c4-9c0c-4b4f-b583-3c601fd86a2a" class="">California Online Privacy Protection Act (CalOPPA)</h1>
+        <p id="f7172f53-1967-4d7c-87c0-af4d179b0dbf" class="">
+          CalOPPA requires us to disclose categories of Personal Information we collect and how we use it, the categories of sources from
+          whom we collect Personal Information, and the third parties with whom we share it, which we have explained above.
+        </p>
+        <p id="402bfd2b-6a2d-40ba-8096-15fb80378990" class="">CalOPPA users have the following rights:</p>
+        <ul id="7f6afb9d-0759-4a81-b58d-19c88cb1ec94" class="bulleted-list">
+          <li>
+            Right to Know and Access. You may submit a verifiable request for information regarding the: (1) categories of Personal
+            Information we collect, use, or share; (2) purposes for which categories of Personal Information are collected or used by us;
+            (3) categories of sources from which we collect Personal Information; and (4) specific pieces of Personal Information we have
+            collected about you.
+          </li>
+        </ul>
+        <ul id="feb07d15-c203-4e64-aa22-b295e881cb01" class="bulleted-list">
+          <li>Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.</li>
+        </ul>
+        <ul id="6adac86e-8bc1-462c-82a0-f7d7d768c85e" class="bulleted-list">
+          <li>
+            Right to Delete. You may submit a verifiable request to close your account and we will delete Personal Information about you
+            that we have collected.
+          </li>
+        </ul>
+        <ul id="b1295ae3-ed2a-474a-be8c-18cd45c58703" class="bulleted-list">
+          <li>Right to request that a business that sells a consumer&#x27;s personal data, not sell the consumer&#x27;s personal data.</li>
+        </ul>
+        <p id="ffee4526-3f11-46c1-8b56-8bf682ddfa34" class="">
+          If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
+        </p>
+        <p id="2945273f-80bb-4044-a258-6843803227a1" class="">We do not sell the Personal Information of our users.</p>
+        <p id="875fd5a0-842e-4e44-aeaa-12bff7fd3622" class="">For more information about these rights, please contact us.</p>
+        <h1 id="f57a4517-965d-477c-bfa5-bd1e403c0651" class="">Contact Us</h1>
+        <p id="d5d15acb-15ee-4eac-8e80-89d792c7d09c" class="">Don&#x27;t hesitate to contact us if you have any questions.</p>
+        <ul id="d7389969-c586-4b4c-8cc8-2441f53213b1" class="bulleted-list">
+          <li>Via Email: <a href="mailto:hell@noizer.one">hell@noizer.one</a></li>
+        </ul>
+      </div>
+    </article>
+  </body>
+</html>

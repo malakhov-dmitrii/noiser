@@ -1,0 +1,1104 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Terms &amp; Conditions</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li > ol:first-child,
+      li > ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul > li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        text-indent: -1.7em;
+      }
+
+      ul.to-do-list > li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle > li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul > li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol > li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol > li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle > li > details {
+        padding-left: 1.7em;
+      }
+
+      .toggle > li > details > summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p > .user {
+        opacity: 0.5;
+      }
+
+      td > .user,
+      td > time {
+        white-space: nowrap;
+      }
+
+      input[type='checkbox'] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code > code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+      }
+      .code {
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      }
+      .serif {
+        font-family: Lyon-Text, Georgia, YuMincho, 'Yu Mincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Songti TC', 'Songti SC',
+          'SimSun', 'Nanum Myeongjo', NanumMyeongjo, Batang, serif;
+      }
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+      .pdf .sans {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif,
+          'Segoe UI Emoji', 'Segoe UI Symbol', 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR';
+      }
+
+      .pdf .code {
+        font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji',
+          'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR';
+      }
+
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, YuMincho, 'Yu Mincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'Songti TC',
+          'Songti SC', 'SimSun', 'Nanum Myeongjo', NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC',
+          'Noto Sans CJK KR';
+      }
+
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC',
+          'Noto Sans Mono CJK KR';
+      }
+
+      .highlight-default {
+      }
+      .highlight-gray {
+        color: rgb(155, 154, 151);
+      }
+      .highlight-brown {
+        color: rgb(100, 71, 58);
+      }
+      .highlight-orange {
+        color: rgb(217, 115, 13);
+      }
+      .highlight-yellow {
+        color: rgb(223, 171, 1);
+      }
+      .highlight-teal {
+        color: rgb(15, 123, 108);
+      }
+      .highlight-blue {
+        color: rgb(11, 110, 153);
+      }
+      .highlight-purple {
+        color: rgb(105, 64, 165);
+      }
+      .highlight-pink {
+        color: rgb(173, 26, 114);
+      }
+      .highlight-red {
+        color: rgb(224, 62, 62);
+      }
+      .highlight-gray_background {
+        background: rgb(235, 236, 237);
+      }
+      .highlight-brown_background {
+        background: rgb(233, 229, 227);
+      }
+      .highlight-orange_background {
+        background: rgb(250, 235, 221);
+      }
+      .highlight-yellow_background {
+        background: rgb(251, 243, 219);
+      }
+      .highlight-teal_background {
+        background: rgb(221, 237, 234);
+      }
+      .highlight-blue_background {
+        background: rgb(221, 235, 241);
+      }
+      .highlight-purple_background {
+        background: rgb(234, 228, 242);
+      }
+      .highlight-pink_background {
+        background: rgb(244, 223, 235);
+      }
+      .highlight-red_background {
+        background: rgb(251, 228, 228);
+      }
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+      .block-color-gray {
+        color: rgba(55, 53, 47, 0.6);
+        fill: rgba(55, 53, 47, 0.6);
+      }
+      .block-color-brown {
+        color: rgb(100, 71, 58);
+        fill: rgb(100, 71, 58);
+      }
+      .block-color-orange {
+        color: rgb(217, 115, 13);
+        fill: rgb(217, 115, 13);
+      }
+      .block-color-yellow {
+        color: rgb(223, 171, 1);
+        fill: rgb(223, 171, 1);
+      }
+      .block-color-teal {
+        color: rgb(15, 123, 108);
+        fill: rgb(15, 123, 108);
+      }
+      .block-color-blue {
+        color: rgb(11, 110, 153);
+        fill: rgb(11, 110, 153);
+      }
+      .block-color-purple {
+        color: rgb(105, 64, 165);
+        fill: rgb(105, 64, 165);
+      }
+      .block-color-pink {
+        color: rgb(173, 26, 114);
+        fill: rgb(173, 26, 114);
+      }
+      .block-color-red {
+        color: rgb(224, 62, 62);
+        fill: rgb(224, 62, 62);
+      }
+      .block-color-gray_background {
+        background: rgb(235, 236, 237);
+      }
+      .block-color-brown_background {
+        background: rgb(233, 229, 227);
+      }
+      .block-color-orange_background {
+        background: rgb(250, 235, 221);
+      }
+      .block-color-yellow_background {
+        background: rgb(251, 243, 219);
+      }
+      .block-color-teal_background {
+        background: rgb(221, 237, 234);
+      }
+      .block-color-blue_background {
+        background: rgb(221, 235, 241);
+      }
+      .block-color-purple_background {
+        background: rgb(234, 228, 242);
+      }
+      .block-color-pink_background {
+        background: rgb(244, 223, 235);
+      }
+      .block-color-red_background {
+        background: rgb(251, 228, 228);
+      }
+      .select-value-color-default {
+        background-color: rgba(206, 205, 202, 0.5);
+      }
+      .select-value-color-gray {
+        background-color: rgba(155, 154, 151, 0.4);
+      }
+      .select-value-color-brown {
+        background-color: rgba(140, 46, 0, 0.2);
+      }
+      .select-value-color-orange {
+        background-color: rgba(245, 93, 0, 0.2);
+      }
+      .select-value-color-yellow {
+        background-color: rgba(233, 168, 0, 0.2);
+      }
+      .select-value-color-green {
+        background-color: rgba(0, 135, 107, 0.2);
+      }
+      .select-value-color-blue {
+        background-color: rgba(0, 120, 223, 0.2);
+      }
+      .select-value-color-purple {
+        background-color: rgba(103, 36, 222, 0.2);
+      }
+      .select-value-color-pink {
+        background-color: rgba(221, 0, 129, 0.2);
+      }
+      .select-value-color-red {
+        background-color: rgba(255, 0, 26, 0.2);
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E');
+      }
+
+      .checkbox-off {
+        background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E');
+      }
+    </style>
+  </head>
+  <body>
+    <article id="f8112521-06c6-40ea-8edd-1df71f634f62" class="page sans">
+      <header>
+        <div class="page-header-icon undefined"><span class="icon">⚙️</span></div>
+        <h1 class="page-title">Terms &amp; Conditions</h1>
+      </header>
+      <div class="page-body">
+        <h1 id="8aa28fbf-653a-4c89-9c3e-d1dc2afe067a" class="">Terms &amp; Conditions</h1>
+        <p id="ca31a63f-bbf0-4f08-adba-f0fa53e59d60" class="">Updated at 2021-06-15</p>
+        <h1 id="32ebcb7f-eb46-464c-b30a-6afb836682dd" class="">General Terms</h1>
+        <p id="7cdf27ad-48d2-42aa-b745-0af66e5eda44" class="">
+          By accessing and placing an order with <a href="https://noizer.one">Noizer</a>, you confirm that you are in agreement with and
+          bound by the terms of service contained in the Terms &amp; Conditions outlined below. These terms apply to the entire website and
+          any email or other type of communication between you and <a href="https://noizer.one">Noizer</a>.
+        </p>
+        <p id="32bf52e5-41f9-46c8-a4d4-2dc2f0e730a4" class="">
+          Under no circumstances shall <a href="https://noizer.one">Noizer</a> team be liable for any direct, indirect, special, incidental
+          or consequential damages, including, but not limited to, loss of data or profit, arising out of the use, or the inability to use,
+          the materials on this site, even if <a href="https://noizer.one">Noizer</a> team or an authorized representative has been advised
+          of the possibility of such damages. If your use of materials from this site results in the need for servicing, repair or
+          correction of equipment or data, you assume any costs thereof.
+        </p>
+        <p id="f9086cd7-fef0-432e-b7d1-060cd1337e9b" class="">
+          <a href="https://noizer.one">Noizer</a> will not be responsible for any outcome that may occur during the course of usage of our
+          resources. We reserve the rights to change prices and revise the resources usage policy in any moment.
+        </p>
+        <h1 id="58143d63-162a-44a9-8b7a-27595d06aae8" class="">License</h1>
+        <p id="2978562a-13ca-4f13-b7be-5519b35eafdf" class="">
+          <a href="https://noizer.one">Noizer</a> grants you a revocable, non-exclusive, non- transferable, limited license to download,
+          install and use our service strictly in accordance with the terms of this Agreement.
+        </p>
+        <p id="adef833e-d261-47e7-96b9-e4ce7fa4a47a" class="">
+          These Terms &amp; Conditions are a contract between you and <a href="https://noizer.one">Noizer</a> (referred to in these Terms
+          &amp; Conditions as &quot;<a href="https://noizer.one">Noizer</a>&quot;, &quot;us&quot;, &quot;we&quot; or &quot;our&quot;), the
+          provider of the <a href="https://noizer.one">Noizer</a> website and the services accessible from the
+          <a href="https://noizer.one">Noizer</a> website (which are collectively referred to in these Terms &amp; Conditions as the
+          &quot;<a href="https://noizer.one">Noizer</a> Service&quot;).
+        </p>
+        <p id="2e0651c5-fe00-4c47-91ae-b72497dfd3e7" class="">
+          You are agreeing to be bound by these Terms &amp; Conditions. If you do not agree to these Terms &amp; Conditions, please do not
+          use the Service. In these Terms &amp; Conditions, &quot;you&quot; refers both to you as an individual and to the entity you
+          represent. If you violate any of these Terms &amp; Conditions, we reserve the right to cancel your account or block access to your
+          account without notice.
+        </p>
+        <h1 id="54c2f75a-c93f-47f0-b485-107b02327950" class="">Definitions and key terms</h1>
+        <h3 id="e65dd836-93a2-4993-84df-801dce8f328b" class="">For this Terms &amp; Conditions:</h3>
+        <ul id="d1e98b31-9a2a-4a28-add6-49e2dae9b4ae" class="bulleted-list">
+          <li>
+            <strong>Cookie:</strong> small amount of data generated by a website and saved by your web browser. It is used to identify your
+            browser, provide analytics, remember information about you such as your language preference or login information.
+          </li>
+        </ul>
+        <ul id="035ee59c-8215-41bd-ad4f-5dbbeaae0186" class="bulleted-list">
+          <li>
+            <strong>Company:</strong> when this policy mentions “Company,” “we,” “us,” or “our,” it refers to
+            <a href="https://noizer.one">Noizer</a> that is responsible for your information under this Privacy Policy.
+          </li>
+        </ul>
+        <ul id="8cd72615-38b9-45ac-b8ee-1ecf1b1c8652" class="bulleted-list">
+          <li>
+            <strong>Country: </strong>where <a href="https://noizer.one">Noizer</a> or the owners/founders of
+            <a href="https://noizer.one">Noizer</a> are based, in this case is Russia.
+          </li>
+        </ul>
+        <ul id="d0ed1d81-3612-4596-9944-51c85f7d3613" class="bulleted-list">
+          <li>
+            <strong>Customer:</strong> refers to the company, organization or person that signs up to use the
+            <a href="https://noizer.one">Noizer</a> Service to manage the relationships with your consumers or service users.
+          </li>
+        </ul>
+        <ul id="fc397291-d5e1-4745-a412-050d352ab864" class="bulleted-list">
+          <li>
+            <strong>Device:</strong> any internet connected device such as a phone, tablet, computer or any other device that can be used to
+            visit <a href="https://noizer.one">Noizer</a> and use the services.
+          </li>
+        </ul>
+        <ul id="9f9a3c72-192f-4639-8d51-cdefecd89f4e" class="bulleted-list">
+          <li>
+            <strong>IP address:</strong> Every device connected to the Internet is assigned a number known as an Internet protocol (IP)
+            address. These numbers are usually assigned in geographic blocks. An IP address can often be used to identify the location from
+            which a device is connecting to the Internet.
+          </li>
+        </ul>
+        <ul id="072daf74-8243-4ebc-9012-bdf12c3adfe7" class="bulleted-list">
+          <li>
+            <strong>Personnel:</strong> refers to those individuals who are employed by <a href="https://noizer.one">Noizer</a> or are under
+            contract to perform a service on behalf of one of the parties.
+          </li>
+        </ul>
+        <ul id="6ef2b0e4-6b4e-4db8-9f3d-69f34f96d276" class="bulleted-list">
+          <li>
+            <strong>Personal Data:</strong> any information that directly, indirectly, or in connection with other information — including a
+            personal identification number — allows for the identification or identifiability of a natural person.
+          </li>
+        </ul>
+        <ul id="628699a0-5566-4ad7-a156-eed7bbb7ae3a" class="bulleted-list">
+          <li>
+            <strong>Service:</strong> refers to the service provided by <a href="https://noizer.one">Noizer</a> as described in the relative
+            terms (if available) and on this platform.
+          </li>
+        </ul>
+        <ul id="ea379ce3-7091-4f52-ac38-9e39fda8d3d8" class="bulleted-list">
+          <li>
+            <strong>Third-party service:</strong> refers to advertisers, contest sponsors, promotional and marketing partners, and others
+            who provide our content or whose products or services we think may interest you.
+          </li>
+        </ul>
+        <ul id="f5525d5c-1e52-45ce-9c3c-df3e3d2d31b2" class="bulleted-list">
+          <li>
+            <strong>Website:</strong> <a href="https://noizer.one">Noizer</a>’s site, which can be accessed via this URL: https://noizer.one
+          </li>
+        </ul>
+        <ul id="517b5d1d-1346-461c-9e24-826c5a888a47" class="bulleted-list">
+          <li>
+            <strong>You:</strong> a person or entity that is registered with <a href="https://noizer.one">Noizer</a> to use the Services.
+          </li>
+        </ul>
+        <h1 id="05715111-cb8f-428f-a993-834acc149df7" class="">Restrictions</h1>
+        <p id="a0c8e0ea-4717-43ef-a8af-33b86707d724" class="">You agree not to, and you will not permit others to:</p>
+        <ul id="cf595a04-8f78-443c-926d-05e6471e596b" class="bulleted-list">
+          <li>
+            License, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the
+            service or make the platform available to any third party.
+          </li>
+        </ul>
+        <ul id="7258dc97-a759-4463-a739-0ee211fdb954" class="bulleted-list">
+          <li>Modify, make derivative works of, disassemble, decrypt, reverse compile or reverse engineer any part of the service.</li>
+        </ul>
+        <ul id="20317d5b-348e-4c5a-a308-1f302e25c51a" class="bulleted-list">
+          <li>
+            Remove, alter or obscure any proprietary notice (including any notice of copyright or trademark) of or its affiliates, partners,
+            suppliers or the licensors of the service.
+          </li>
+        </ul>
+        <h1 id="0476ab28-5196-4ebd-ad9f-c4451ddc6cc4" class="">Payment</h1>
+        <p id="938acb92-ee34-4365-b38a-6ff15506e50d" class="">
+          If you pay for any of our one-time payment plans, you agree to pay all fees or charges to your account for the Service in
+          accordance with the fees, charges and billing terms in effect at the time that each fee or charge is due and payable. Your Payment
+          Provider agreement governs your use of the designated credit card account, and you must refer to that agreement and not these
+          Terms to determine your rights and liabilities with respect to your Payment Provider. By providing us with your credit card number
+          and associated payment information, you agree that we are authorized to verify information immediately, and subsequently invoice
+          your account for all fees and charges due and payable to us hereunder and that no additional notice or consent is required. You
+          agree to immediately notify us of any change in your billing address or the credit card used for payment hereunder. We reserve the
+          right at any time to change its prices and billing methods, either immediately upon posting on our Site or by e-mail delivery to
+          your organization’s administrator(s). Any attorney fees, court costs, or other costs incurred in collection of delinquent
+          undisputed amounts shall be the responsibility of and paid for by you. No contract will exist between you and us for the Service
+          until we accept your order by a confirmatory e-mail, SMS/MMS message, or other appropriate means of communication. You are
+          responsible for any third-party fees that you may incur when using the Service.
+        </p>
+        <h1 id="334ab234-cfd6-4f51-a139-60c9faf1ddd4" class="">Return and Refund Policy</h1>
+        <p id="da12adf5-b60d-419f-bdda-0ac74ac16375" class="">
+          Thanks for shopping with us. We appreciate the fact that you like to buy the stuff we build. We also want to make sure you have a
+          rewarding experience while you’re exploring, evaluating, and purchasing our products. As with any shopping experience, there are
+          terms and conditions that apply to transactions at our company. We’ll be as brief as our attorneys will allow. The main thing to
+          remember is that by placing an order or making a purchase from us, you agree to the terms along with our Privacy Policy. If, for
+          any reason, You are not completely satisfied with any good or service that we provide, don&#x27;t hesitate to contact us and we
+          will discuss any of the issues you are going through with our product.
+        </p>
+        <h1 id="8912d7e8-99d0-4a4a-845b-a81401e007c0" class="">Your Suggestions</h1>
+        <p id="2d141a1a-83cf-4f7b-ab9d-2bf9e423a72f" class="">
+          Any feedback, comments, ideas, improvements or suggestions (collectively, &quot;Suggestions&quot;) provided by you to us with
+          respect to the service shall remain the sole and exclusive property of us. We shall be free to use, copy, modify, publish, or
+          redistribute the Suggestions for any purpose and in any way without any credit or any compensation to you.
+        </p>
+        <h1 id="f9c3e276-65cb-497c-a28e-abaa12f50a39" class="">Your Consent</h1>
+        <p id="1051c85c-4974-4330-8267-2084b6e960f8" class="">
+          We&#x27;ve updated our Terms &amp; Conditions to provide you with complete transparency into what is being set when you visit our
+          site and how it&#x27;s being used. By using our service, registering an account, or making a purchase, you hereby consent to our
+          Terms &amp; Conditions.
+        </p>
+        <h1 id="85ee2411-9186-4d34-a296-e860691badf8" class="">Links to Other Websites</h1>
+        <p id="21911649-fe0d-4228-860d-eaa2625be5a0" class="">
+          Our service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be
+          directed to that third party&#x27;s site. We strongly advise You to review the Terms &amp; Conditions of every site You visit. We
+          have no control over and assume no responsibility for the content, Terms &amp; Conditions or practices of any third party sites or
+          services.
+        </p>
+        <h1 id="2aa68d16-300b-444d-a241-d6ccb481b299" class="">Cookies</h1>
+        <p id="91725072-4512-4f67-ba22-a8b26f72f4e2" class="">
+          We use &quot;Cookies&quot; to identify the areas of our website that you have visited. A Cookie is a small piece of data stored on
+          your computer or mobile device by your web browser. We use Cookies to enhance the performance and functionality of our service but
+          are non-essential to their use. However, without these cookies, certain functionality like videos may become unavailable or you
+          would be required to enter your login details every time you visit our platform as we would not be able to remember that you had
+          logged in previously. Most web browsers can be set to disable the use of Cookies. However, if you disable Cookies, you may not be
+          able to access functionality on our website correctly or at all. We never place Personally Identifiable Information in Cookies.
+        </p>
+        <h1 id="95a4f802-bba2-4951-a4aa-a9fb20ec97b1" class="">Changes To Our Terms &amp; Conditions</h1>
+        <p id="ce0bf7f2-452a-46a6-8513-e54c7ec2e839" class="">
+          You acknowledge and agree that we may stop (permanently or temporarily) providing the Service (or any features within the Service)
+          to you or to users generally at our sole discretion, without prior notice to you. You may stop using the Service at any time. You
+          do not need to specifically inform us when you stop using the Service. You acknowledge and agree that if we disable access to your
+          account, you may be prevented from accessing the Service, your account details or any files or other materials which is contained
+          in your account. If we decide to change our Terms &amp; Conditions, we will post those changes on this page, and/or update the
+          Terms &amp; Conditions modification date below.
+        </p>
+        <h1 id="c673e825-a3ff-4249-99f5-4bab8b3eacf9" class="">Modifications to Our service</h1>
+        <p id="9ab46ca4-6173-4770-8d6d-df526dd101aa" class="">
+          We reserve the right to modify, suspend or discontinue, temporarily or permanently, the service or any service to which it
+          connects, with or without notice and without liability to you.
+        </p>
+        <h1 id="1cd93ba6-affb-40f7-b538-5b71fc9586a2" class="">Updates to Our service</h1>
+        <p id="7bb341a4-ccf0-48da-8e12-cd4ba325d433" class="">
+          We may from time to time provide enhancements or improvements to the features/ functionality of the service, which may include
+          patches, bug fixes, updates, upgrades and other modifications (&quot;Updates&quot;). Updates may modify or delete certain features
+          and/or functionalities of the service. You agree that we have no obligation to (i) provide any Updates, or (ii) continue to
+          provide or enable any particular features and/or functionalities of the service to you. You further agree that all Updates will be
+          (i) deemed to constitute an integral part of the service, and (ii) subject to the terms and conditions of this Agreement.
+        </p>
+        <h1 id="08ce8f65-dd0b-4129-989e-96fb608d0eee" class="">Third-Party Services</h1>
+        <p id="af144203-3d98-4eed-bc89-99f4026aa243" class="">
+          We may display, include or make available third-party content (including data, information, applications and other products
+          services) or provide links to third-party websites or services (&quot;Third- Party Services&quot;). You acknowledge and agree that
+          we shall not be responsible for any Third-Party Services, including their accuracy, completeness, timeliness, validity, copyright
+          compliance, legality, decency, quality or any other aspect thereof. We do not assume and shall not have any liability or
+          responsibility to you or any other person or entity for any Third-Party Services. Third-Party Services and links thereto are
+          provided solely as a convenience to you and you access and use them entirely at your own risk and subject to such third
+          parties&#x27; terms and conditions.
+        </p>
+        <h1 id="e9eb64c7-b823-4df6-9e7b-66529b0b1f89" class="">Term and Termination</h1>
+        <p id="bb07757d-eac6-43ab-838a-c7bccc92e038" class="">
+          This Agreement shall remain in effect until terminated by you or us. We may, in its sole discretion, at any time and for any or no
+          reason, suspend or terminate this Agreement with or without prior notice. This Agreement will terminate immediately, without prior
+          notice from us, in the event that you fail to comply with any provision of this Agreement. You may also terminate this Agreement
+          by deleting the service and all copies thereof from your computer. Upon termination of this Agreement, you shall cease all use of
+          the service and delete all copies of the service from your computer. Termination of this Agreement will not limit any of our
+          rights or remedies at law or in equity in case of breach by you (during the term of this Agreement) of any of your obligations
+          under the present Agreement.
+        </p>
+        <h1 id="073ff4e9-3462-45b8-9c7e-58471058fc14" class="">Copyright ownership</h1>
+        <p id="e9515488-0411-4580-8310-9150ead337c4" class="">
+          If you are a copyright owner or such owner’s agent and believe any material from us constitutes an infringement on your copyright,
+          please contact us setting forth the following information: (a) a physical or electronic signature of the copyright owner or a
+          person authorized to act on his behalf; (b) identification of the material that is claimed to be infringing; (c) your contact
+          information, including your address, telephone number, and an email; (d) a statement by you that you have a good faith belief that
+          use of the material is not authorized by the copyright owners; and (e) the a statement that the information in the notification is
+          accurate, and, under penalty of perjury you are authorized to act on behalf of the owner.
+        </p>
+        <h1 id="1523e016-803b-41bf-b823-3ccbdc93d4f4" class="">Indemnification</h1>
+        <p id="21c8beeb-2ba1-40b1-aecd-beb0d3c0899b" class="">
+          You agree to indemnify and hold us and our parents, subsidiaries, affiliates, officers, employees, agents, partners and licensors
+          (if any) harmless from any claim or demand, including reasonable attorneys&#x27; fees, due to or arising out of your: (a) use of
+          the service; (b) violation of this Agreement or any law or regulation; or (c) violation of any right of a third party.
+        </p>
+        <h1 id="9fedce90-a101-474c-bbee-b004debd9dfc" class="">No Warranties</h1>
+        <p id="37d56563-ff3c-41ad-8e3a-31007957c586" class="">
+          The service is provided to you &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; and with all faults and defects without warranty of
+          any kind. To the maximum extent permitted under applicable law, we, on our own behalf and on behalf of our affiliates and our
+          respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise,
+          with respect to the service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-
+          infringement, and warranties that may arise out of course of dealing, course of performance, usage or trade practice. Without
+          limitation to the foregoing, we provide no warranty or undertaking, and makes no representation of any kind that the service will
+          meet your requirements, achieve any intended results, be compatible or work with any other software, websites, systems or
+          services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or
+          defects can or will be corrected.
+        </p>
+        <p id="374d604b-943c-4996-afc9-c6a0c916a8a1" class="">
+          Without limiting the foregoing, neither us nor any provider makes any representation or warranty of any kind, express or implied:
+          (i) as to the operation or availability of the service, or the information, content, and materials or products included thereon;
+          (ii) that the service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information
+          or content provided through the service; or (iv) that the service, its servers, the content, or e-mails sent from or on behalf of
+          us are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components. Some jurisdictions do not
+          allow the exclusion of or limitations on implied warranties or the limitations on the applicable statutory rights of a consumer,
+          so some or all of the above exclusions and limitations may not apply to you.
+        </p>
+        <h1 id="42276e63-c447-4d0c-9c50-9f12f595df61" class="">Limitation of Liability</h1>
+        <p id="4fbdecdf-89ac-4d57-a950-ff5b610f90cc" class="">
+          Notwithstanding any damages that you might incur, the entire liability of us and any of our suppliers under any provision of this
+          Agreement and your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by you for the service.
+          To the maximum extent permitted by applicable law, in no event shall we or our suppliers be liable for any special, incidental,
+          indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, for loss of data or
+          other information, for business interruption, for personal injury, for loss of privacy arising out of or in any way related to the
+          use of or inability to use the service, third-party software and/or third-party hardware used with the service, or otherwise in
+          connection with any provision of this Agreement), even if we or any supplier has been advised of the possibility of such damages
+          and even if the remedy fails of its essential purpose. Some states/jurisdictions do not allow the exclusion or limitation of
+          incidental or consequential damages, so the above limitation or exclusion may not apply to you.
+        </p>
+        <h1 id="854c43c4-3864-4b98-adf1-48bdc77032d7" class="">Severability</h1>
+        <p id="fa57add6-94ab-4fba-a964-2bdd520748e9" class="">
+          If any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to
+          accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will
+          continue in full force and effect.
+        </p>
+        <p id="045438d9-d54b-4d44-8fa8-be5def655085" class="">
+          This Agreement, together with the Privacy Policy and any other legal notices published by us on the Services, shall constitute the
+          entire agreement between you and us concerning the Services. If any provision of this Agreement is deemed invalid by a court of
+          competent jurisdiction, the invalidity of such provision shall not affect the validity of the remaining provisions of this
+          Agreement, which shall remain in full force and effect. No waiver of any term of this Agreement shall be deemed a further or
+          continuing waiver of such term or any other term, and our failure to assert any right or provision under this Agreement shall not
+          constitute a waiver of such right or provision. YOU AND US AGREE THAT ANY CAUSE OF ACTION ARISING OUT OF OR RELATED TO THE
+          SERVICES MUST COMMENCE WITHIN ONE (1) YEAR AFTER THE CAUSE OF ACTION ACCRUES. OTHERWISE, SUCH CAUSE OF ACTION IS PERMANENTLY
+          BARRED.
+        </p>
+        <h1 id="288bfd97-af7c-43d8-905f-d8ea1213456a" class="">Waiver</h1>
+        <p id="4f07d6ef-bb4f-490b-b19e-b0a9da420d41" class="">
+          Except as provided herein, the failure to exercise a right or to require performance of an obligation under this Agreement shall
+          not effect a party&#x27;s ability to exercise such right or require such performance at any time thereafter nor shall be the
+          waiver of a breach constitute waiver of any subsequent breach.
+        </p>
+        <p id="c8ef0853-2be4-4757-93e5-737c4b361828" class="">
+          No failure to exercise, and no delay in exercising, on the part of either party, any right or any power under this Agreement shall
+          operate as a waiver of that right or power. Nor shall any single or partial exercise of any right or power under this Agreement
+          preclude further exercise of that or any other right granted herein. In the event of a conflict between this Agreement and any
+          applicable purchase or other terms, the terms of this Agreement shall govern.
+        </p>
+        <h1 id="5682c928-c96b-4dfe-b685-8b292e3d5751" class="">Amendments to this Agreement</h1>
+        <p id="a5ddbb8d-65b2-4f19-aaad-9364663fbecc" class="">
+          We reserve the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will
+          provide at least 30 days&#x27; notice prior to any new terms taking effect. What constitutes a material change will be determined
+          at our sole discretion. By continuing to access or use our service after any revisions become effective, you agree to be bound by
+          the revised terms. If you do not agree to the new terms, you are no longer authorized to use our service.
+        </p>
+        <h1 id="1f67c295-5054-4266-bfac-264b3665db6c" class="">Entire Agreement</h1>
+        <p id="fd929b2f-346f-481d-8aa4-1f4208a84fa7" class="">
+          The Agreement constitutes the entire agreement between you and us regarding your use of the service and supersedes all prior and
+          contemporaneous written or oral agreements between you and us. You may be subject to additional terms and conditions that apply
+          when you use or purchase other services from us, which we will provide to you at the time of such use or purchase.
+        </p>
+        <h1 id="46463040-7c38-416f-b0d5-3582a71cb27c" class="">Updates to Our Terms</h1>
+        <p id="7a856ab7-863c-45c1-9e0c-f92630c21b76" class="">
+          We may change our Service and policies, and we may need to make changes to these Terms so that they accurately reflect our Service
+          and policies. Unless otherwise required by law, we will notify you (for example, through our Service) before we make changes to
+          these Terms and give you an opportunity to review them before they go into effect. Then, if you continue to use the Service, you
+          will be bound by the updated Terms. If you do not want to agree to these or any updated Terms, you can delete your account.
+        </p>
+        <h1 id="2cf50aea-47d7-483f-92bd-fd31a011e2c2" class="">Intellectual Property</h1>
+        <p id="38b2fee0-14c8-415c-be5b-630687a58383" class="">
+          Our platform and its entire contents, features and functionality (including but not limited to all information, software, text,
+          displays, images, video and audio, and the design, selection and arrangement thereof), are owned by us, its licensors or other
+          providers of such material and are protected by and international copyright, trademark, patent, trade secret and other
+          intellectual property or proprietary rights laws. The material may not be copied, modified, reproduced, downloaded or distributed
+          in any way, in whole or in part, without the express prior written permission of us, unless and except as is expressly provided in
+          these Terms &amp; Conditions. Any unauthorized use of the material is prohibited.
+        </p>
+        <h1 id="c07fd101-3fc9-487e-b6c8-440576619101" class="">Agreement to Arbitrate</h1>
+        <p id="ac465092-8396-441e-953a-8dbd59ccef78" class="">
+          This section applies to any dispute EXCEPT IT DOESN’T INCLUDE A DISPUTE RELATING TO CLAIMS FOR INJUNCTIVE OR EQUITABLE RELIEF
+          REGARDING THE ENFORCEMENT OR VALIDITY OF YOUR OR ’s INTELLECTUAL PROPERTY RIGHTS. The term “dispute” means any dispute, action, or
+          other controversy between you and us concerning the Services or this agreement, whether in contract, warranty, tort, statute,
+          regulation, ordinance, or any other legal or equitable basis. “Dispute” will be given the broadest possible meaning allowable
+          under law.
+        </p>
+        <h1 id="ee72e0fc-df07-4f85-8104-1e15501feb4d" class="">Notice of Dispute</h1>
+        <p id="6aa1adfa-77d6-4293-ac81-b72d7e18b63a" class="">
+          In the event of a dispute, you or us must give the other a Notice of Dispute, which is a written statement that sets forth the
+          name, address, and contact information of the party giving it, the facts giving rise to the dispute, and the relief requested. You
+          must send any Notice of Dispute via email to: . We will send any Notice of Dispute to you by mail to your address if we have it,
+          or otherwise to your email address. You and us will attempt to resolve any dispute through informal negotiation within sixty (60)
+          days from the date the Notice of Dispute is sent. After sixty (60) days, you or us may commence arbitration.
+        </p>
+        <h1 id="0dcade0e-7444-44af-86b9-6dc17bb4bd65" class="">Binding Arbitration</h1>
+        <p id="af81c140-6985-4435-9337-429e8e0047fd" class="">
+          If you and us don’t resolve any dispute by informal negotiation, any other effort to resolve the dispute will be conducted
+          exclusively by binding arbitration as described in this section. You are giving up the right to litigate (or participate in as a
+          party or class member) all disputes in court before a judge or jury. The dispute shall be settled by binding arbitration in
+          accordance with the commercial arbitration rules of the American Arbitration Association. Either party may seek any interim or
+          preliminary injunctive relief from any court of competent jurisdiction, as necessary to protect the party’s rights or property
+          pending the completion of arbitration. Any and all legal, accounting, and other costs, fees, and expenses incurred by the
+          prevailing party shall be borne by the non-prevailing party.
+        </p>
+        <h1 id="122b55d6-0a0d-4af6-a4d3-51c01007c430" class="">Submissions and Privacy</h1>
+        <p id="da54fd4a-72bb-4024-a1a6-96f198566364" class="">
+          In the event that you submit or post any ideas, creative suggestions, designs, photographs, information, advertisements, data or
+          proposals, including ideas for new or improved products, services, features, technologies or promotions, you expressly agree that
+          such submissions will automatically be treated as non- confidential and non-proprietary and will become the sole property of us
+          without any compensation or credit to you whatsoever. We and our affiliates shall have no obligations with respect to such
+          submissions or posts and may use the ideas contained in such submissions or posts for any purposes in any medium in perpetuity,
+          including, but not limited to, developing, manufacturing, and marketing products and services using such ideas.
+        </p>
+        <h1 id="f8487d2c-ad44-4030-9463-2b90c5f0c1ee" class="">Promotions</h1>
+        <p id="17001cdd-68a1-40a5-8456-ac86055ecff9" class="">
+          We may, from time to time, include contests, promotions, sweepstakes, or other activities (“Promotions”) that require you to
+          submit material or information concerning yourself. Please note that all Promotions may be governed by separate rules that may
+          contain certain eligibility requirements, such as restrictions as to age and geographic location. You are responsible to read all
+          Promotions rules to determine whether or not you are eligible to participate. If you enter any Promotion, you agree to abide by
+          and to comply with all Promotions Rules. Additional terms and conditions may apply to purchases of goods or services on or through
+          the Services, which terms and conditions are made a part of this Agreement by this reference.
+        </p>
+        <h1 id="464eb08f-d61e-4c12-9857-59819756edd0" class="">Typographical Errors</h1>
+        <p id="0f20b15c-eb37-479b-b573-0e7fd9383639" class="">
+          In the event a product and/or service is listed at an incorrect price or with incorrect information due to typographical error, we
+          shall have the right to refuse or cancel any orders placed for the product and/ or service listed at the incorrect price. We shall
+          have the right to refuse or cancel any such order whether or not the order has been confirmed and your credit card charged. If
+          your credit card has already been charged for the purchase and your order is canceled, we shall immediately issue a credit to your
+          credit card account or other payment account in the amount of the charge.
+        </p>
+        <h1 id="71b9cc3e-5ef1-411d-b5a5-362c807baa86" class="">Miscellaneous</h1>
+        <p id="3e9b38fa-9443-4f65-8ea2-6f888643f8dd" class="">
+          If for any reason a court of competent jurisdiction finds any provision or portion of these Terms &amp; Conditions to be
+          unenforceable, the remainder of these Terms &amp; Conditions will continue in full force and effect. Any waiver of any provision
+          of these Terms &amp; Conditions will be effective only if in writing and signed by an authorized representative of us. We will be
+          entitled to injunctive or other equitable relief (without the obligations of posting any bond or surety) in the event of any
+          breach or anticipatory breach by you. We operate and control our Service from our offices in . The Service is not intended for
+          distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to
+          law or regulation. Accordingly, those persons who choose to access our Service from other locations do so on their own initiative
+          and are solely responsible for compliance with local laws, if and to the extent local laws are applicable. These Terms &amp;
+          Conditions (which include and incorporate our Privacy Policy) contains the entire understanding, and supersedes all prior
+          understandings, between you and us concerning its subject matter, and cannot be changed or modified by you. The section headings
+          used in this Agreement are for convenience only and will not be given any legal import.
+        </p>
+        <h1 id="6bd09291-0127-4a00-8b60-94bdddd2d349" class="">Disclaimer</h1>
+        <p id="01c7c8d5-7094-461e-aeb9-f4501839e065" class="">
+          We are not responsible for any content, code or any other imprecision. We do not provide warranties or guarantees. In no event
+          shall we be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in
+          an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of
+          the Service. We reserve the right to make additions, deletions, or modifications to the contents on the Service at any time
+          without prior notice.
+        </p>
+        <p id="38909c4e-8f20-44df-aed5-5434e5aa5d0c" class="">
+          Our Service and its contents are provided &quot;as is&quot; and &quot;as available&quot; without any warranty or representations
+          of any kind, whether express or implied. We are a distributor and not a publisher of the content supplied by third parties; as
+          such, our exercises no editorial control over such content and makes no warranty or representation as to the accuracy, reliability
+          or currency of any information, content, service or merchandise provided through or accessible via our Service. Without limiting
+          the foregoing, We specifically disclaim all warranties and representations in any content transmitted on or in connection with our
+          Service or on sites that may appear as links on our Service, or in the products provided as a part of, or otherwise in connection
+          with, our Service, including without limitation any warranties of merchantability, fitness for a particular purpose or
+          non-infringement of third party rights. No oral advice or written information given by us or any of its affiliates, employees,
+          officers, directors, agents, or the like will create a warranty. Price and availability information is subject to change without
+          notice. Without limiting the foregoing, we do not warrant that our Service will be uninterrupted, uncorrupted, timely, or
+          error-free.
+        </p>
+        <h1 id="9bf897e0-bee7-4f23-8bc8-20c73f40a5f5" class="">Contact Us</h1>
+        <p id="0edc875e-c0ed-47b7-8e64-da022f1e0828" class="">Don&#x27;t hesitate to contact us if you have any questions.</p>
+        <ul id="dde773a1-8a15-4257-9851-b43f27050c31" class="bulleted-list">
+          <li>Via Email: <a href="mailto:hell@noizer.one">hell@noizer.one</a></li>
+        </ul>
+      </div>
+    </article>
+  </body>
+</html>
