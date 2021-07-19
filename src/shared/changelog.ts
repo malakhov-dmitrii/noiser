@@ -1,5 +1,11 @@
 const changelog = {
   'If you want to hear sounds which are not listed here, feel free to contact me': [],
+  '0.3': [
+    'Added main volume - adjust all sounds at once',
+    'Emojis!!!',
+    'Donate to the project on Patreon page: https://www.patreon.com/noizer',
+    'New domain: noizer.one',
+  ],
   '0.2.2': [
     'Some sounds were not properly looped, so you could encounter some issues with them. Its fixed.',
     'Offline mode added - now you can listen to the Noizer sounds even if you`re offline',

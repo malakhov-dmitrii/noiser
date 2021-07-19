@@ -11,14 +11,15 @@ import {
   Typography,
   useMediaQuery,
   Tooltip,
+  Slider,
 } from '@material-ui/core';
-import { ColorLensOutlined, Email, Person, VolumeOff, VolumeUp, FormatListNumbered } from '@material-ui/icons';
+import { ColorLensOutlined, Email, Person, VolumeOff, VolumeUp, FormatListNumbered, AttachMoneyOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
 import Home from './pages/Home';
 import { RootState } from './store';
-import { toggle } from './store/features/player';
+import { toggle, setMasterVolume } from './store/features/player';
 import { version } from '../package.json';
 import firebase from 'firebase/app';
 import { firebaseConfig } from './shared/config';
@@ -59,7 +60,7 @@ function App() {
   };
 
   const { theme: prefferedTheme, toggle: changeTheme } = useTheme();
-  const { isPlaying } = useSelector((state: RootState) => state.player);
+  const { isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
   const { isLoggedIn, user } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
@@ -109,8 +110,27 @@ function App() {
           flexDirection="column"
           className={prefferedTheme === 'gradient' ? 'animatedBackground' : ''}
         >
-          <Box display="flex" justifyContent="flex-end">
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
+            <Box width={100} height={25} mr={2}>
+              <Slider
+                value={masterVolume}
+                min={0}
+                step={0.01}
+                max={1}
+                onChange={(e, newValue) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  dispatch(setMasterVolume(newValue as number));
+                }}
+              />
+            </Box>
             <Box>
+              <Tooltip title="Donate to the project on Patreon">
+                <IconButton href="https://www.patreon.com/noizer" rel="noopener noreferrer" target="_blank">
+                  <AttachMoneyOutlined />
+                </IconButton>
+              </Tooltip>
+
               <Tooltip title="Vote for new features">
                 <IconButton href="https://productific.com/@Noizer" rel="noopener noreferrer" target="_blank">
                   <FormatListNumbered />

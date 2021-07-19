@@ -5,6 +5,7 @@ import { AppThunk } from '..';
 declare const plausible: (name: string) => void;
 export interface Sound {
   title: string;
+  emoji?: string;
   file: string;
   disabled?: boolean;
 }
@@ -26,30 +27,31 @@ interface PlayerState {
   presets: PresetsGroup[];
   sounds: Sound[];
   cached: boolean;
+  masterVolume: number;
 }
 
 const sounds = sortBy(
   [
-    { title: 'windy forest', file: '/audio/windy_forest.mp3', disabled: false },
-    { title: 'cafe', file: '/audio/cafe.mp3', disabled: false },
-    { title: 'fan', file: '/audio/fan.mp3', disabled: false },
-    { title: 'garden', file: '/audio/garden.mp3', disabled: false },
-    { title: 'omnious', file: '/audio/omnious.mp3', disabled: false },
-    { title: 'purr', file: '/audio/purr.mp3', disabled: false },
-    { title: 'summer night', file: '/audio/summer-night.mp3', disabled: false },
-    { title: 'white noise', file: '/audio/white noise.mp3', disabled: false },
-    { title: 'railway', file: '/audio/railway.mp3', disabled: false },
-    { title: 'city', file: '/audio/city.mp3', disabled: false },
-    { title: 'space', file: '/audio/space.mp3', disabled: false },
-    { title: 'airplane', file: '/audio/airplane.mp3', disabled: false },
-    { title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
-    { title: 'waves', file: '/audio/waves.mp3', disabled: false },
-    { title: 'storm', file: '/audio/storm.mp3', disabled: false },
-    { title: 'birds', file: '/audio/birds.mp3', disabled: false },
-    { title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
-    { title: 'fire', file: '/audio/fire.mp3', disabled: false },
-    { title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
-    { title: 'office', file: '/audio/office.mp3', disabled: false },
+    { emoji: '🌳', title: 'windy forest', file: '/audio/windy_forest.mp3', disabled: false },
+    { emoji: '☕️', title: 'cafe', file: '/audio/cafe.mp3', disabled: false },
+    { emoji: '🌬', title: 'fan', file: '/audio/fan.mp3', disabled: false },
+    { emoji: '🏡', title: 'garden', file: '/audio/garden.mp3', disabled: false },
+    { emoji: '👽', title: 'omnious', file: '/audio/omnious.mp3', disabled: false },
+    { emoji: '🐈', title: 'purr', file: '/audio/purr.mp3', disabled: false },
+    { emoji: '🌃', title: 'summer night', file: '/audio/summer-night.mp3', disabled: false },
+    { emoji: '🎧', title: 'white noise', file: '/audio/white noise.mp3', disabled: false },
+    { emoji: '🛤', title: 'railway', file: '/audio/railway.mp3', disabled: false },
+    { emoji: '🌆', title: 'city', file: '/audio/city.mp3', disabled: false },
+    { emoji: '🛰', title: 'space', file: '/audio/space.mp3', disabled: false },
+    { emoji: '✈️', title: 'airplane', file: '/audio/airplane.mp3', disabled: false },
+    { emoji: '⛈', title: 'rain', file: '/audio/forest_rain.mp3', disabled: false },
+    { emoji: '🌊', title: 'waves', file: '/audio/waves.mp3', disabled: false },
+    { emoji: '🌪', title: 'storm', file: '/audio/storm.mp3', disabled: false },
+    { emoji: '🕊', title: 'birds', file: '/audio/birds.mp3', disabled: false },
+    { emoji: '🚶‍♂️', title: 'walk', file: '/audio/gravel_walk.mp3', disabled: false },
+    { emoji: '🔥', title: 'fire', file: '/audio/fire.mp3', disabled: false },
+    { emoji: '🍃', title: 'soft wind', file: '/audio/soft_wind.mp3', disabled: false },
+    { emoji: '🏢', title: 'office', file: '/audio/office.mp3', disabled: false },
   ],
   'title'
 );
@@ -102,6 +104,7 @@ const presets = [
 ];
 
 const initialState: PlayerState = {
+  masterVolume: 1,
   cached: false,
   isPlaying: true,
   sweeping: false,
@@ -149,6 +152,9 @@ export const playerSlice = createSlice({
       const sets = [...state.presets.find(i => i.title === action.payload)!.items];
       const ready = sets[random(0, sets.length - 1)];
       state.activeSounds = ready;
+    },
+    setMasterVolume: (state, action: PayloadAction<number>) => {
+      state.masterVolume = action.payload;
     },
     setVolume: (state, action: PayloadAction<{ title: string; amount: number }>) => {
       debounceSound();
@@ -215,6 +221,7 @@ export function swing(p: number) {
 
 export const {
   toggle,
+  setMasterVolume,
   toggleSound,
   setOscillation,
   playPlaylistFromGroup,

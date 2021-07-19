@@ -21,20 +21,32 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
     // border: '1px solid #929292',
     borderRadius: 15,
+    position: 'relative',
     boxShadow: '-8px 9px 20px 0px #7979794f',
   },
   title: {
-    fontSize: theme.typography.pxToRem(18),
+    fontSize: theme.typography.pxToRem(72),
+    opacity: 0.3,
+    position: 'absolute',
     textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: theme.typography.pxToRem(20),
+    zIndex: 1,
+    marginTop: theme.spacing(1),
+    textAlign: 'center',
+    lineHeight: 1.2,
   },
 }));
 
 const EffectItem: FC<Props> = ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { activeSounds, isPlaying } = useSelector((state: RootState) => state.player);
+  const { activeSounds, isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
 
   const activeItem = activeSounds.find(i => item.title === i.title)!;
+
+  console.log(activeItem?.volume * masterVolume);
 
   return (
     <Box
@@ -55,6 +67,9 @@ const EffectItem: FC<Props> = ({ item }) => {
       }}
     >
       <Typography className={cn({ [classes.disabled]: item.disabled }, classes.title)} variant="h3">
+        {item.emoji}
+      </Typography>
+      <Typography className={cn({ [classes.disabled]: item.disabled }, classes.subtitle)} variant="h3">
         {item.title}
       </Typography>
 
@@ -62,7 +77,7 @@ const EffectItem: FC<Props> = ({ item }) => {
         width={0}
         playing={!!activeItem}
         muted={!isPlaying}
-        volume={activeItem?.volume}
+        volume={activeItem?.volume * masterVolume || 0}
         loop
         url={item.file}
         config={{
