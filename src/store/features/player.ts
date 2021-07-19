@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { random, sortBy } from 'lodash';
 import { debounce } from '@material-ui/core';
 import { AppThunk } from '..';
-declare const plausible: (name: string) => void;
+import { analytics } from '../..';
 export interface Sound {
   title: string;
   emoji?: string;
@@ -113,7 +113,7 @@ const initialState: PlayerState = {
   presets,
 };
 
-const debounceSound = debounce(() => plausible('set volume'), 1000);
+const debounceSound = debounce(() => analytics.logEvent('set volume'), 1000);
 
 const randomSlice = <T>(arr: T[], n: number): T[] => arr.sort(() => Math.random() - Math.random()).slice(0, n);
 
@@ -128,27 +128,27 @@ export const playerSlice = createSlice({
       state.sweeping = !state.sweeping;
     },
     toggle: state => {
-      plausible('mute/unmute');
+      analytics.logEvent('mute/unmute');
       state.isPlaying = !state.isPlaying;
     },
     stop: state => {
-      plausible('stop');
+      analytics.logEvent('stop');
       state.activeSounds = [];
       // state.isPlaying = false;
     },
     toggleSound: (state, action: PayloadAction<string>) => {
-      plausible('toggle sound');
+      analytics.logEvent('toggle sound');
 
       const exist = state.activeSounds.find(i => i.title === action.payload);
       if (exist) state.activeSounds = state.activeSounds.filter(i => i.title !== action.payload);
       else state.activeSounds = [...state.activeSounds, { title: action.payload, volume: 0.5 }];
     },
     playReferredPlaylist: (state, action: PayloadAction<ActiveSound[]>) => {
-      plausible('play shared playlist');
+      analytics.logEvent('play shared playlist');
       state.activeSounds = action.payload;
     },
     playPlaylistFromGroup: (state, action: PayloadAction<string>) => {
-      plausible('play defined playlist');
+      analytics.logEvent('play defined playlist');
       const sets = [...state.presets.find(i => i.title === action.payload)!.items];
       const ready = sets[random(0, sets.length - 1)];
       state.activeSounds = ready;
@@ -164,7 +164,7 @@ export const playerSlice = createSlice({
       }
     },
     shuffle: state => {
-      plausible('shuffle');
+      analytics.logEvent('shuffle');
 
       state.activeSounds = randomSlice(
         state.sounds.filter(i => !i.disabled).map(i => i.title),
@@ -236,17 +236,13 @@ export const oscillate = (): AppThunk => async (dispatch, getState) => {
   const go = (
     getState: () => {
       player: PlayerState;
-      auth: any;
     }
   ) =>
     new Promise((res, rej) => {
-      // console.log(getState().player);
       const { activeSounds } = getState().player;
 
       Promise.all(
         activeSounds.map(sound => {
-          // console.log(`sound ${sound.title}: ${sound.volume} started sweep`);
-
           const updateVolume = (amount: number) => dispatch(setVolume({ title: sound.title, amount }));
           return adjustVolume(sound.volume, random(0.1, 1), updateVolume);
         })
@@ -264,10 +260,10 @@ export const oscillate = (): AppThunk => async (dispatch, getState) => {
 
   if (!getState().player.sweeping) {
     dispatch(setOscillation(true));
-    plausible('enable sweep');
+    analytics.logEvent('enable sweep');
     go(getState);
   } else {
-    plausible('disable sweep');
+    analytics.logEvent('disable sweep');
     dispatch(setOscillation(false));
   }
 };

@@ -46,8 +46,6 @@ const EffectItem: FC<Props> = ({ item }) => {
 
   const activeItem = activeSounds.find(i => item.title === i.title)!;
 
-  console.log(activeItem?.volume * masterVolume);
-
   return (
     <Box
       margin="auto"
