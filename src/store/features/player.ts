@@ -121,6 +121,25 @@ export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
+    populateUserPresets: (
+      state,
+      action: PayloadAction<{
+        items: {
+          title: string;
+          sounds: {
+            title: string;
+            volume: number;
+          }[];
+        }[];
+      }>
+    ) => {
+      const sounds = action.payload.items.map(i => ({
+        title: i.title,
+        items: [i.sounds],
+      }));
+
+      state.presets = [...presets, ...sounds];
+    },
     cache: state => {
       state.cached = true;
     },
@@ -230,6 +249,7 @@ export const {
   playReferredPlaylist,
   stop,
   cache,
+  populateUserPresets,
 } = playerSlice.actions;
 
 export const oscillate = (): AppThunk => async (dispatch, getState) => {

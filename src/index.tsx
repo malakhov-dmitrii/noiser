@@ -10,21 +10,29 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { FirebaseAuthProvider } from '@react-firebase/auth';
 
 import firebase from 'firebase';
-import { firebaseConfig } from './shared/config';
+import { firebaseConfig, otherFirebaseConfig } from './shared/config';
 
 import 'firebase/auth';
 import 'firebase/analytics';
 import 'firebase/database';
 import 'firebase/performance';
+import 'firebase/app-check';
 
-firebase.initializeApp(firebaseConfig);
+const primaryApp = firebase.initializeApp(firebaseConfig);
+const presetsApp = firebase.initializeApp(otherFirebaseConfig, 'presets_app');
+
+// const appCheck = firebase.appCheck();
+// appCheck.activate('6LfVBqcbAAAAAHwqzRy6EjkCijf_DKFQ9D0cNJG0');
+
 export const auth = firebase.auth();
+export const presetsDb = firebase.database(presetsApp);
 export const db = firebase.database();
 export const analytics = firebase.analytics();
+export const storage = firebase.storage();
 
 if (process.env.NODE_ENV === 'development') {
-  auth.useEmulator('http://localhost:9099');
-  db.useEmulator('localhost', 9000);
+  // auth.useEmulator('http://localhost:9099');
+  // db.useEmulator('localhost', 9000);
 }
 
 ReactDOM.render(

@@ -8,6 +8,7 @@ import Notifications from './shared/components/Notifications';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import HomeLayout from './shared/Layout/HomeLayout';
+import { ConfirmProvider } from 'material-ui-confirm';
 
 const baseTheme = createMuiTheme();
 
@@ -40,19 +41,21 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Route path="/" exact>
-          <HomeLayout />
-        </Route>
-        <Route path="/privacy">
-          <Privacy />
-        </Route>
-        <Route path="/terms">
-          <Terms />
-        </Route>
-        <Route path="/:preset" exact>
-          <HomeLayout />
-        </Route>
-        <Notifications />
+        <ConfirmProvider>
+          <Route path="/" exact>
+            <HomeLayout />
+          </Route>
+          <Route path="/privacy">
+            <Privacy />
+          </Route>
+          <Route path="/terms">
+            <Terms />
+          </Route>
+          <Route path="/:preset" exact>
+            <HomeLayout />
+          </Route>
+          <Notifications />
+        </ConfirmProvider>
       </ThemeProvider>
     </BrowserRouter>
   );
