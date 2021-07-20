@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
 import UserAvatar from './UserAvatar';
 import Pomodoro from '../../../components/Pomodoro';
+import { ThemeType } from '../../../hooks/useTheme';
 
-const Header = () => {
+const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
   const dispatch = useDispatch();
   const { isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
 
@@ -41,7 +42,7 @@ const Header = () => {
           </IconButton>
         </Tooltip>
 
-        <ThemePicker />
+        <ThemePicker changeTheme={changeTheme} />
 
         <IconButton
           onClick={() => {

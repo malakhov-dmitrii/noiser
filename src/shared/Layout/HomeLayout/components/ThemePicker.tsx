@@ -3,9 +3,7 @@ import useTheme, { ThemeType } from '../../../hooks/useTheme';
 import { IconButton, Menu, MenuItem, Box } from '@material-ui/core';
 import { ColorLensOutlined } from '@material-ui/icons';
 
-const ThemePicker = () => {
-  const { toggle: changeTheme } = useTheme();
-
+const ThemePicker = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
   const [themeMenuAnchorEl, setThemeMenuAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleThemeClick = (event: React.MouseEvent<HTMLButtonElement>) => {

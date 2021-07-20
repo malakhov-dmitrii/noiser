@@ -13,7 +13,7 @@ import { ConfirmProvider } from 'material-ui-confirm';
 const baseTheme = createMuiTheme();
 
 function App() {
-  const { theme: prefferedTheme } = useTheme();
+  const { theme: prefferedTheme, toggle } = useTheme();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const theme = React.useMemo(
@@ -43,7 +43,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <ConfirmProvider>
           <Route path="/" exact>
-            <HomeLayout />
+            <HomeLayout changeTheme={toggle} />
           </Route>
           <Route path="/privacy">
             <Privacy />
@@ -52,7 +52,7 @@ function App() {
             <Terms />
           </Route>
           <Route path="/:preset" exact>
-            <HomeLayout />
+            <HomeLayout changeTheme={toggle} />
           </Route>
           <Notifications />
         </ConfirmProvider>
