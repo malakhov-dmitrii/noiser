@@ -146,9 +146,11 @@ export const playerSlice = createSlice({
     setOscillation: (state, action: PayloadAction<boolean>) => {
       state.sweeping = !state.sweeping;
     },
-    toggle: state => {
+    toggle: (state, action: PayloadAction<boolean | undefined>) => {
       analytics.logEvent('mute/unmute');
-      state.isPlaying = !state.isPlaying;
+      console.log('toggle', action.payload);
+
+      state.isPlaying = action.payload !== undefined ? action.payload : !state.isPlaying;
     },
     stop: state => {
       analytics.logEvent('stop');
