@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Box, makeStyles, Hidden, IconButton } from '@material-ui/core';
+import { Box, makeStyles, Hidden, IconButton, Tooltip } from '@material-ui/core';
 import Countdown, { CountdownRenderProps } from 'react-countdown';
-import { Pause, PlayCircleOutline } from '@material-ui/icons';
+import { Pause, PlayCircleOutline, Settings } from '@material-ui/icons';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { toggle, shuffle } from '../../../store/features/player';
 
@@ -21,12 +21,6 @@ const Pomodoro = () => {
   const { activeSounds } = useAppSelector(state => state.player);
   const ref = useRef<Countdown>(null);
   const dispatch = useAppDispatch();
-
-  console.log(ref);
-  //   useEffect(() => {
-
-  //   // ref.current?.current
-  // },[])
 
   const renderer = ({ completed, formatted }: CountdownRenderProps) => {
     if (completed) {
@@ -85,6 +79,12 @@ const Pomodoro = () => {
             date={Date.now() + 25 * 60 * 1000}
             renderer={renderer}
           />
+
+          <Tooltip title="Coming soon">
+            <IconButton color="default" size="small">
+              <Settings />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Box>
     </Hidden>

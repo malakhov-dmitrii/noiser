@@ -4,6 +4,7 @@ import useTheme, { ThemeType } from '../../hooks/useTheme';
 import Home from '../../../pages/Home/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import QuickActions from './components/QuickActions';
 
 const HomeLayout = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
   const { theme: prefferedTheme, toggle } = useTheme();
@@ -30,6 +31,8 @@ const HomeLayout = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }
           <Home />
         </Box>
       </Container>
+
+      <QuickActions />
 
       <Footer />
     </Box>
