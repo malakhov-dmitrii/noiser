@@ -20,6 +20,7 @@ const Accordion = withStyles({
   root: {
     border: 'none',
     boxShadow: 'none',
+    background: 'transparent',
     '&:not(:last-child)': {
       borderBottom: 0,
     },
