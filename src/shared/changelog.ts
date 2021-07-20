@@ -1,6 +1,7 @@
 const changelog = {
   'If you want to hear sounds which are not listed here, feel free to contact me': [],
-  '0.3': [
+  '0.3.2': ['Created Slack space! Join and enjoy', 'Now you can save your own presets to the library'],
+  '0.3.0': [
     'Added main volume - adjust all sounds at once',
     'Emojis!!!',
     'Donate to the project on Patreon page: https://www.patreon.com/noizer',
