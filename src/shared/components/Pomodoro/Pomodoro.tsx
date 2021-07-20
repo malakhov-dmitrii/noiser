@@ -1,7 +1,6 @@
-import React, { useRef, RefObject, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Box, makeStyles, Hidden, IconButton } from '@material-ui/core';
-import { useInterval, useBoolean } from 'react-use';
-import Countdown, { CountdownRendererFn, CountdownRenderProps } from 'react-countdown';
+import Countdown, { CountdownRenderProps } from 'react-countdown';
 import { Pause, PlayCircleOutline } from '@material-ui/icons';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { toggle, shuffle } from '../../../store/features/player';
@@ -29,7 +28,7 @@ const Pomodoro = () => {
   //   // ref.current?.current
   // },[])
 
-  const renderer = ({ hours, minutes, seconds, completed, formatted }: CountdownRenderProps) => {
+  const renderer = ({ completed, formatted }: CountdownRenderProps) => {
     if (completed) {
       return <Completionist />;
     } else {

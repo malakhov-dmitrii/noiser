@@ -1,5 +1,5 @@
 import React from 'react';
-import useTheme, { ThemeType } from '../../../hooks/useTheme';
+import { ThemeType } from '../../../hooks/useTheme';
 import { IconButton, Menu, MenuItem, Box } from '@material-ui/core';
 import { ColorLensOutlined } from '@material-ui/icons';
 
