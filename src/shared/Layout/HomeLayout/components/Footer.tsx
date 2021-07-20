@@ -1,18 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Typography, Button } from '@material-ui/core';
-import { Email } from '@material-ui/icons';
+import { Email, Chat } from '@material-ui/icons';
 import { version } from '../../../../../package.json';
 
 const Footer = () => {
   return (
     <Box>
       <Box display="flex" justifyContent="center" alignItems="center" pb={2} flexWrap="wrap">
-        <Typography variant="caption">Version {version}</Typography>
-        <Box width={20}></Box>
-        <Button variant="text" startIcon={<Email />} href="mailto:mitia2022@gmail.com" target="_blank" rel="noopener">
-          Email author
-        </Button>
+        <Box>
+          <Button
+            color="primary"
+            variant="outlined"
+            startIcon={<Chat />}
+            href="https://join.slack.com/t/slack-aqi7445/shared_invite/zt-tjtkkq7k-WXtaYSouOvZT2C11dx3cAg"
+            target="_blank"
+            rel="noopener"
+          >
+            Join the community!
+          </Button>
+        </Box>
 
         <Box px={3}>
           <a
@@ -29,8 +36,16 @@ const Footer = () => {
             />
           </a>
         </Box>
+
+        <Button color="secondary" variant="outlined" href="mailto:mitia2022@gmail.com" target="_blank" rel="noopener" startIcon={<Email />}>
+          Email the author
+        </Button>
       </Box>
       <Box display="flex">
+        <Box mx={2}>
+          <Typography variant="caption">Version {version}</Typography>
+        </Box>
+
         <Box mr={2}>
           <Link to="/privacy">Privacy policy</Link>
         </Box>

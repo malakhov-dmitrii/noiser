@@ -1,7 +1,9 @@
-import React from 'react';
-import { Box, Grid, Typography, makeStyles } from '@material-ui/core';
-import { playPlaylistFromGroup } from '../../../store/features/player';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, makeStyles, CircularProgress } from '@material-ui/core';
+import { playPlaylistFromGroup, populateUserPresets } from '../../../store/features/player';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { values, toArray } from 'lodash';
+import { db } from '../../..';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,6 +38,30 @@ const Presets = () => {
   const dispatch = useAppDispatch();
 
   const { presets } = useAppSelector(state => state.player);
+  const { profile, auth } = useAppSelector(state => state.firebase);
+
+  const [presetsloading, setPresetsloading] = useState(false);
+
+  useEffect(() => {
+    if (!auth.isEmpty && profile.email) {
+      setPresetsloading(true);
+      const getUserPresets = async () => {
+        const data = (await (await db.ref(`/users/${auth.uid}/presets`).get()).toJSON()) as {
+          [x: string]: {
+            title: string;
+            sounds: {
+              title: string;
+              volume: number;
+            }[];
+          };
+        };
+        const items = values(data).map(i => ({ ...i, sounds: toArray(i.sounds) }));
+        setPresetsloading(false);
+        dispatch(populateUserPresets({ items }));
+      };
+      getUserPresets();
+    }
+  }, [auth, dispatch, profile]);
 
   return (
     <Box my={3} display="flex" mx={-1} className={classes.root}>
@@ -54,6 +80,7 @@ const Presets = () => {
           </Typography>
         </Box>
       ))}
+      {presetsloading && <CircularProgress />}
     </Box>
   );
 };

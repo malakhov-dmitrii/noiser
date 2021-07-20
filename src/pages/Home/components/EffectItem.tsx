@@ -44,9 +44,7 @@ const EffectItem: FC<Props> = ({ item }) => {
   const dispatch = useDispatch();
   const { activeSounds, isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
 
-  console.log(activeSounds);
-
-  const activeItem = activeSounds?.find(i => item.title === i.title)!;
+  const activeItem = activeSounds.find(i => item.title === i.title)!;
 
   return (
     <Box

@@ -10,7 +10,7 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { FirebaseAuthProvider } from '@react-firebase/auth';
 
 import firebase from 'firebase';
-import { firebaseConfig, otherFirebaseConfig } from './shared/config';
+import { firebaseConfig, sharedPresetsFirebaseConfig } from './shared/config';
 
 import 'firebase/auth';
 import 'firebase/analytics';
@@ -18,8 +18,9 @@ import 'firebase/database';
 import 'firebase/performance';
 import 'firebase/app-check';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const primaryApp = firebase.initializeApp(firebaseConfig);
-const presetsApp = firebase.initializeApp(otherFirebaseConfig, 'presets_app');
+const presetsApp = firebase.initializeApp(sharedPresetsFirebaseConfig, 'presets_app');
 
 // const appCheck = firebase.appCheck();
 // appCheck.activate('6LfVBqcbAAAAAHwqzRy6EjkCijf_DKFQ9D0cNJG0');

@@ -9,7 +9,7 @@ export const firebaseConfig = {
   measurementId: 'G-J08M01HX4J',
 };
 
-export const otherFirebaseConfig = {
+export const sharedPresetsFirebaseConfig = {
   apiKey: 'AIzaSyDPraKwNkEWsv23D4Vbl94BeYj4CfWZGCE',
   authDomain: 'noizer-sounds.firebaseapp.com',
   projectId: 'noizer-sounds',

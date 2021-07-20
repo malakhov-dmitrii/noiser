@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
-import { IconButton, Box, Menu, MenuItem, makeStyles, Avatar, Tooltip } from '@material-ui/core';
+import { IconButton, Box, Menu, MenuItem, makeStyles, Avatar, Tooltip, CircularProgress } from '@material-ui/core';
 import { Person } from '@material-ui/icons';
 import { useAppSelector } from '../../../../store/hooks';
 import literalize from '../../../literalize';
@@ -23,11 +23,10 @@ const UserAvatar = () => {
     return firebase.login({ provider: 'google', type: 'popup' });
   }
 
-  console.log(profile);
-
   return (
     <Box>
-      {auth.isEmpty && (
+      {!auth.isLoaded && auth.isEmpty && <CircularProgress size={40} />}
+      {auth.isEmpty && auth.isLoaded && (
         <Tooltip title="Sign In with Google">
           <IconButton onClick={() => loginWithGoogle()}>
             <Person />

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { ActiveSound, oscillate, shuffle, stop, populateUserPresets } from '../../../store/features/player';
+import React, { useState } from 'react';
+import { ActiveSound, oscillate, shuffle, stop } from '../../../store/features/player';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { RootState } from '../../../store';
 import { useHistory } from 'react-router-dom';
-import { isEqual, values, toArray } from 'lodash';
+import { isEqual } from 'lodash';
 import { uniqueNamesGenerator, adjectives, colors, names } from 'unique-names-generator';
 import {
   Box,
@@ -18,9 +18,8 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
-import { presetsDb, auth, db } from '../../..';
+import { presetsDb, db } from '../../..';
 import { SlowMotionVideo, Share, Shuffle, Stop, Save } from '@material-ui/icons';
-import { useConfirm } from 'material-ui-confirm';
 
 const PlayerControls = ({ loadedPreset }: { loadedPreset: ActiveSound[] | null }) => {
   const dispatch = useAppDispatch();
@@ -30,34 +29,13 @@ const PlayerControls = ({ loadedPreset }: { loadedPreset: ActiveSound[] | null }
   const { activeSounds, isPlaying, sweeping } = useAppSelector((state: RootState) => state.player);
   const { profile, auth } = useAppSelector(state => state.firebase);
   const history = useHistory();
-  const confirm = useConfirm();
-
-  useEffect(() => {
-    if (!auth.isEmpty && profile.email) {
-      const getUserPresets = async () => {
-        const data = (await (await db.ref(`/users/${profile.providerData[0].uid}/presets`).get()).toJSON()) as {
-          [x: string]: {
-            title: string;
-            sounds: {
-              title: string;
-              volume: number;
-            }[];
-          };
-        };
-        console.log(values(data));
-        const items = values(data).map(i => ({ ...i, sounds: toArray(i.sounds) }));
-        dispatch(populateUserPresets({ items }));
-      };
-      getUserPresets();
-    }
-  }, [auth, openDialog, profile]);
 
   const createPreset = () => {
     if (isEqual(loadedPreset, activeSounds)) {
       const pathname = history.location.pathname.slice(1);
       navigator.clipboard.writeText(`${window.location.origin}/${pathname}`);
     } else {
-      const title = uniqueNamesGenerator({ dictionaries: [adjectives, colors, names], length: 4 });
+      const title = uniqueNamesGenerator({ dictionaries: [adjectives, colors, names, names], length: 4 });
       presetsDb.ref(`${title}`).set({
         userId: profile?.email || 'unknown',
         sounds: activeSounds,
@@ -177,8 +155,9 @@ const PlayerControls = ({ loadedPreset }: { loadedPreset: ActiveSound[] | null }
           </Button>
           <Button
             onClick={() => {
+              // TODO: Extract to one place
               setOpenDialog(false);
-              db.ref(`/users/${profile.providerData[0].uid}/presets`).push({
+              db.ref(`/users/${auth.uid}/presets`).push({
                 title: userPresetTitle,
                 sounds: activeSounds,
               });

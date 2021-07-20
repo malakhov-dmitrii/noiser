@@ -1,7 +1,6 @@
-import { Box, Divider, Grid, Typography, makeStyles, withStyles } from '@material-ui/core';
+import { Box, Divider, Grid, Typography, withStyles } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { RootState } from '../../store';
 import { ActiveSound, playReferredPlaylist, toggle } from '../../store/features/player';
 import EffectItem from './components/EffectItem';
 
@@ -11,7 +10,7 @@ import { presetsDb, storage } from '../..';
 import { useAppSelector } from '../../store/hooks';
 import PlayerControls from './components/PlayerControls';
 import Presets from './components/Presets';
-import { ArrowDropDownCircle, ArrowDropDownOutlined, ExpandLess, ExpandMore } from '@material-ui/icons';
+import { ExpandMore } from '@material-ui/icons';
 
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
@@ -58,21 +57,7 @@ const AccordionDetails = withStyles(theme => ({
   },
 }))(MuiAccordionDetails);
 
-const useStyles = makeStyles(theme => ({
-  libTitle: {
-    fontSize: theme.typography.pxToRem(16),
-  },
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-}));
-
 const Home = () => {
-  const classes = useStyles();
   const { preset } = useParams<{ preset: string }>();
 
   const dispatch = useDispatch();
@@ -88,17 +73,19 @@ const Home = () => {
 
   const loadPreset = () => {
     presetsDb
-      .ref(preset)
+      .ref(`${preset}`)
       .get()
       .then(r => {
         if (r.exists()) {
           const referredPreset = r.val()?.sounds;
+          console.log(r.val());
           dispatch(playReferredPlaylist(referredPreset));
           setLoadedPreset(referredPreset);
         }
       });
   };
 
+  // TODO: List files library
   useEffect(() => {
     if (!auth.isEmpty) {
       const getFiles = async () => {
@@ -109,7 +96,6 @@ const Home = () => {
           const url = await item.getDownloadURL();
           results.push(url);
         }
-        console.log(results);
       };
       getFiles();
     }
@@ -140,15 +126,18 @@ const Home = () => {
       <Presets />
       <Divider></Divider>
 
-      <Accordion disabled={auth.isEmpty}>
+      <Accordion disabled={auth.isEmpty || true}>
         <AccordionSummary expandIcon={<ExpandMore />} aria-controls="panel1a-content" id="panel1a-header">
           <Box display="flex" alignItems="center">
             <Typography variant="h3">Your library</Typography>
-            {auth.isEmpty && (
+            <Box ml={3}>
+              <Typography variant="body2">Coming soon!</Typography>
+            </Box>
+            {/* {auth.isEmpty && (
               <Box ml={3}>
                 <Typography variant="body2">You need to login to see your library</Typography>
               </Box>
-            )}
+            )} */}
           </Box>
         </AccordionSummary>
         <AccordionDetails>
