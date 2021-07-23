@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Slider, Typography } from '@material-ui/core';
+import { Box, Slider, Typography, IconButton } from '@material-ui/core';
 import React, { FC } from 'react';
 
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setVolume, Sound, toggleSound } from '../../../store/features/player';
-import { RootState } from '../../../store';
 import ReactPlayer from 'react-player';
+import { ThumbUp, ThumbDown } from '@material-ui/icons';
+import { useAppSelector } from '../../../store/hooks';
+import { emit } from '../../../store/features/notifications';
+import { analytics } from '../../..';
 
 interface Props {
   item: Sound;
@@ -37,12 +40,33 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     lineHeight: 1.2,
   },
+  like: {
+    position: 'absolute',
+    opacity: 0.2,
+    bottom: 0,
+    right: 0,
+    transition: 'all 0.1s',
+    '&:hover': {
+      opacity: 1,
+    },
+  },
+  dislike: {
+    position: 'absolute',
+    opacity: 0.2,
+    bottom: 0,
+    left: 0,
+    transition: 'all 0.1s',
+    '&:hover': {
+      opacity: 1,
+    },
+  },
 }));
 
 const EffectItem: FC<Props> = ({ item }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { activeSounds, isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
+  const { activeSounds, isPlaying, masterVolume } = useAppSelector(state => state.player);
+  const { auth } = useAppSelector(state => state.firebase);
 
   const activeItem = activeSounds.find(i => item.title === i.title)!;
 
@@ -70,6 +94,36 @@ const EffectItem: FC<Props> = ({ item }) => {
       <Typography className={cn({ [classes.disabled]: item.disabled }, classes.subtitle)} variant="h3">
         {item.title}
       </Typography>
+
+      {auth.isLoaded && !auth.isEmpty && (
+        <>
+          <IconButton
+            className={classes.like}
+            size="small"
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              dispatch(emit('Like saved', 'success'));
+              analytics.logEvent(`Like ${item.title}`);
+            }}
+          >
+            <ThumbUp fontSize="small"></ThumbUp>
+          </IconButton>
+
+          <IconButton
+            size="small"
+            className={classes.dislike}
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              dispatch(emit('Dislike saved', 'success'));
+              analytics.logEvent(`Dislike ${item.title}`);
+            }}
+          >
+            <ThumbDown fontSize="small"></ThumbDown>
+          </IconButton>
+        </>
+      )}
 
       <ReactPlayer
         width={0}

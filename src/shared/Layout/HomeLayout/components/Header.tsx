@@ -144,8 +144,8 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
           <Box ml={2} display="flex" alignItems="center">
             {title}
             {update}
+            <Pomodoro />
           </Box>
-          <Pomodoro />
           <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} pt={1}>
             {slider}
 
@@ -160,6 +160,9 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
           {title}
 
           <UserAvatar />
+        </Box>
+        <Box width="100%" display="flex" justifyContent="center" alignItems="center" px={2} py={1}>
+          <Pomodoro />
         </Box>
         <Box width="100%" display="flex" justifyContent="center" alignItems="center" px={2} py={1}>
           {update}
