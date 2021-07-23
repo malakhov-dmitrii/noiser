@@ -3,8 +3,6 @@ import { PlaylistsDTO } from './Mubert.model';
 
 export const getToken = async ({ email }: { email: string }): Promise<null | string> => {
   const local = localStorage.getItem(MUBERT.localField);
-  console.log(local);
-
   if (local) return local;
   else {
     const res = await fetch('https://api-b2b.mubert.com/v2/GetServiceAccess', {

@@ -73,7 +73,6 @@ const Home = () => {
       .then(r => {
         if (r.exists()) {
           const referredPreset = r.val()?.sounds;
-          console.log(r.val());
           dispatch(playReferredPlaylist(referredPreset));
           setLoadedPreset(referredPreset);
         }

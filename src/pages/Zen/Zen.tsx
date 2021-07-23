@@ -52,15 +52,14 @@ const Zen = () => {
     }
   }, [profile.email]);
 
-  useEffect(() => {
-    if (auth.uid) {
-      const getUserStreamRates = async () => {
-        const data = await (await db.ref(`/users/${auth.uid}/streamRates`).get()).toJSON();
-        console.log(data);
-      };
-      getUserStreamRates();
-    }
-  }, [auth.uid]);
+  // useEffect(() => {
+  //   if (auth.uid) {
+  //     const getUserStreamRates = async () => {
+  //       const data = await (await db.ref(`/users/${auth.uid}/streamRates`).get()).toJSON();
+  //     };
+  //     getUserStreamRates();
+  //   }
+  // }, [auth.uid]);
 
   const selectedCategory = data?.categories.find(i => i.category_id === selectionValues.category);
   const selectedGroup = selectedCategory?.groups.find(i => i.group_id === selectionValues.group);

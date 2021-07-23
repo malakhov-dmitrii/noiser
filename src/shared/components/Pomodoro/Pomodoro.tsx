@@ -76,7 +76,6 @@ const Pomodoro = () => {
             autoStart={false}
             ref={ref}
             onComplete={() => {
-              console.log('completed');
               setIsPlaying(false);
               dispatch(toggle(false));
             }}
