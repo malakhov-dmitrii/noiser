@@ -3,6 +3,7 @@ import { random, sortBy } from 'lodash';
 import { debounce } from '@material-ui/core';
 import { AppThunk } from '..';
 import { analytics } from '../..';
+import { defaultSettings } from '../../shared/config';
 export interface Sound {
   title: string;
   emoji?: string;
@@ -258,15 +259,21 @@ export const oscillate = (): AppThunk => async (dispatch, getState) => {
   const go = (
     getState: () => {
       player: PlayerState;
+      firebase: any;
     }
   ) =>
     new Promise((res, rej) => {
       const { activeSounds } = getState().player;
+      const { profile } = getState().firebase;
 
       Promise.all(
         activeSounds.map(sound => {
           const updateVolume = (amount: number) => dispatch(setVolume({ title: sound.title, amount }));
-          return adjustVolume(sound.volume, random(0.1, 1), updateVolume);
+          return adjustVolume(sound.volume, random(0.1, 1), updateVolume, {
+            duration: profile.settings.sweepingDuration || defaultSettings.sweepingDuration,
+            easing: swing,
+            interval: 17,
+          });
         })
       )
         .then(() => console.log('all sounds adjusted'))

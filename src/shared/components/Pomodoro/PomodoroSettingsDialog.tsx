@@ -26,9 +26,6 @@ const PomodoroSettingsDialog = ({ open, onClose, onSave }: { open: boolean; onCl
   const content = (
     <>
       <DialogContent>
-        {/* <DialogContentText>
-          To subscribe to this website, please enter your email address here. We will send updates occasionally.
-        </DialogContentText> */}
         <Box width={250}>
           <TextField
             variant="outlined"
@@ -43,6 +40,24 @@ const PomodoroSettingsDialog = ({ open, onClose, onSave }: { open: boolean; onCl
               const v = +e.target.value;
               if (v > 0) {
                 db.ref(`/users/${auth.uid}/settings/pomodoroDuration`).set(v);
+              }
+            }}
+          />
+        </Box>
+        <Box width={250} mt={2}>
+          <TextField
+            variant="outlined"
+            autoFocus
+            fullWidth
+            margin="dense"
+            label="Sweeping duration (in minutes)"
+            type="number"
+            inputProps={{ min: 1 }}
+            value={profile.settings?.sweepingDuration || defaultSettings.sweepingDuration}
+            onChange={e => {
+              const v = +e.target.value;
+              if (v > 0) {
+                db.ref(`/users/${auth.uid}/settings/sweepingDuration`).set(v);
               }
             }}
           />
@@ -74,7 +89,7 @@ const PomodoroSettingsDialog = ({ open, onClose, onSave }: { open: boolean; onCl
 
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title" fullWidth maxWidth="sm">
-      <DialogTitle id="form-dialog-title">Noizer Pomodoro Settings</DialogTitle>
+      <DialogTitle id="form-dialog-title">Noizer Settings</DialogTitle>
       {!auth.isEmpty && auth.isLoaded ? content : notAuth}
     </Dialog>
   );

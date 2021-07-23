@@ -26,4 +26,4 @@ export const MUBERT = {
   localField: 'mubert_PAT',
 };
 
-export const defaultSettings = { pomodoroDuration: 25 };
+export const defaultSettings = { pomodoroDuration: 25, sweepingDuration: 1 };
