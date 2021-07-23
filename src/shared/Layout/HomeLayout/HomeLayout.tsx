@@ -1,12 +1,11 @@
 import React from 'react';
 import { Box, Paper, Container } from '@material-ui/core';
 import useTheme, { ThemeType } from '../../hooks/useTheme';
-import Home from '../../../pages/Home/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import QuickActions from './components/QuickActions';
 
-const HomeLayout = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
+const HomeLayout = ({ changeTheme, children }: { changeTheme: (theme: ThemeType) => void; children: JSX.Element }) => {
   const { theme: prefferedTheme, toggle } = useTheme();
 
   const toggleTheme = (theme: ThemeType) => {
@@ -27,9 +26,7 @@ const HomeLayout = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }
       <Header changeTheme={toggleTheme} />
 
       <Container maxWidth="sm">
-        <Box pt={1}>
-          <Home />
-        </Box>
+        <Box pt={1}>{children}</Box>
       </Container>
 
       <QuickActions />

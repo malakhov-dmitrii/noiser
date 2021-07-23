@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Slider, Tooltip, IconButton } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Box, Slider, Tooltip, IconButton, Typography, FormControlLabel, Switch } from '@material-ui/core';
 import { setMasterVolume, toggle } from '../../../../store/features/player';
 import { AttachMoneyOutlined, FormatListNumbered, VolumeUp, VolumeOff } from '@material-ui/icons';
 import ThemePicker from './ThemePicker';
@@ -8,13 +8,52 @@ import { RootState } from '../../../../store';
 import UserAvatar from './UserAvatar';
 import Pomodoro from '../../../components/Pomodoro';
 import { ThemeType } from '../../../hooks/useTheme';
+import { useHistory } from 'react-router-dom';
 
 const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
   const dispatch = useDispatch();
   const { isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
+  const history = useHistory();
+
+  const handlePlay = (e: KeyboardEvent) => {
+    if (e.code === 'Space') {
+      dispatch(toggle());
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keypress', handlePlay);
+    return () => {
+      window.removeEventListener('keypress', handlePlay);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const zen = history.location.pathname.includes('/zen');
 
   return (
-    <Box>
+    <Box display="flex" alignItems="center" justifyContent="space-between">
+      <Box ml={2} display="flex" alignItems="center">
+        <Typography variant="h5">Noizer</Typography>
+
+        <Box ml={2}>
+          <Tooltip title="Your personalized AI-powered music flow">
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={zen}
+                  color="primary"
+                  onChange={() => {
+                    history.push(zen ? '/' : '/zen');
+                  }}
+                  name="zen"
+                />
+              }
+              label="Zen mode"
+            />
+          </Tooltip>
+        </Box>
+      </Box>
       <Pomodoro />
       <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} pt={1}>
         <Box width={100} height={25} mr={2}>
@@ -44,13 +83,17 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
 
         <ThemePicker changeTheme={changeTheme} />
 
-        <IconButton
-          onClick={() => {
-            dispatch(toggle());
-          }}
-        >
-          {isPlaying ? <VolumeUp /> : <VolumeOff />}
-        </IconButton>
+        <Box mx={1}>
+          <Tooltip title="Press spacebar to toggle mute">
+            <IconButton
+              onClick={() => {
+                dispatch(toggle());
+              }}
+            >
+              {isPlaying ? <VolumeUp /> : <VolumeOff />}
+            </IconButton>
+          </Tooltip>
+        </Box>
 
         <UserAvatar />
       </Box>

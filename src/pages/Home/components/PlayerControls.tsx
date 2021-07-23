@@ -53,43 +53,49 @@ const PlayerControls = ({ loadedPreset }: { loadedPreset: ActiveSound[] | null }
       <Grid container spacing={2}>
         <Grid item>
           <Tooltip title={auth.isEmpty ? 'You need to login to save your own presets' : 'Save as preset'}>
-            <IconButton
-              size="small"
-              disabled={!activeSounds.length || auth.isEmpty}
-              color={sweeping ? 'secondary' : 'default'}
-              onClick={() => {
-                setOpenDialog(true);
-              }}
-            >
-              <Save />
-            </IconButton>
+            <span>
+              <IconButton
+                size="small"
+                disabled={!activeSounds.length || auth.isEmpty}
+                color={sweeping ? 'secondary' : 'default'}
+                onClick={() => {
+                  setOpenDialog(true);
+                }}
+              >
+                <Save />
+              </IconButton>
+            </span>
           </Tooltip>
         </Grid>
         <Grid item>
           <Tooltip title="Sweep - sounds will change volumes over time">
-            <IconButton
-              size="small"
-              disabled={!activeSounds.length}
-              color={sweeping ? 'secondary' : 'default'}
-              onClick={() => {
-                dispatch(oscillate());
-              }}
-            >
-              <SlowMotionVideo />
-            </IconButton>
+            <span>
+              <IconButton
+                size="small"
+                disabled={!activeSounds.length}
+                color={sweeping ? 'secondary' : 'default'}
+                onClick={() => {
+                  dispatch(oscillate());
+                }}
+              >
+                <SlowMotionVideo />
+              </IconButton>
+            </span>
           </Tooltip>
         </Grid>
         <Grid item>
           <Tooltip title="Create unique name for the preset and copy link to clipboard">
-            <IconButton
-              size="small"
-              disabled={!isPlaying || !activeSounds.length}
-              onClick={() => {
-                createPreset();
-              }}
-            >
-              <Share />
-            </IconButton>
+            <span>
+              <IconButton
+                size="small"
+                disabled={!isPlaying || !activeSounds.length}
+                onClick={() => {
+                  createPreset();
+                }}
+              >
+                <Share />
+              </IconButton>
+            </span>
           </Tooltip>
         </Grid>
         <Grid item>

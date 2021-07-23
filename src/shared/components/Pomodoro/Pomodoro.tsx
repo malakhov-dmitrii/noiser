@@ -7,8 +7,12 @@ import { toggle, shuffle } from '../../../store/features/player';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'absolute',
+    position: 'fixed',
     top: theme.spacing(2),
+    left: 0,
+    width: '100%',
+    justifyContent: 'center',
+    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
   },
