@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Slider, Tooltip, IconButton, Typography, FormControlLabel, Switch, Hidden, Button } from '@material-ui/core';
 import { setMasterVolume, toggle } from '../../../../store/features/player';
-import { AttachMoneyOutlined, FormatListNumbered, VolumeUp, VolumeOff } from '@material-ui/icons';
+import { AttachMoneyOutlined, FormatListNumbered, VolumeUp, VolumeOff, Timer } from '@material-ui/icons';
 import ThemePicker from './ThemePicker';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
@@ -144,8 +144,8 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
           <Box ml={2} display="flex" alignItems="center">
             {title}
             {update}
+            <Pomodoro />
           </Box>
-          <Pomodoro />
           <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} pt={1}>
             {slider}
 

@@ -25,3 +25,5 @@ export const MUBERT = {
   token: '8f8f0c3e9064d072ba9fa6402ab6e805edf2cd2d',
   localField: 'mubert_PAT',
 };
+
+export const defaultSettings = { pomodoroDuration: 25 };
