@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions, Button, Box } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Button, Box } from '@material-ui/core';
 import { useAppSelector } from '../../../store/hooks';
 import { useFirebase } from 'react-redux-firebase';
 import { Timer } from '@material-ui/icons';

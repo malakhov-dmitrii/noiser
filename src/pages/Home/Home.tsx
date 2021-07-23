@@ -102,8 +102,8 @@ const Home = () => {
 
   return (
     <Box pt={3}>
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography variant="h1">Noizer</Typography>
+      <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
+        {/* <Typography variant="h1">Noizer</Typography> */}
 
         <PlayerControls loadedPreset={loadedPreset} />
       </Box>

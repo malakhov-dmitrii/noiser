@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo } from 'react';
-import { Box, makeStyles, Hidden, IconButton, Tooltip } from '@material-ui/core';
+import { Box, makeStyles, IconButton, Tooltip } from '@material-ui/core';
 import Countdown, { CountdownRenderProps } from 'react-countdown';
 import { Pause, PlayCircleOutline, Settings } from '@material-ui/icons';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
@@ -42,65 +42,63 @@ const Pomodoro = () => {
   const timerDuration = useMemo(() => Date.now() + duration * 60 * 1000, [duration]);
 
   return (
-    <Hidden smDown>
-      <Box position="relative" display="flex" justifyContent="center" mx={4}>
-        <Box className={classes.root}>
-          {isPlaying && (
-            <IconButton
-              color="default"
-              size="small"
-              onClick={() => {
-                dispatch(toggle(false));
-                ref.current?.pause();
-                setIsPlaying(!isPlaying);
-              }}
-            >
-              <Pause />
-            </IconButton>
-          )}
-          {!isPlaying && (
-            <IconButton
-              color="default"
-              size="small"
-              onClick={() => {
-                if (activeSounds.length === 0) {
-                  dispatch(shuffle());
-                }
-
-                dispatch(toggle(true));
-                ref.current?.start();
-                setIsPlaying(!isPlaying);
-              }}
-            >
-              <PlayCircleOutline />
-            </IconButton>
-          )}
-          <Countdown
-            autoStart={false}
-            ref={ref}
-            onComplete={() => {
-              setIsPlaying(false);
+    <Box position="relative" display="flex" justifyContent="center" mx={4}>
+      <Box className={classes.root}>
+        {isPlaying && (
+          <IconButton
+            color="default"
+            size="small"
+            onClick={() => {
               dispatch(toggle(false));
+              ref.current?.pause();
+              setIsPlaying(!isPlaying);
             }}
-            date={timerDuration}
-            renderer={renderer}
-          />
+          >
+            <Pause />
+          </IconButton>
+        )}
+        {!isPlaying && (
+          <IconButton
+            color="default"
+            size="small"
+            onClick={() => {
+              if (activeSounds.length === 0) {
+                dispatch(shuffle());
+              }
 
-          <Tooltip title="Coming soon">
-            <IconButton
-              color="default"
-              size="small"
-              onClick={() => {
-                setSettingsOpen(true);
-              }}
-            >
-              <Settings />
-            </IconButton>
-          </Tooltip>
-          <PomodoroSettingsDialog open={settingsOpen} onClose={() => setSettingsOpen(false)} onSave={() => setSettingsOpen(false)} />
-        </Box>
+              dispatch(toggle(true));
+              ref.current?.start();
+              setIsPlaying(!isPlaying);
+            }}
+          >
+            <PlayCircleOutline />
+          </IconButton>
+        )}
+        <Countdown
+          autoStart={false}
+          ref={ref}
+          onComplete={() => {
+            setIsPlaying(false);
+            dispatch(toggle(false));
+          }}
+          date={timerDuration}
+          renderer={renderer}
+        />
+
+        <Tooltip title="Coming soon">
+          <IconButton
+            color="default"
+            size="small"
+            onClick={() => {
+              setSettingsOpen(true);
+            }}
+          >
+            <Settings />
+          </IconButton>
+        </Tooltip>
+        <PomodoroSettingsDialog open={settingsOpen} onClose={() => setSettingsOpen(false)} onSave={() => setSettingsOpen(false)} />
       </Box>
-    </Hidden>
+    </Box>
   );
 };
 
