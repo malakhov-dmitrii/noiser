@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Button, Box, Typography, IconButton, Tooltip } from '@material-ui/core';
-import { useAppSelector } from '../../store/hooks';
+import { Button, Box, Typography, IconButton, Tooltip, CircularProgress } from '@material-ui/core';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { PlaylistsData } from './Mubert.model';
 
 import ReactPlayer from 'react-player';
@@ -11,6 +11,8 @@ import { getToken, getPlaylists } from './Mubert.service';
 import { PlayArrow, FavoriteBorder, NotInterested, Pause } from '@material-ui/icons';
 import { random } from 'lodash';
 import { useFirebase } from 'react-redux-firebase';
+import { db } from '../..';
+import { emit } from '../../store/features/notifications';
 
 export interface SelectionValues {
   category: number | '';
@@ -20,6 +22,7 @@ export interface SelectionValues {
 
 const Zen = () => {
   const firebase = useFirebase();
+  const dispatch = useAppDispatch();
   const { profile, auth } = useAppSelector(store => store.firebase);
   const { isPlaying, masterVolume } = useAppSelector(state => state.player);
 
@@ -49,10 +52,26 @@ const Zen = () => {
     }
   }, [profile.email]);
 
+  useEffect(() => {
+    if (auth.uid) {
+      const getUserStreamRates = async () => {
+        const data = await (await db.ref(`/users/${auth.uid}/streamRates`).get()).toJSON();
+        console.log(data);
+      };
+      getUserStreamRates();
+    }
+  }, [auth.uid]);
+
   const selectedCategory = data?.categories.find(i => i.category_id === selectionValues.category);
   const selectedGroup = selectedCategory?.groups.find(i => i.group_id === selectionValues.group);
   const selectedChannel = selectedGroup?.channels.find(i => i.channel_id === selectionValues.channel);
   const availableStream = selectedChannel?.stream.url || selectedGroup?.stream.url || selectedCategory?.stream.url;
+  const streamId = useMemo(() => {
+    const regexmatch = availableStream && new URL(availableStream).search.match(/playlist=(.*)&/);
+    const playlistId = regexmatch && regexmatch[1].replace(/\./g, '|');
+    return playlistId;
+  }, [availableStream]);
+  const streamRate = streamId && profile.streamRates[streamId];
 
   const streamParams = useMemo(() => {
     let res = '';
@@ -98,7 +117,30 @@ const Zen = () => {
     setPlay(false);
   };
 
-  if (auth.isEmpty && !auth.isLoading)
+  const like = async () => {
+    const res = { likes: streamRate?.likes + 1 || 0, dislikes: streamRate?.dislikes || 0 };
+    db.ref(`/users/${auth.uid}/streamRates/${streamId}`)
+      .set(res)
+      .then(() => dispatch(emit('Like saved', 'success')))
+      .catch(e => dispatch(emit('Error, sorry', 'error')));
+  };
+
+  const dislike = async () => {
+    const res = { likes: streamRate?.likes || 0, dislikes: streamRate?.dislikes + 1 || 0 };
+    db.ref(`/users/${auth.uid}/streamRates/${streamId}`)
+      .set(res)
+      .then(() => dispatch(emit('Dislike saved', 'success')))
+      .catch(e => dispatch(emit('Error, sorry', 'error')));
+  };
+
+  if (!auth.isLoaded && auth.isEmpty)
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <CircularProgress />
+      </Box>
+    );
+
+  if (auth.isEmpty && auth.isLoaded)
     return (
       <Box>
         <Typography variant="h2" align="center">
@@ -121,7 +163,7 @@ const Zen = () => {
     );
 
   return (
-    <Box>
+    <Box mt={12}>
       {view === 'select' && (
         <SelectionView
           data={data}
@@ -147,7 +189,8 @@ const Zen = () => {
         <Box mx={2}>
           <Tooltip title="Dislike">
             <span>
-              <IconButton disabled={!availableStream}>
+              <Typography variant="caption">{streamRate?.dislikes}</Typography>
+              <IconButton disabled={!availableStream} onClick={() => dislike()}>
                 <NotInterested></NotInterested>
               </IconButton>
             </span>
@@ -166,12 +209,22 @@ const Zen = () => {
         <Box mx={2}>
           <Tooltip title="Like">
             <span>
-              <IconButton disabled={!availableStream}>
+              <IconButton disabled={!availableStream} onClick={() => like()}>
                 <FavoriteBorder></FavoriteBorder>
               </IconButton>
+              <Typography variant="caption">{streamRate?.likes}</Typography>
             </span>
           </Tooltip>
         </Box>
+      </Box>
+
+      <Box mt={12}>
+        <Typography align="center" variant="subtitle2">
+          Music flow composed by
+          <a href="https://mubert.com/" target="_blank" rel="noreferrer">
+            Mubert
+          </a>
+        </Typography>
       </Box>
 
       <ReactPlayer

@@ -27,7 +27,7 @@ const presetsApp = firebase.initializeApp(sharedPresetsFirebaseConfig, 'presets_
 
 export const auth = firebase.auth();
 export const presetsDb = firebase.database(presetsApp);
-export const db = firebase.database();
+export const db = firebase.database(primaryApp);
 export const analytics = firebase.analytics();
 export const storage = firebase.storage();
 

@@ -24,33 +24,33 @@ const SelectionView = ({
 }) => {
   if (!data)
     return (
-      <Box display="flex" alignItems="center" justifyContent="center" mt={0.5}>
-        <Box>
+      <Box display="flex" alignItems="center" justifyContent="center" flexWrap="wrap" mt={0.5}>
+        <Box my={1}>
           <Skeleton height={40} width={80} />
         </Box>
-        <Box ml={2}>
+        <Box my={1} ml={2}>
           <Skeleton height={50} width={110} />
         </Box>
-        <Box ml={2}>
+        <Box my={1} ml={2}>
           <Skeleton height={50} width={110} />
         </Box>
-        <Box ml={2}>
+        <Box my={1} ml={2}>
           <Skeleton height={50} width={110} />
         </Box>
-        <Box ml={2}>
+        <Box my={1} ml={2}>
           <Skeleton height={40} width={80} />
         </Box>
       </Box>
     );
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center">
-      <Box mr={1}>
+    <Box display="flex" alignItems="center" flexWrap="wrap" justifyContent="center">
+      <Box my={1} mr={1}>
         <Button variant="outlined" size="small" startIcon={<Shuffle color="action" />} color="default" onClick={() => handleRandom()}>
           Random
         </Button>
       </Box>
-      <Box width={150}>
+      <Box my={1} width={100}>
         <FormControl variant="outlined" fullWidth size="small">
           <InputLabel>Category</InputLabel>
           <Select value={selectionValues.category} onChange={e => onChange('category', +(e.target.value as string))}>
@@ -62,7 +62,7 @@ const SelectionView = ({
           </Select>
         </FormControl>
       </Box>
-      <Box width={150} mx={1}>
+      <Box my={1} width={100} mx={1}>
         <FormControl variant="outlined" fullWidth size="small">
           <InputLabel>Group</InputLabel>
           <Select
@@ -79,7 +79,7 @@ const SelectionView = ({
           </Select>
         </FormControl>
       </Box>
-      <Box width={150}>
+      <Box my={1} width={100}>
         <FormControl variant="outlined" fullWidth size="small">
           <InputLabel>Channel</InputLabel>
 
