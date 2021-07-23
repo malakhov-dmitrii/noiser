@@ -220,7 +220,7 @@ const Zen = () => {
 
       <Box mt={12}>
         <Typography align="center" variant="subtitle2">
-          Music flow composed by
+          Music flow composed by{' '}
           <a href="https://mubert.com/" target="_blank" rel="noreferrer">
             Mubert
           </a>

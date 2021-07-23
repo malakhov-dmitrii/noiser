@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Box, Slider, Tooltip, IconButton, Typography, FormControlLabel, Switch, Hidden } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { Box, Slider, Tooltip, IconButton, Typography, FormControlLabel, Switch, Hidden, Button } from '@material-ui/core';
 import { setMasterVolume, toggle } from '../../../../store/features/player';
 import { AttachMoneyOutlined, FormatListNumbered, VolumeUp, VolumeOff } from '@material-ui/icons';
 import ThemePicker from './ThemePicker';
@@ -9,11 +9,15 @@ import UserAvatar from './UserAvatar';
 import Pomodoro from '../../../components/Pomodoro';
 import { ThemeType } from '../../../hooks/useTheme';
 import { useHistory } from 'react-router-dom';
+import { version } from '../../../../../package.json';
+
+const REMOTE_VERSION_URL = 'https://raw.githubusercontent.com/Hennessy811/noiser/main/package.json';
 
 const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
   const dispatch = useDispatch();
   const { isPlaying, masterVolume } = useSelector((state: RootState) => state.player);
   const history = useHistory();
+  const [updateAvailable, setUpdateAvailable] = useState(false);
 
   const handlePlay = (e: KeyboardEvent) => {
     if (e.code === 'Space') {
@@ -22,6 +26,12 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
   };
 
   useEffect(() => {
+    fetch(REMOTE_VERSION_URL)
+      .then(r => r.json())
+      .then(r => {
+        if (r.version !== version) setUpdateAvailable(true);
+      });
+
     window.addEventListener('keypress', handlePlay);
     return () => {
       window.removeEventListener('keypress', handlePlay);
@@ -30,6 +40,30 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
   }, []);
 
   const zen = history.location.pathname.includes('/zen');
+
+  const update = updateAvailable && (
+    <Box mx={1}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+              //returns installed service workers
+              if (registrations.length) {
+                for (let registration of registrations) {
+                  registration.update();
+                }
+              }
+            });
+            window.location.reload(true);
+          }
+        }}
+      >
+        Update available!
+      </Button>
+    </Box>
+  );
 
   const title = (
     <>
@@ -103,10 +137,11 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
 
   return (
     <>
-      <Hidden mdDown>
+      <Hidden smDown>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box ml={2} display="flex" alignItems="center">
             {title}
+            {update}
           </Box>
           <Pomodoro />
           <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} pt={1}>
@@ -123,6 +158,9 @@ const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) =>
           {title}
 
           <UserAvatar />
+        </Box>
+        <Box width="100%" display="flex" justifyContent="center" alignItems="center" px={2} py={1}>
+          {update}
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center" width="100%">
           {controls}

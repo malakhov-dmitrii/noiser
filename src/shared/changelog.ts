@@ -1,5 +1,6 @@
 const changelog = {
   'If you want to hear sounds which are not listed here, feel free to contact me': [],
+  '0.4.0': ['Personalized AI-powered music flow is there! Try Zen mode!'],
   '0.3.2': [
     'Created Slack space! Join and enjoy',
     'Now you can save your own presets to the library',
