@@ -1,7 +1,7 @@
 import { Box, Divider, Grid, Typography, withStyles } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ActiveSound, playReferredPlaylist, toggle } from '../../store/features/player';
+import { ActiveSound, playReferredPlaylist } from '../../store/features/player';
 import EffectItem from './components/EffectItem';
 
 import { useParams } from 'react-router-dom';
@@ -66,12 +66,6 @@ const Home = () => {
   const { sounds } = useAppSelector(state => state.player);
   const { auth } = useAppSelector(state => state.firebase);
 
-  const handlePlay = (e: KeyboardEvent) => {
-    if (e.code === 'Space') {
-      dispatch(toggle());
-    }
-  };
-
   const loadPreset = () => {
     presetsDb
       .ref(`${preset}`)
@@ -79,7 +73,6 @@ const Home = () => {
       .then(r => {
         if (r.exists()) {
           const referredPreset = r.val()?.sounds;
-          console.log(r.val());
           dispatch(playReferredPlaylist(referredPreset));
           setLoadedPreset(referredPreset);
         }
@@ -104,14 +97,6 @@ const Home = () => {
 
   useEffect(() => {
     if (preset) loadPreset();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('keypress', handlePlay);
-    return () => {
-      window.removeEventListener('keypress', handlePlay);
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

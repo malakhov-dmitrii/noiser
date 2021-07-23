@@ -20,4 +20,8 @@ export const sharedPresetsFirebaseConfig = {
   measurementId: 'G-J08M01HX4J',
 };
 
-export const a = '';
+export const MUBERT = {
+  license: 'noizermubertlicense#p16acnDfFfINuKrX9IAlCPhzuPAwYgo7OI9Y6IW8H7ANY0JEEPYIoqjbSZxDKeBT9BMlMQ8oPOpLTYs',
+  token: '8f8f0c3e9064d072ba9fa6402ab6e805edf2cd2d',
+  localField: 'mubert_PAT',
+};
