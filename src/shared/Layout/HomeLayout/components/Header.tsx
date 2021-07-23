@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import { version } from '../../../../../package.json';
 
 const REMOTE_VERSION_URL = `https://raw.githubusercontent.com/Hennessy811/noiser/${
-  window.location.pathname.includes('beta') ? 'dev' : 'main'
+  window.location.href.includes('beta') ? 'dev' : 'main'
 }/package.json`;
 
 const Header = ({ changeTheme }: { changeTheme: (theme: ThemeType) => void }) => {
